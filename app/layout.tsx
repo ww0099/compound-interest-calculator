@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description:
     'Calculate compound interest with monthly contributions. Solve for future value, present value, rate, or time — with charts, comparison mode, and history.',
   generator: 'v0.app',
+  other: {
+    'google-adsense-account': 'ca-pub-1920425213895856',
+  },
   icons: {
     icon: [
       {
