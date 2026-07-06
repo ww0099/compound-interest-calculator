@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/assets/og-image.png',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Compound Interest Calculator - Free Online Investment Growth Tool',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: 'Compound Interest Calculator | Free Investment Growth Tool',
     description:
       'Free compound interest calculator — solve for FV, PV, rate, time, or contributions with interactive charts and side-by-side comparison.',
-    images: ['/assets/og-image.png'],
+    images: ['/og-image.png'],
   },
   alternates: {
     canonical: 'https://top.net.im',
