@@ -74,6 +74,48 @@ export const viewport: Viewport = {
   themeColor: '#1a365d',
 }
 
+const jsonLdWebSite = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Compound Interest Calculator',
+  url: 'https://top.net.im',
+  description:
+    'Free compound interest calculator. Solve future value, present value, rate, time, or monthly contributions with interactive charts and comparison mode.',
+  inLanguage: 'en',
+}
+
+const jsonLdWebApp = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'Compound Interest Calculator',
+  url: 'https://top.net.im',
+  description:
+    'Free online compound interest calculator with five solve modes — future value, present value, interest rate, investment period, and monthly contribution. Includes growth charts, comparison mode, and history.',
+  applicationCategory: 'FinanceApplication',
+  operatingSystem: 'All',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+  inLanguage: 'en',
+}
+
+const jsonLdOrganization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Compound Interest Calculator',
+  url: 'https://top.net.im',
+  logo: 'https://top.net.im/og-image.png',
+  description:
+    'Free online financial calculator helping users plan long-term investment growth with compound interest.',
+  sameAs: ['https://github.com/WW0099/compound-interest-calculator'],
+}
+
+const jsonLdString = JSON.stringify(jsonLdWebSite)
+const jsonLdAppString = JSON.stringify(jsonLdWebApp)
+const jsonLdOrgString = JSON.stringify(jsonLdOrganization)
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -81,6 +123,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="light bg-background">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLdString }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLdAppString }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLdOrgString }}
+        />
+      </head>
       <body className="antialiased font-sans">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
