@@ -3,12 +3,11 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  // 标题 ≤60字符，中文优先 + 品牌词 + 核心关键词
-  title: '复利计算器 - 在线复利投资收益计算 | Compound Interest Calculator',
+  title: 'Compound Interest Calculator | Free Investment Growth Tool',
   description:
-    '免费在线复利计算器，支持终值、现值、年利率、投资期限、每月定投五种求解模式，提供增长趋势图表和方案对比功能，帮助您科学规划长期投资收益。',
+    'Free compound interest calculator. Solve future value, present value, rate, time, or monthly contributions with interactive charts and comparison mode.',
   keywords:
-    '复利计算器,复利,投资计算器,定投计算,复利收益,理财计算,72法则,compound interest calculator,在线计算器,财务规划',
+    'compound interest calculator, investment calculator, compound interest, future value, retirement planning, savings calculator, 72 rule, CAGR, financial calculator, wealth growth',
   authors: [{ name: 'WW0099' }],
   generator: 'v0.app',
   referrer: 'origin-when-cross-origin',
@@ -21,19 +20,19 @@ export const metadata: Metadata = {
     googlebot: 'index, follow',
   },
   openGraph: {
-    title: '复利计算器 - 在线复利投资收益计算',
+    title: 'Compound Interest Calculator | Free Investment Growth Tool',
     description:
-      '免费在线复利计算器，支持终值、现值、利率、期限、定投五种求解，带图表对比。',
+      'Free compound interest calculator — solve for FV, PV, rate, time, or contributions with interactive charts and side-by-side comparison.',
     url: 'https://top.net.im',
-    siteName: '复利计算器',
-    locale: 'zh_CN',
+    siteName: 'Compound Interest Calculator',
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: '复利计算器 - 在线复利投资收益计算',
+    title: 'Compound Interest Calculator | Free Investment Growth Tool',
     description:
-      '免费在线复利计算器，支持终值、现值、利率、期限、定投五种求解，带图表对比。',
+      'Free compound interest calculator — solve for FV, PV, rate, time, or contributions with interactive charts and side-by-side comparison.',
   },
   alternates: {
     canonical: 'https://top.net.im',
@@ -71,7 +70,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="zh-CN" className="light bg-background">
+    <html lang="en" className="light bg-background">
       <body className="antialiased font-sans">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
