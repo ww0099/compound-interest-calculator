@@ -86,7 +86,7 @@ const jsonLdWebSite = {
 
 const jsonLdWebApp = {
   '@context': 'https://schema.org',
-  '@type': 'WebApplication',
+  '@type': 'SoftwareApplication',
   name: 'Compound Interest Calculator',
   url: 'https://top.net.im',
   description:
