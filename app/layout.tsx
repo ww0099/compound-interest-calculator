@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Compound Interest Calculator | Free Investment Growth Tool',
     description:
-      'Free compound interest calculator — solve for FV, PV, rate, time, or contributions with interactive charts and side-by-side comparison.',
+      'Free compound interest calculator - solve for FV, PV, rate, time, or contributions with interactive charts and side-by-side comparison.',
     url: 'https://top.net.im',
     siteName: 'Compound Interest Calculator',
     locale: 'en_US',
@@ -40,11 +40,11 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Compound Interest Calculator | Free Investment Growth Tool',
     description:
-      'Free compound interest calculator — solve for FV, PV, rate, time, or contributions with interactive charts and side-by-side comparison.',
+      'Free compound interest calculator - solve for FV, PV, rate, time, or contributions with interactive charts and side-by-side comparison.',
     images: ['/og-image.png'],
   },
   alternates: {
-    canonical: 'https://top.net.im',
+    canonical: 'https://top.net.im/',
   },
   other: {
     'google-adsense-account': 'ca-pub-1920425213895856',
