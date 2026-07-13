@@ -1,0 +1,60 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+# GitHub Pages への書き込み権限
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# 同時実行を制限（古いデプロイをキャンセル）
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: https://top.net.im
+
+    steps:
+      - name: 📥 コードチェックアウト
+        uses: actions/checkout@v4
+
+      - name: 🔧 Node.js セットアップ
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: 📦 依存関係インストール
+        run: npm ci
+
+      - name: 🔨 Next.js ビルド（静的エクスポート）
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+
+      - name: ✅ ビルド成果物確認
+        run: |
+          echo "=== ビルド成果物 ==="
+          ls -la out/
+          echo "=== CNAME 確認 ==="
+          cat out/CNAME
+          echo "=== インデックス確認 ==="
+          test -f out/index.html && echo "✓ index.html 存在" || (echo "✗ index.html 不在" && exit 1)
+
+      - name: 🚀 GitHub Pages へデプロイ
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          cname: top.net.im
+          force_orphan: true
+          commit_message: 'Deploy: ${{ github.sha }} [skip ci]'
