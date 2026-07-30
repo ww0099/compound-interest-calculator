@@ -1,3 +1,7 @@
+import { bisect } from "@/lib/math"
+
+export { formatCurrency, formatPercent } from "@/lib/format"
+
 export type SolveTarget = "fv" | "pv" | "r" | "n" | "pmt"
 
 export type CurrencyCode = "USD" | "EUR" | "GBP" | "CNY"
@@ -94,34 +98,7 @@ export function solvePmt(
   return (targetFv - pv * growth) / annuityFactor
 }
 
-/** Generic bisection root finder on f over [lo, hi]. */
-function bisect(
-  f: (x: number) => number,
-  lo: number,
-  hi: number,
-  tol: number,
-  maxIter: number,
-): number | null {
-  let flo = f(lo)
-  const fhi = f(hi)
-  if (!isFinite(flo) || !isFinite(fhi)) return null
-  if (flo * fhi > 0) return null // no sign change in bracket
-  let mid = lo
-  for (let iter = 0; iter < maxIter; iter++) {
-    mid = (lo + hi) / 2
-    const fm = f(mid)
-    if (Math.abs(fm) < tol) return mid
-    if (flo * fm < 0) {
-      hi = mid
-    } else {
-      lo = mid
-      flo = fm
-    }
-  }
-  return mid
-}
-
-/** Bisection solve for annual rate r that yields target FV (bracket 0.01%–100%). */
+/** 二分法求解年利率 r，使未来值等于目标值（区间 0.01%–100%）。 */
 export function solveRateBisection(
   targetFv: number,
   pv: number,
@@ -262,26 +239,4 @@ export function growthSeries(inputs: CalcInputs): {
     real.push(realValue(bal, inputs.inflation, yr))
   }
   return { years, balance, contributions, real }
-}
-
-export function formatCurrency(
-  value: number,
-  currency: CurrencyCode = "USD",
-  locale = "en-US",
-): string {
-  if (!isFinite(value)) return "—"
-  return new Intl.NumberFormat(locale, {
-    style: "currency",
-    currency,
-    maximumFractionDigits: 2,
-  }).format(value)
-}
-
-export function formatPercent(value: number | null, locale = "en-US"): string {
-  if (value === null || !isFinite(value)) return "N/A"
-  return new Intl.NumberFormat(locale, {
-    style: "percent",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }).format(value)
 }

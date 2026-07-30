@@ -16,6 +16,8 @@ const enContent: BlogContent = {
   readingTime: "8 min read",
   intro:
     "You check your brokerage account and see your portfolio hit a new high. You feel good — until you realize that a gallon of milk now costs 40% more than it did a decade ago. This is inflation's hidden tax: your nominal returns look impressive, but what matters is what your money can actually buy. We ran the numbers for a 30-year investment to show exactly how much purchasing power inflation steals.",
+  description:
+    "Discover how inflation silently erodes your investment returns over time — the hidden tax that can destroy your purchasing power even as your portfolio grows.",
   sections: [
     {
       heading: "Nominal vs Real: The Crucial Distinction",
@@ -49,6 +51,11 @@ const enContent: BlogContent = {
       ],
     },
   ],
+  relatedArticles: [
+    { slug: "beginner-guide-retirement", titleEn: "A Beginner's Guide to Retirement Planning with Compound Interest", titleZh: "复利退休规划入门指南" },
+    { slug: "cagr-vs-average-return", titleEn: "CAGR vs Average Return: Why the Difference Can Mislead You", titleZh: "CAGR vs 平均回报：为什么差异会误导你" },
+    { slug: "500-per-month-30-years", titleEn: "How Much Will $500/Month Grow in 30 Years?", titleZh: "每月 $500 × 30 年能涨到多少？" },
+  ],
 }
 
 const zhContent: BlogContent = {
@@ -58,6 +65,8 @@ const zhContent: BlogContent = {
   readingTime: "阅读 8 分钟",
   intro:
     "你查看券商账户，发现你的投资组合创了新高。感觉不错——直到你意识到一加仑牛奶现在比十年前贵了 40%。这就是通胀的隐形税收：你的名义回报看起来很亮眼，但真正重要的是你的钱实际能买到什么。我们计算了一个 30 年期投资的数据，精确展示通胀偷走了多少购买力。",
+  description:
+    "了解通胀如何随时间悄然侵蚀你的投资回报——这种隐形税收即使你的投资组合在增长，也能摧毁你的购买力。",
   sections: [
     {
       heading: "名义 vs 实际：关键区别",
@@ -91,8 +100,13 @@ const zhContent: BlogContent = {
       ],
     },
   ],
+  relatedArticles: [
+    { slug: "beginner-guide-retirement", titleEn: "A Beginner's Guide to Retirement Planning with Compound Interest", titleZh: "复利退休规划入门指南" },
+    { slug: "cagr-vs-average-return", titleEn: "CAGR vs Average Return: Why the Difference Can Mislead You", titleZh: "CAGR vs 平均回报：为什么差异会误导你" },
+    { slug: "500-per-month-30-years", titleEn: "How Much Will $500/Month Grow in 30 Years?", titleZh: "每月 $500 × 30 年能涨到多少？" },
+  ],
 }
 
 export default function Page() {
-  return <BlogLayout en={enContent} zh={zhContent} />
+  return <BlogLayout slug="inflation-hidden-tax" en={enContent} zh={zhContent} />
 }

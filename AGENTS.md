@@ -30,13 +30,18 @@
 - [x] SEO 基础（JSON-LD / OG / Twitter / sitemap / robots.txt）
 - [x] Cookie 同意横幅 + SiteFooter
 - [x] **Phase 3：E-E-A-T 强化**（About / Methodology / References / 信任标识 / About Widget）
-- [ ] Phase 4：SEO 规模化（多计算器 / 内链外链 / 性能优化）
+- [x] **Phase 4 Tier 1**：TS 修复 + ignoreBuildErrors:false + 性能优化
+- [x] **Phase 4 Tier 2**：JSON-LD 结构化数据（Article×8 + BreadcrumbList + FAQPage）+ 博客内链×16
+- [x] **Phase 4 Tier 3**：共享基础设施重构 + 退休计算器 `/retirement` + 通胀计算器 `/inflation`
+- [ ] Phase 5：贷款计算器 + 更多内容 + Lighthouse 审计
 
-## 页面路由（19 条）
+## 页面路由（21 条）
 
 | 路由 | 说明 |
 |------|------|
-| `/` | 主页（计算器） |
+| `/` | 主页（复利计算器） |
+| `/retirement` | 退休计算器（积累期 + 领取期 + 4% 法则） |
+| `/inflation` | 通胀计算器（购买力 + 所需名义金额） |
 | `/about` | 关于我们（作者介绍 + 透明度声明） |
 | `/methodology` | 方法论（公式 + 假设与局限性） |
 | `/references` | 参考文献（权威外部引用） |

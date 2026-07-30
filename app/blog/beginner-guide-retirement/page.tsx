@@ -16,6 +16,8 @@ const enContent: BlogContent = {
   readingTime: "10 min read",
   intro:
     "Retirement planning can feel overwhelming, but the math behind it is accessible to anyone. The core question: how much do you need to save each month to reach your retirement goal? We calculated the exact numbers for someone aiming for $1 million at retirement, starting at ages 25, 35, and 45 — with no prior savings. The difference between starting early and starting late is the costliest financial lesson you can learn the hard way.",
+  description:
+    "A complete guide to retirement planning using compound interest — from calculating your retirement number to building a monthly savings plan that works.",
   sections: [
     {
       heading: "The Goal: $1 Million at Age 65",
@@ -53,6 +55,11 @@ const enContent: BlogContent = {
       ],
     },
   ],
+  relatedArticles: [
+    { slug: "500-per-month-30-years", titleEn: "How Much Will $500/Month Grow in 30 Years?", titleZh: "每月 $500 × 30 年能涨到多少？" },
+    { slug: "capital-gains-tax", titleEn: "Understanding Capital Gains Tax for Long-Term Investors", titleZh: "长期投资者必懂的资本利得税" },
+    { slug: "inflation-hidden-tax", titleEn: "Inflation's Hidden Tax on Your Investment Returns", titleZh: "通胀：你投资回报上的隐形税收" },
+  ],
 }
 
 const zhContent: BlogContent = {
@@ -62,6 +69,8 @@ const zhContent: BlogContent = {
   readingTime: "阅读 10 分钟",
   intro:
     "退休规划可能让人感到不知所措，但其背后的数学对任何人来说都是可以理解的。核心问题：你每个月需要存多少钱才能达到退休目标？我们为一个目标是退休时拥有 100 万美元的人计算了确切数字，分别从 25 岁、35 岁和 45 岁开始——没有任何前期储蓄。早开始和晚开始之间的差距，是你用惨痛代价才能学到的财务教训。",
+  description:
+    "使用复利进行退休规划的完整指南——从计算你的退休目标金额到制定可行的月度储蓄计划。",
   sections: [
     {
       heading: "目标：65 岁拥有 100 万美元",
@@ -99,8 +108,13 @@ const zhContent: BlogContent = {
       ],
     },
   ],
+  relatedArticles: [
+    { slug: "500-per-month-30-years", titleEn: "How Much Will $500/Month Grow in 30 Years?", titleZh: "每月 $500 × 30 年能涨到多少？" },
+    { slug: "capital-gains-tax", titleEn: "Understanding Capital Gains Tax for Long-Term Investors", titleZh: "长期投资者必懂的资本利得税" },
+    { slug: "inflation-hidden-tax", titleEn: "Inflation's Hidden Tax on Your Investment Returns", titleZh: "通胀：你投资回报上的隐形税收" },
+  ],
 }
 
 export default function Page() {
-  return <BlogLayout en={enContent} zh={zhContent} />
+  return <BlogLayout slug="beginner-guide-retirement" en={enContent} zh={zhContent} />
 }

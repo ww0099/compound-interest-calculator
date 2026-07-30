@@ -16,6 +16,8 @@ const enContent: BlogContent = {
   readingTime: "9 min read",
   intro:
     "An investment gains 50% in year one, then loses 50% in year two. What's your average return? Many would say 0%. The reality: you've lost 25% of your money. This is the trap of arithmetic averages versus geometric returns — and why CAGR (Compound Annual Growth Rate) is the only honest way to measure investment performance. Understanding this distinction will make you a savvier investor and protect you from misleading performance claims.",
+  description:
+    "Why the arithmetic average return is misleading — learn how CAGR (Compound Annual Growth Rate) gives you the true picture of your investment performance.",
   sections: [
     {
       heading: "The 50/50 Trap: A Revealing Example",
@@ -52,6 +54,11 @@ const enContent: BlogContent = {
       body: "CAGR is the truth-teller of investment performance. The arithmetic average is a marketing number. When someone tells you about 'average returns,' mentally convert it: subtract roughly half the variance to get a realistic CAGR. Better yet, always compute the CAGR yourself from beginning and ending values. Your retirement depends on geometric reality, not arithmetic fantasy.",
     },
   ],
+  relatedArticles: [
+    { slug: "compound-vs-simple-interest", titleEn: "Compound Interest vs Simple Interest: A 10-Year Comparison", titleZh: "复利 vs 单利：十年大对比" },
+    { slug: "rule-of-72", titleEn: "The Rule of 72: How Fast Does Your Money Double?", titleZh: "72 法则：你的钱多快能翻倍？" },
+    { slug: "inflation-hidden-tax", titleEn: "Inflation's Hidden Tax on Your Investment Returns", titleZh: "通胀：你投资回报上的隐形税收" },
+  ],
 }
 
 const zhContent: BlogContent = {
@@ -61,6 +68,8 @@ const zhContent: BlogContent = {
   readingTime: "阅读 9 分钟",
   intro:
     "一项投资第一年涨了 50%，第二年跌了 50%。你的平均回报是多少？很多人会说 0%。现实是：你亏了 25%。这就是算术平均与几何回报的陷阱——以及为什么 CAGR（复合年增长率）才是衡量投资表现的唯一诚实方式。理解这个区别会让你成为更精明的投资者，保护你免受误导性业绩宣传的影响。",
+  description:
+    "为什么算术平均回报会误导你——了解 CAGR（复合年增长率）如何为你提供投资表现的真实图景。",
   sections: [
     {
       heading: "50/50 陷阱：一个揭示性例子",
@@ -97,8 +106,13 @@ const zhContent: BlogContent = {
       body: "CAGR 是投资表现的真相揭露者。算术平均是营销数字。当有人告诉你「平均回报」时，在脑中换算：减去大约一半的方差，得到现实的 CAGR。更好的是，始终自己从起始和结束价值计算 CAGR。你的退休金取决于几何现实，而不是算术幻想。",
     },
   ],
+  relatedArticles: [
+    { slug: "compound-vs-simple-interest", titleEn: "Compound Interest vs Simple Interest: A 10-Year Comparison", titleZh: "复利 vs 单利：十年大对比" },
+    { slug: "rule-of-72", titleEn: "The Rule of 72: How Fast Does Your Money Double?", titleZh: "72 法则：你的钱多快能翻倍？" },
+    { slug: "inflation-hidden-tax", titleEn: "Inflation's Hidden Tax on Your Investment Returns", titleZh: "通胀：你投资回报上的隐形税收" },
+  ],
 }
 
 export default function Page() {
-  return <BlogLayout en={enContent} zh={zhContent} />
+  return <BlogLayout slug="cagr-vs-average-return" en={enContent} zh={zhContent} />
 }

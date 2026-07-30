@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     'max-image-preview': 'large',
     'max-snippet': -1,
     'max-video-preview': -1,
-    googlebot: 'index, follow',
+    googleBot: 'index, follow',
   },
   openGraph: {
     title: 'Compound Interest Calculator | Free Investment Growth Tool',
@@ -117,9 +117,57 @@ const jsonLdOrganization = {
   sameAs: ['https://github.com/WW0099/compound-interest-calculator'],
 }
 
+const jsonLdFaq = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is compound interest?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Compound interest is the interest earned on both the initial principal and the accumulated interest from previous periods. Unlike simple interest, which only earns on the principal, compound interest creates exponential growth over time.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I calculate compound interest?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Use the formula FV = PV × (1 + r/n)^(n×t) where PV is the initial principal, r is the annual interest rate, n is the number of compounding periods per year, and t is the number of years. Our free calculator handles all five variables (FV, PV, rate, time, and contributions).',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the Rule of 72?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The Rule of 72 is a mental shortcut to estimate how long it takes for an investment to double. Divide 72 by the annual interest rate (as a percentage). At 6%, your money doubles in approximately 12 years (72 ÷ 6 = 12).',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does inflation affect my investments?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Inflation reduces the real purchasing power of your investment returns. An 8% nominal return with 3% inflation means your real return is approximately 5%. Over 30 years, 3% inflation can erode nearly 60% of your nominal gains.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much should I save for retirement?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'A common guideline is the 4% rule: multiply your desired annual retirement income by 25 to get your target retirement savings. For example, to withdraw $40,000 per year, you would need approximately $1,000,000 saved. Use our retirement calculator for personalized projections.',
+      },
+    },
+  ],
+}
+
 const jsonLdString = JSON.stringify(jsonLdWebSite)
 const jsonLdAppString = JSON.stringify(jsonLdWebApp)
 const jsonLdOrgString = JSON.stringify(jsonLdOrganization)
+const jsonLdFaqString = JSON.stringify(jsonLdFaq)
 
 export default function RootLayout({
   children,
@@ -129,6 +177,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="light bg-background">
       <head>
+        <link rel="preconnect" href="https://top.net.im" />
+        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLdString }}
@@ -140,6 +190,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLdOrgString }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLdFaqString }}
         />
       </head>
       <body className="antialiased font-sans">

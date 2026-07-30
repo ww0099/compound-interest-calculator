@@ -16,6 +16,8 @@ const enContent: BlogContent = {
   readingTime: "9 min read",
   intro:
     "What happens if you invest $500 every month for 30 years? The answer depends heavily on your rate of return — and the difference between a conservative and an optimistic scenario is measured in hundreds of thousands of dollars. We calculated the exact outcomes at 4%, 7%, and 10% annual returns to show you what consistent monthly investing can achieve.",
+  description:
+    "See how much $500 invested monthly can grow over 30 years at different return rates — from conservative bonds to aggressive stock market returns.",
   sections: [
     {
       heading: "The Three Scenarios: Conservative, Moderate, Aggressive",
@@ -53,6 +55,11 @@ const enContent: BlogContent = {
       ],
     },
   ],
+  relatedArticles: [
+    { slug: "beginner-guide-retirement", titleEn: "A Beginner's Guide to Retirement Planning with Compound Interest", titleZh: "复利退休规划入门指南" },
+    { slug: "capital-gains-tax", titleEn: "Understanding Capital Gains Tax for Long-Term Investors", titleZh: "长期投资者必懂的资本利得税" },
+    { slug: "inflation-hidden-tax", titleEn: "Inflation's Hidden Tax on Your Investment Returns", titleZh: "通胀：你投资回报上的隐形税收" },
+  ],
 }
 
 const zhContent: BlogContent = {
@@ -62,6 +69,8 @@ const zhContent: BlogContent = {
   readingTime: "阅读 9 分钟",
   intro:
     "如果每个月投资 $500，坚持 30 年，会发生什么？答案很大程度上取决于你的回报率——而保守和乐观情景之间的差距是以数十万美元计的。我们精确计算了 4%、7% 和 10% 年化回报率下的结果，向你展示坚持每月定投的力量。",
+  description:
+    "看看每月投入 500 美元在不同回报率下 30 年能增长多少——从保守的债券到激进的股票市场回报。",
   sections: [
     {
       heading: "三种情景：保守、稳健、进取",
@@ -99,8 +108,13 @@ const zhContent: BlogContent = {
       ],
     },
   ],
+  relatedArticles: [
+    { slug: "beginner-guide-retirement", titleEn: "A Beginner's Guide to Retirement Planning with Compound Interest", titleZh: "复利退休规划入门指南" },
+    { slug: "capital-gains-tax", titleEn: "Understanding Capital Gains Tax for Long-Term Investors", titleZh: "长期投资者必懂的资本利得税" },
+    { slug: "inflation-hidden-tax", titleEn: "Inflation's Hidden Tax on Your Investment Returns", titleZh: "通胀：你投资回报上的隐形税收" },
+  ],
 }
 
 export default function Page() {
-  return <BlogLayout en={enContent} zh={zhContent} />
+  return <BlogLayout slug="500-per-month-30-years" en={enContent} zh={zhContent} />
 }

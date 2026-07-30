@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { ArrowLeft, Calendar, Clock, User } from "lucide-react"
+import { ArrowLeft, Calendar, Clock, User, BookOpen } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import type { Lang } from "@/lib/i18n"
@@ -13,26 +13,125 @@ export interface BlogSection {
   body: string | string[]
 }
 
+export interface RelatedArticle {
+  slug: string
+  titleEn: string
+  titleZh: string
+}
+
 export interface BlogContent {
   title: string
   date: string
   author: string
   readingTime: string
   intro: string
+  description: string
   sections: BlogSection[]
+  relatedArticles?: RelatedArticle[]
 }
 
 interface BlogLayoutProps {
+  slug: string
   en: BlogContent
   zh: BlogContent
 }
 
-export function BlogLayout({ en, zh }: BlogLayoutProps) {
+function buildArticleJsonLd(
+  slug: string,
+  title: string,
+  description: string,
+  date: string,
+  author: string,
+  lang: Lang,
+) {
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description,
+    datePublished: date,
+    dateModified: date,
+    author: {
+      "@type": "Person",
+      name: author,
+      url: "https://top.net.im/about",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Compound Interest Calculator",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://top.net.im/og-image.png",
+      },
+    },
+    image: "https://top.net.im/og-image.png",
+    url: `https://top.net.im/blog/${slug}`,
+    isAccessibleForFree: true,
+    inLanguage: lang === "en" ? "en-US" : "zh-CN",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://top.net.im/blog/${slug}`,
+    },
+  })
+}
+
+function buildBreadcrumbJsonLd(
+  slug: string,
+  title: string,
+  lang: Lang,
+) {
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://top.net.im/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: lang === "en" ? "Blog" : "博客",
+        item: "https://top.net.im/blog",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: title,
+        item: `https://top.net.im/blog/${slug}`,
+      },
+    ],
+  })
+}
+
+export function BlogLayout({ slug, en, zh }: BlogLayoutProps) {
   const [lang, setLang] = useState<Lang>("en")
   const content = lang === "en" ? en : zh
 
+  const articleJsonLd = buildArticleJsonLd(
+    slug,
+    content.title,
+    content.description,
+    content.date,
+    content.author,
+    lang,
+  )
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd(slug, content.title, lang)
+
   return (
     <div className="min-h-screen bg-background">
+      {/* JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: articleJsonLd }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: breadcrumbJsonLd }}
+      />
+
       {/* Header */}
       <header className="border-b border-border bg-card">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-5">
@@ -119,6 +218,29 @@ export function BlogLayout({ en, zh }: BlogLayoutProps) {
             </div>
           </CardContent>
         </Card>
+
+        {/* Related Articles */}
+        {content.relatedArticles && content.relatedArticles.length > 0 && (
+          <Card className="mt-8">
+            <CardContent className="p-5 sm:p-6">
+              <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-primary">
+                <BookOpen className="h-5 w-5" />
+                {lang === "en" ? "Related Articles" : "相关文章"}
+              </h2>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {content.relatedArticles.map((ra) => (
+                  <Link
+                    key={ra.slug}
+                    href={`/blog/${ra.slug}`}
+                    className="rounded-lg border border-border p-3 text-sm font-medium text-foreground transition-colors hover:border-primary/40 hover:bg-secondary/40"
+                  >
+                    {lang === "en" ? ra.titleEn : ra.titleZh}
+                  </Link>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Back link */}
         <div className="mt-8 text-center">

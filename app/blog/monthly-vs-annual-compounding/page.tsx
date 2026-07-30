@@ -16,6 +16,8 @@ const enContent: BlogContent = {
   readingTime: "7 min read",
   intro:
     "You've seen the ads: 'Earn 5% APY, compounded daily!' But does compounding frequency actually matter in practice? Using our calculator, we measured the exact dollar difference between annual, monthly, and daily compounding on a $50,000 investment at 6% over 20 years. The results might surprise you — the gap is both real and often overstated in marketing.",
+  description:
+    "How much difference does compounding frequency really make? Compare monthly vs annual vs daily compounding and understand the power of more frequent interest calculations.",
   sections: [
     {
       heading: "The Formula: How Compounding Frequency Works",
@@ -49,6 +51,10 @@ const enContent: BlogContent = {
       ],
     },
   ],
+  relatedArticles: [
+    { slug: "compound-vs-simple-interest", titleEn: "Compound Interest vs Simple Interest: A 10-Year Comparison", titleZh: "复利 vs 单利：十年大对比" },
+    { slug: "rule-of-72", titleEn: "The Rule of 72: How Fast Does Your Money Double?", titleZh: "72 法则：你的钱多快能翻倍？" },
+  ],
 }
 
 const zhContent: BlogContent = {
@@ -58,6 +64,8 @@ const zhContent: BlogContent = {
   readingTime: "阅读 7 分钟",
   intro:
     "你一定看过这样的广告：'5% APY，每日复利！'但复利频率在实践中真的重要吗？我们用计算器精确测量了 $50,000 投资按 6% 利率在 20 年间每年、每月和每日复利之间的美元差异。结果可能让你惊讶——差距虽然真实存在，但在营销中常被夸大。",
+  description:
+    "复利频率到底有多大区别？比较每月、每年和每日复利，了解更频繁的利息计算带来的力量。",
   sections: [
     {
       heading: "公式：复利频率如何运作",
@@ -91,8 +99,12 @@ const zhContent: BlogContent = {
       ],
     },
   ],
+  relatedArticles: [
+    { slug: "compound-vs-simple-interest", titleEn: "Compound Interest vs Simple Interest: A 10-Year Comparison", titleZh: "复利 vs 单利：十年大对比" },
+    { slug: "rule-of-72", titleEn: "The Rule of 72: How Fast Does Your Money Double?", titleZh: "72 法则：你的钱多快能翻倍？" },
+  ],
 }
 
 export default function Page() {
-  return <BlogLayout en={enContent} zh={zhContent} />
+  return <BlogLayout slug="monthly-vs-annual-compounding" en={enContent} zh={zhContent} />
 }

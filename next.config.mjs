@@ -2,8 +2,9 @@
 const nextConfig = {
   output: 'export',
   productionBrowserSourceMaps: false,
+  poweredByHeader: false,
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
   images: {
     unoptimized: true,

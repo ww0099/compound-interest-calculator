@@ -16,6 +16,8 @@ const enContent: BlogContent = {
   readingTime: "7 min read",
   intro:
     "How long until your money doubles? Instead of reaching for a calculator, you can answer this question in seconds using the Rule of 72 — one of the most useful mental shortcuts in finance. Divide 72 by your annual interest rate, and you'll get a remarkably accurate estimate of the number of years it takes for your investment to double.",
+  description:
+    "Learn the Rule of 72 — a simple mental math shortcut to estimate how long it takes for your investment to double at any interest rate.",
   sections: [
     {
       heading: "The Rule, Explained in 10 Seconds",
@@ -48,6 +50,11 @@ const enContent: BlogContent = {
       body: "The Rule of 72 is a mental model that makes you faster at evaluating financial decisions. When comparing two investments — say a 6% bond vs a 9% stock index fund — the Rule instantly tells you doubling happens in ~12 years vs ~8 years. That 4-year difference, compounded over a career, explains why asset allocation matters. Use this rule. It takes seconds to learn and a lifetime to benefit from.",
     },
   ],
+  relatedArticles: [
+    { slug: "compound-vs-simple-interest", titleEn: "Compound Interest vs Simple Interest: A 10-Year Comparison", titleZh: "复利 vs 单利：十年大对比" },
+    { slug: "cagr-vs-average-return", titleEn: "CAGR vs Average Return: Why the Difference Can Mislead You", titleZh: "CAGR vs 平均回报：为什么差异会误导你" },
+    { slug: "inflation-hidden-tax", titleEn: "Inflation's Hidden Tax on Your Investment Returns", titleZh: "通胀：你投资回报上的隐形税收" },
+  ],
 }
 
 const zhContent: BlogContent = {
@@ -57,6 +64,8 @@ const zhContent: BlogContent = {
   readingTime: "阅读 7 分钟",
   intro:
     "你的钱多久能翻倍？你不必掏出计算器，只需用 72 法则——金融领域最实用的速算工具之一——几秒钟就能得出答案。用 72 除以年利率，你就能得到一个相当准确的资金翻倍所需年数的估算。",
+  description:
+    "学习 72 法则——一个简单的心算捷径，用于估算在任何利率下你的投资翻倍需要多长时间。",
   sections: [
     {
       heading: "10 秒钟学会这个法则",
@@ -89,8 +98,13 @@ const zhContent: BlogContent = {
       body: "72 法则是一个让你在评估财务决策时更快的心智模型。当比较两个投资时——比如 6% 的债券 vs 9% 的股票指数基金——法则立即告诉你翻倍分别需要约 12 年和约 8 年。这 4 年的差距，在职业生涯中不断复利，解释了为什么资产配置如此重要。请善用这个法则。它只需要几秒钟学会，却能让你的终身受益。",
     },
   ],
+  relatedArticles: [
+    { slug: "compound-vs-simple-interest", titleEn: "Compound Interest vs Simple Interest: A 10-Year Comparison", titleZh: "复利 vs 单利：十年大对比" },
+    { slug: "cagr-vs-average-return", titleEn: "CAGR vs Average Return: Why the Difference Can Mislead You", titleZh: "CAGR vs 平均回报：为什么差异会误导你" },
+    { slug: "inflation-hidden-tax", titleEn: "Inflation's Hidden Tax on Your Investment Returns", titleZh: "通胀：你投资回报上的隐形税收" },
+  ],
 }
 
 export default function Page() {
-  return <BlogLayout en={enContent} zh={zhContent} />
+  return <BlogLayout slug="rule-of-72" en={enContent} zh={zhContent} />
 }

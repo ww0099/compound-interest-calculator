@@ -16,6 +16,8 @@ const enContent: BlogContent = {
   readingTime: "8 min read",
   intro:
     "You've done the hard work of investing consistently. You've let compound interest work its magic for decades. Then the tax bill arrives. Capital gains tax is the often-overlooked third drag on investment returns — alongside inflation and fees. We calculated the exact after-tax outcomes for a $100,000 investment at 8% over 20 years at 0%, 15%, and 30% tax rates. The difference between tax-free and taxable investing can mean tens of thousands of dollars.",
+  description:
+    "Learn how capital gains tax affects your long-term investment returns — and discover strategies to minimize the tax burden on your portfolio growth.",
   sections: [
     {
       heading: "How Capital Gains Tax Works on Investments",
@@ -54,6 +56,11 @@ const enContent: BlogContent = {
       ],
     },
   ],
+  relatedArticles: [
+    { slug: "500-per-month-30-years", titleEn: "How Much Will $500/Month Grow in 30 Years?", titleZh: "每月 $500 × 30 年能涨到多少？" },
+    { slug: "beginner-guide-retirement", titleEn: "A Beginner's Guide to Retirement Planning with Compound Interest", titleZh: "复利退休规划入门指南" },
+    { slug: "compound-vs-simple-interest", titleEn: "Compound Interest vs Simple Interest: A 10-Year Comparison", titleZh: "复利 vs 单利：十年大对比" },
+  ],
 }
 
 const zhContent: BlogContent = {
@@ -63,6 +70,8 @@ const zhContent: BlogContent = {
   readingTime: "阅读 8 分钟",
   intro:
     "你坚持不懈地投资多年，让复利发挥了数十年的魔力。然后税单来了。资本利得税是经常被忽视的第三种投资回报阻力——与通胀和费用并列。我们计算了 $100,000 投资按 8% 在 20 年间的精确税后结果，分别适用 0%、15% 和 30% 税率。免税和应税投资之间的差额可达数万美元。",
+  description:
+    "了解资本利得税如何影响你的长期投资回报——并发现最小化投资组合增长税收负担的策略。",
   sections: [
     {
       heading: "资本利得税如何影响投资",
@@ -101,8 +110,13 @@ const zhContent: BlogContent = {
       ],
     },
   ],
+  relatedArticles: [
+    { slug: "500-per-month-30-years", titleEn: "How Much Will $500/Month Grow in 30 Years?", titleZh: "每月 $500 × 30 年能涨到多少？" },
+    { slug: "beginner-guide-retirement", titleEn: "A Beginner's Guide to Retirement Planning with Compound Interest", titleZh: "复利退休规划入门指南" },
+    { slug: "compound-vs-simple-interest", titleEn: "Compound Interest vs Simple Interest: A 10-Year Comparison", titleZh: "复利 vs 单利：十年大对比" },
+  ],
 }
 
 export default function Page() {
-  return <BlogLayout en={enContent} zh={zhContent} />
+  return <BlogLayout slug="capital-gains-tax" en={enContent} zh={zhContent} />
 }

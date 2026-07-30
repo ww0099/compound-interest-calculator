@@ -158,7 +158,7 @@ export function GrowthChart({ dict, seriesA, seriesB, compare, currency, showRea
                   style: "currency",
                   currency,
                   maximumFractionDigits: 0,
-                }).format(item.parsed.y)}`,
+                }).format(item.parsed.y ?? 0)}`,
             },
           },
         },

@@ -16,6 +16,8 @@ const enContent: BlogContent = {
   readingTime: "8 min read",
   intro:
     "Most people have heard that compound interest is powerful, but few understand exactly how much difference it makes compared to simple interest. Using our compound interest calculator, we ran the numbers for a $10,000 investment at 8% over 10 years. The results reveal a growing gap that becomes dramatic over time — and shows why Einstein reportedly called compounding the eighth wonder of the world.",
+  description:
+    "Understand the key differences between compound and simple interest with a decade-by-decade comparison. See why compound interest is called the eighth wonder of the world.",
   sections: [
     {
       heading: "The Basic Difference in One Sentence",
@@ -48,6 +50,11 @@ const enContent: BlogContent = {
       ],
     },
   ],
+  relatedArticles: [
+    { slug: "rule-of-72", titleEn: "The Rule of 72: How Fast Does Your Money Double?", titleZh: "72 法则：你的钱多快能翻倍？" },
+    { slug: "cagr-vs-average-return", titleEn: "CAGR vs Average Return: Why the Difference Can Mislead You", titleZh: "CAGR vs 平均回报：为什么差异会误导你" },
+    { slug: "monthly-vs-annual-compounding", titleEn: "Monthly vs Annual Compounding: How Much Difference Does Frequency Make?", titleZh: "每月复利 vs 每年复利：频率差异有多大？" },
+  ],
 }
 
 const zhContent: BlogContent = {
@@ -57,6 +64,8 @@ const zhContent: BlogContent = {
   readingTime: "阅读 8 分钟",
   intro:
     "大多数人都听说过复利的威力，但很少有人真正理解它与单利相比到底有多大差别。我们用复利计算器对 $10,000 的投资按 8% 年利率进行了 10 年模拟，结果揭示了一个逐年扩大的惊人差距——这也解释了为什么爱因斯坦据称将复利称为世界第八大奇迹。",
+  description:
+    "通过逐十年对比，了解复利与单利之间的关键区别。看看为什么复利被称为世界第八大奇迹。",
   sections: [
     {
       heading: "一句话说清根本区别",
@@ -89,8 +98,13 @@ const zhContent: BlogContent = {
       ],
     },
   ],
+  relatedArticles: [
+    { slug: "rule-of-72", titleEn: "The Rule of 72: How Fast Does Your Money Double?", titleZh: "72 法则：你的钱多快能翻倍？" },
+    { slug: "cagr-vs-average-return", titleEn: "CAGR vs Average Return: Why the Difference Can Mislead You", titleZh: "CAGR vs 平均回报：为什么差异会误导你" },
+    { slug: "monthly-vs-annual-compounding", titleEn: "Monthly vs Annual Compounding: How Much Difference Does Frequency Make?", titleZh: "每月复利 vs 每年复利：频率差异有多大？" },
+  ],
 }
 
 export default function Page() {
-  return <BlogLayout en={enContent} zh={zhContent} />
+  return <BlogLayout slug="compound-vs-simple-interest" en={enContent} zh={zhContent} />
 }
