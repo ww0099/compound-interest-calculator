@@ -13,6 +13,24 @@ export function SiteFooter() {
         {/* Legal links */}
         <nav className="flex flex-wrap justify-center gap-x-5 gap-y-1 text-xs text-muted-foreground">
           <Link
+            href="/about"
+            className="transition-colors hover:text-foreground"
+          >
+            About
+          </Link>
+          <Link
+            href="/methodology"
+            className="transition-colors hover:text-foreground"
+          >
+            Methodology
+          </Link>
+          <Link
+            href="/references"
+            className="transition-colors hover:text-foreground"
+          >
+            References
+          </Link>
+          <Link
             href="/privacy"
             className="transition-colors hover:text-foreground"
           >

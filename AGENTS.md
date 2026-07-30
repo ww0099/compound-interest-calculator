@@ -29,14 +29,17 @@
 - [x] Phase 2：内容建设（8 篇中英双语金融文章 + 博客首页）
 - [x] SEO 基础（JSON-LD / OG / Twitter / sitemap / robots.txt）
 - [x] Cookie 同意横幅 + SiteFooter
-- [ ] **Phase 3：E-E-A-T 强化**（About / Methodology / References / 信任标识）
+- [x] **Phase 3：E-E-A-T 强化**（About / Methodology / References / 信任标识 / About Widget）
 - [ ] Phase 4：SEO 规模化（多计算器 / 内链外链 / 性能优化）
 
-## 页面路由（16 条）
+## 页面路由（19 条）
 
 | 路由 | 说明 |
 |------|------|
 | `/` | 主页（计算器） |
+| `/about` | 关于我们（作者介绍 + 透明度声明） |
+| `/methodology` | 方法论（公式 + 假设与局限性） |
+| `/references` | 参考文献（权威外部引用） |
 | `/privacy` | 隐私政策 |
 | `/terms` | 服务条款 |
 | `/disclaimer` | 金融免责声明 |

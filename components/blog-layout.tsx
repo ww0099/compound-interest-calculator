@@ -6,6 +6,7 @@ import { ArrowLeft, Calendar, Clock, User } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import type { Lang } from "@/lib/i18n"
+import { AboutWidget } from "@/components/about-widget"
 
 export interface BlogSection {
   heading: string
@@ -127,6 +128,11 @@ export function BlogLayout({ en, zh }: BlogLayoutProps) {
           >
             ← {lang === "en" ? "Back to all articles" : "返回所有文章"}
           </Link>
+        </div>
+
+        {/* About widget */}
+        <div className="mt-8">
+          <AboutWidget lang={lang} />
         </div>
       </main>
     </div>

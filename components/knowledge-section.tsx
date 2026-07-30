@@ -1,10 +1,16 @@
 "use client"
 
-import { GraduationCap } from "lucide-react"
+import Link from "next/link"
+import { GraduationCap, ArrowRight } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import type { Dict } from "@/lib/i18n"
 
-export function KnowledgeSection({ dict }: { dict: Dict }) {
+interface KnowledgeSectionProps {
+  dict: Dict
+  blogLabel?: string
+}
+
+export function KnowledgeSection({ dict, blogLabel }: KnowledgeSectionProps) {
   return (
     <Card>
       <CardContent className="p-6 sm:p-8">
@@ -19,6 +25,15 @@ export function KnowledgeSection({ dict }: { dict: Dict }) {
             </p>
           ))}
         </div>
+        {blogLabel && (
+          <Link
+            href="/blog"
+            className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-accent/80"
+          >
+            {blogLabel}
+            <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        )}
       </CardContent>
     </Card>
   )

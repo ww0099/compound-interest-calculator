@@ -115,6 +115,15 @@ export function LegalLayout({ en, zh }: LegalLayoutProps) {
 
         {/* Legal nav footer */}
         <nav className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+          <Link href="/about" className="transition-colors hover:text-foreground">
+            {lang === "en" ? "About" : "关于我们"}
+          </Link>
+          <Link href="/methodology" className="transition-colors hover:text-foreground">
+            {lang === "en" ? "Methodology" : "方法论"}
+          </Link>
+          <Link href="/references" className="transition-colors hover:text-foreground">
+            {lang === "en" ? "References" : "参考文献"}
+          </Link>
           <Link href="/privacy" className="transition-colors hover:text-foreground">
             {lang === "en" ? "Privacy Policy" : "隐私政策"}
           </Link>

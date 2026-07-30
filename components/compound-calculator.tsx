@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useRef, useState } from "react"
+import Link from "next/link"
 import { Share2, TrendingUp, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -493,6 +494,24 @@ export function CompoundCalculator() {
           </CardContent>
         </Card>
 
+        {/* Trust badge */}
+        <Card className="border-primary/20 bg-primary/5">
+          <CardContent className="flex flex-col gap-2 p-4 text-center sm:flex-row sm:items-center sm:justify-center sm:gap-4 sm:p-5">
+            <span className="text-sm font-medium text-primary">
+              {lang === "en"
+                ? "✓ Calculations based on standard financial mathematics formulas"
+                : "✓ 基于标准金融数学公式的计算"}
+            </span>
+            <span className="hidden text-muted-foreground sm:inline">|</span>
+            <Link
+              href="/methodology"
+              className="text-sm font-medium text-accent transition-colors hover:text-accent/80"
+            >
+              {lang === "en" ? "View Methodology" : "查看方法论"} →
+            </Link>
+          </CardContent>
+        </Card>
+
         {/* History */}
         <HistoryPanel
           dict={dict}
@@ -503,7 +522,10 @@ export function CompoundCalculator() {
         />
 
         {/* Knowledge */}
-        <KnowledgeSection dict={dict} />
+        <KnowledgeSection
+          dict={dict}
+          blogLabel={lang === "en" ? "Read more in our Blog" : "在博客中了解更多"}
+        />
       </main>
 
       {/* Toast */}
