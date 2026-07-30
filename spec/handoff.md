@@ -1,234 +1,261 @@
-# Handoff: Compound Interest Calculator — Phase 1 法律合规改造
+# Handoff: Compound Interest Calculator
 
-> 本文档是会话交接文档。下一位 agent 从本文档开始执行所有任务。
+> **最后更新**：2026-07-30
+> **当前状态**：Phase 2 完成，待执行 Phase 3
+> **下次任务入口**：直接跳到 [§5 Phase 3 执行计划](#5-phase-3-执行计划-ee-a-t-强化)
 
 ---
 
 ## 1. 项目概况
 
-**站点**：https://top.net.im  
-**仓库**：https://github.com/ww0099/compound-interest-calculator  
-**作者标识**：笔名 "WW0099"（对外保持统一）  
-**目标**：通过 Google AdSense 审核 + 长期 SEO 流量变现  
-**受众**：全球中英双语用户（英语为主，中文为辅）  
-**性质**：YMYL（Your Money or Your Life）—— 金融计算器类，AdSense 审核标准极严
-
-## 2. 当前状态
-
-### 已有
-- [x] 复利计算器核心功能（5 种求解模式 + 图表 + 对比 + 历史）
-- [x] SEO 结构化数据（JSON-LD WebSite/SoftwareApplication/Organization）
-- [x] Open Graph / Twitter Cards / canonical
-- [x] ads.txt / robots.txt / sitemap.xml / .well-known/security.txt
-- [x] Cloudflare + GitHub Pages 自动部署
-- [x] 响应式设计、中英双语
-
-### 缺失（AdSense 审核致命项）
-- [ ] Privacy Policy（隐私政策）
-- [ ] Terms of Service（服务条款）
-- [ ] Disclaimer（金融免责声明）
-- [ ] Contact（联系页面）
-- [ ] Cookie Consent Banner（GDPR 合规）
-- [ ] 支撑内容（20+ 篇文章）
-- [ ] About 页面（具名作者+资质）
-- [ ] 财务建议免责声明（仅作估算用途）
-- [ ] 方法透明度（公式/假设/局限性说明）
-
-### 被拒原因判断
-拒信类型：**"low value content"**。原因组合：
-1. 单页工具，无文章支撑
-2. 无任何法律页面
-3. 匿名运营（"WW0099" 无背景）
-4. 知识版块为纯 AI 风格文本（2026.7 AI 透明度更新后高风险）
-
----
-
-## 3. 技术栈
-
-| 技术 | 版本 |
+| 项目 | 详情 |
 |------|------|
-| Next.js | 16.2.6 |
-| React | 19 |
-| TypeScript | 5.7.3 |
-| Tailwind CSS | 4.2.0 |
-| shadcn/ui | BaseUI React |
-| Chart.js | 4.5.1 |
-| 构建方式 | `output: 'export'` 静态导出 |
+| 站点 | `https://top.net.im` |
+| 仓库 | `github.com/WW0099/compound-interest-calculator` |
+| 作者 | WW0099（对外统一笔名） |
+| 目标 | Google AdSense 审核通过 + 长期 SEO 流量变现 |
+| 受众 | 全球中英双语用户（英语为主，中文辅助） |
+| 性质 | **YMYL**（金融计算器）— AdSense 审核标准极严 |
 | 部署 | GitHub Actions → GitHub Pages → Cloudflare CDN |
+
+## 2. 技术栈
+
+| 技术 | 版本 | 备注 |
+|------|------|------|
+| Next.js | 16.2.6 | App Router |
+| React | 19 | — |
+| TypeScript | 5.7.3 | `strict: true`（但 `ignoreBuildErrors: true`） |
+| Tailwind CSS | 4.2.0 | `@import 'tailwindcss'` |
+| shadcn/ui | BaseUI React | `data-slot` 属性选择器风格 |
+| Chart.js | 4.5.1 | 仅手动注册所需组件 |
+| 构建 | `output: 'export'` | 纯静态，无 SSR/API |
+| 包管理 | pnpm（开发）/ npm（CI） | lockfile 两者均存在 |
+| 部署 | `peaceiris/actions-gh-pages` | master 分支触发 |
+
+## 3. 完整目录结构
+
+```
+compound-interest-calculator/
+├── app/
+│   ├── layout.tsx                  # 根布局（SEO meta + JSON-LD + SiteFooter + CookieConsent）
+│   ├── page.tsx                    # 主入口 → <CompoundCalculator />
+│   ├── globals.css                 # Tailwind + CSS 变量 + shadcn 主题
+│   ├── blog/
+│   │   ├── page.tsx                # 博客首页（文章列表 + metadata）
+│   │   ├── blog-index.tsx          # 博客首页客户端组件（语言切换 + 卡片网格）
+│   │   ├── compound-vs-simple-interest/page.tsx
+│   │   ├── rule-of-72/page.tsx
+│   │   ├── 500-per-month-30-years/page.tsx
+│   │   ├── inflation-hidden-tax/page.tsx
+│   │   ├── monthly-vs-annual-compounding/page.tsx
+│   │   ├── beginner-guide-retirement/page.tsx
+│   │   ├── capital-gains-tax/page.tsx
+│   │   └── cagr-vs-average-return/page.tsx
+│   ├── privacy/page.tsx            # 隐私政策（GDPR/CCPA/AdSense cookie）
+│   ├── terms/page.tsx              # 服务条款
+│   ├── disclaimer/page.tsx         # 金融免责声明（YMYL 关键页）
+│   └── contact/
+│       ├── page.tsx                # 联系页 metadata
+│       └── contact-page.tsx        # 联系页客户端组件
+├── components/
+│   ├── compound-calculator.tsx     # ★ 计算器主组件（520 行）
+│   ├── calculator-group.tsx        # 输入/结果表单组（365 行）
+│   ├── growth-chart.tsx            # Chart.js 增长图表（199 行）
+│   ├── history-panel.tsx           # 历史记录面板
+│   ├── knowledge-section.tsx       # 复利知识段落
+│   ├── legal-layout.tsx            # 法律页面共享布局
+│   ├── blog-layout.tsx             # 博客文章共享布局
+│   ├── cookie-consent.tsx          # Cookie 同意横幅（localStorage）
+│   ├── site-footer.tsx             # 全局页脚（Blog + 法律链接）
+│   └── ui/                        # shadcn/ui 基础组件
+│       ├── button.tsx
+│       ├── card.tsx
+│       ├── input.tsx
+│       ├── label.tsx
+│       ├── select.tsx
+│       └── switch.tsx
+├── lib/
+│   ├── finance.ts                  # ★ 计算引擎（纯函数，288 行，5 种求解模式）
+│   ├── i18n.ts                     # 中英双语字典（245 行）
+│   ├── types.ts                    # 类型定义 + 默认值 + 历史记录结构
+│   └── utils.ts                    # cn() 工具（clsx + tailwind-merge）
+├── spec/
+│   └── handoff.md                  # ★ 本文档（项目交接 SSOT）
+├── public/
+│   ├── _headers                    # Cloudflare HTTP 头
+│   ├── ads.txt                     # AdSense 验证 (pub-1920425213895856)
+│   └── *.png/svg/ico               # 图标、OG 图
+├── sitemap.xml                     # 16 条路由
+├── robots.txt                      # 允许所有爬虫 + 广告爬虫
+├── CNAME                           # top.net.im
+├── .github/workflows/deploy.yml    # CI/CD：npm ci → build → deploy to gh-pages
+├── AGENTS.md                       # 项目速览
+├── CLOUDFLARE-SETUP.md             # Cloudflare 配置指南
+├── package.json
+├── tsconfig.json
+└── next.config.mjs
+```
 
 ## 4. 代码约定
 
-### 目录结构规范
+### 4.1 页面组件模式
+
+每个新路由遵循统一模式：
+
+```typescript
+// app/[route]/page.tsx
+import type { Metadata } from "next"
+import { SomeClientComponent } from "./some-component"
+
+export const metadata: Metadata = {
+  title: "Page Title - Compound Interest Calculator",
+  description: "...",
+  alternates: { canonical: "https://top.net.im/[route]" },
+  robots: { index: true, follow: true },
+}
+
+export default function Page() {
+  return <SomeClientComponent {...props} />
+}
 ```
-app/
-  page.tsx          ← 主页面
-  layout.tsx        ← 根布局
-  globals.css
-  [route]/          ← 新页面按此模式（如 privacy/page.tsx）
-    page.tsx
-components/
-  ui/               ← shadcn UI 组件（button, card, input...）
-  *.tsx             ← 业务组件
-lib/
-  finance.ts        ← 纯函数计算引擎（无 UI 依赖）
-  i18n.ts           ← 双语字典
-  types.ts          ← 类型定义
-  utils.ts          ← cn() 工具
-spec/
-  handoff.md        ← 本文档
-public/
-```
 
-### 样式规范
-- Tailwind CSS 4（`@import 'tailwindcss'`）
-- CSS 变量：根变量定义在 `globals.css`
-- 颜色方案：仅 light mode（`color-scheme: light`）
-- shadcn class 风格：`data-slot="card"` 属性选择器
+- **metadata 在 page.tsx 中导出**（编译时提取，支持 client component 默认导出）
+- **客户端内容在独立 `*-component.tsx` 中**（`"use client"` 边界）
+- **双语内容作为 props 传入共享布局**（`en: Content, zh: Content`）
 
-### 国际化
-- 文件：`lib/i18n.ts` 含 `en` / `zh` 双字典
-- 通过 `useState<Lang>` 切换（本地状态，无路由 i18n）
-- 新页面需要同时提供英文和中文内容
+### 4.2 国际化
 
-### 构建约束
-- 静态导出（`output: 'export'`）：无 API routes、无 server components、无 ISR
-- 所有页面在构建时预渲染
-- `next.config.mjs` 中 `images.unoptimized: true`
-- `typescript.ignoreBuildErrors: true`（可移除以提高类型安全）
+- `lib/i18n.ts`：仅含计算器 UI 文案
+- 法律页面和博客文章：各自定义 `enContent` / `zhContent`，通过语言切换状态控制
+- **禁止**在 JS 字符串内使用 ASCII `"` 作为中文引号 → 改用 `「」`
 
----
+### 4.3 样式
 
-## 5. Phase 1 执行计划：法律合规页
+- Tailwind CSS 4，仅 light mode（`color-scheme: light`）
+- 颜色变量定义在 `globals.css` 的 `:root` 块
+- 组件优先使用 shadcn Card 包裹，`max-w-3xl` / `max-w-4xl` 居中
+- 主色调：`primary: #1a365d`，强调色：`accent: #3182ce`
 
-### 任务清单
+### 4.4 构建约束
 
-#### Task 1：创建 Privacy Policy 页面
-**路径**：`app/privacy/page.tsx`
+- `output: 'export'`：**禁止** API Routes、Server Components（数据获取）、ISR
+- `images.unoptimized: true`：静态导出不支持 Next.js 图片优化
+- `typescript.ignoreBuildErrors: true`：可改为 `false` 提高安全性
+- 提交前**必须** `npm run build` 验证
+
+## 5. Phase 3 执行计划：E-E-A-T 强化
+
+> **背景**：Phase 1（法律页）+ Phase 2（8 篇文章）已完成。但 AdSense YMYL 审核还需要 E-E-A-T（Experience, Expertise, Authoritativeness, Trustworthiness）信号。
+
+### Task 3.1：创建 About 页面
+**路径**：`app/about/page.tsx`
 
 要求：
-- 完整隐私政策，覆盖：
-  - Google AdSense cookie 使用说明
-  - 第三方广告数据收集
-  - GDPR 用户权利（访问、更正、删除、数据可携）
-  - CCPA 合规声明（California residents）
-  - 联系方式
-- 双语：英文为正文，中文作为下方切换或折叠段落
-- 使用 `components/legal-layout.tsx` 保持统一样式
-- 页面 metadata：title "Privacy Policy - Compound Interest Calculator"
-- 日期：2026-07-30
-
-#### Task 2：创建 Terms of Service 页面
-**路径**：`app/terms/page.tsx`
-
-要求：
-- 完整服务条款覆盖：
-  - 服务描述（在线计算工具，非财务建议）
-  - 知识产权
-  - 用户责任
-  - 免责声明
-  - 责任限制
-  - 适用法律
+- 具名作者页面（WW0099，附简短背景介绍）
+- 说明项目动机：帮助普通人理解复利，做出更好的财务决策
+- 可提及相关资质/经验（如有 CFA、金融学位、投资经验等 — 需用户填写）
+- 透明度声明：工具使用标准金融数学公式，非个性化建议
 - 双语
-- metadata：title "Terms of Service - Compound Interest Calculator"
+- metadata：`"About Us - Compound Interest Calculator"`
 
-#### Task 3：创建 Disclaimer 页面
-**路径**：`app/disclaimer/page.tsx`
+### Task 3.2：创建 Methodology 页面（方法透明度）
+**路径**：`app/methodology/page.tsx`
 
-要求 - 这是 AdSense YMYL 审查的关键页：
-- 必须包含以下声明：
-  - **"非专业财务建议"** — 工具仅提供数学估算
-  - **精确性限制** — 计算结果不保证与真实市场一致
-  - **投资决策** — 不构成投资建议，请咨询合格财务顾问
-  - **无保证** — 不保证任何投资结果
-  - **税务/通胀假设** — 简化模型，实际情况可能不同
+要求：
+- 列出所有使用的数学公式：
+  - FV = PV(1+r/n)^(nt) + PMT × [(1+r/n)^(nt) - 1] / (r/n)
+  - EAR = (1 + r/n)^n - 1
+  - 二分法求解 R/N 的说明
+- 明确列出假设和局限性：
+  - 固定利率（现实利率波动）
+  - 简化税收模型（固定税率，非累进）
+  - 恒定通胀率
+  - 无交易费用/管理费
+- 数据来源说明（公式参考标准金融教科书）
 - 双语
-- metadata：title "Disclaimer - Compound Interest Calculator"
 
-#### Task 4：创建 Contact 页面
-**路径**：`app/contact/page.tsx`
+### Task 3.3：References 引用页
+**路径**：`app/references/page.tsx`
 
 要求：
-- 联系方式（静态页，因 `output: 'export'` 无后端）：
-  - Email：`pw3436858@gmail.com`（mailto 链接）
-  - GitHub 仓库链接
-  - 响应时间说明（48 小时内回复）
+- 列出权威外部引用：
+  - Investopedia: Compound Interest
+  - SEC: Compound Interest Calculator
+  - Federal Reserve: Historical Interest Rate Data
+  - IRS: Capital Gains Tax Rates
+  - 标准金融教材（如 Bodie, Kane & Marcus "Investments"）
+- 每项包含链接 + 简短说明
 - 双语
-- metadata：title "Contact Us - Compound Interest Calculator"
 
-#### Task 5：创建 Legal Layout 组件
-**路径**：`components/legal-layout.tsx`
-
-要求：
-- 复用 shadcn Card 组件
-- 固定的最大宽度（`max-w-3xl`）
-- 排版优化（大标题、段落间距、列表样式）
-- 接受 `dict` props（或其他 i18n 方案）
-- 页脚导航链接（Privacy · Terms · Disclaimer · Contact）
-
-#### Task 6：添加 Cookie Consent Banner
-**路径**：`components/cookie-consent.tsx`
+### Task 3.4：主页面增强
+**修改**：`app/page.tsx` 或 `components/compound-calculator.tsx`
 
 要求：
-- 底部固定 Banner，初始隐藏
-- 检查 localStorage `cookieConsent` 标记
-- 显示内容："This site uses cookies for analytics and personalized ads. See our [Privacy Policy](/privacy)."
-- Accept 按钮，点击后写入 localStorage
-- 使用 `useEffect` + `useState` 控制显示
-- 样式：居中底部，毛玻璃/阴影效果
+- 在计算器上方/下方添加信任标识区域：
+  - "As featured on..." / 引用标识（如有）
+  - 简短信任声明："Calculations based on standard financial mathematics formulas"
+- Knowledge section 添加 "Learn more" 链接 → 指向 `/blog`
+- 考虑将 AI 风格的知识段落替换为数据驱动的摘要
 
-#### Task 7：更新 Root Layout
-**路径**：`app/layout.tsx`
+### Task 3.5：About 小部件
+**路径**：`components/about-widget.tsx`
 
-修改：
-- 添加 SiteFooter 组件（包含所有法律页链接）
-- 添加 CookieConsent 组件
-- 统一页面底部样式
+要求：
+- 侧边栏或卡片小部件，显示在每篇博客文章底部
+- 简短作者简介 + 头像（placeholder）+ "View all articles" 链接
+- 双语
 
-#### Task 8：更新 Sitemap
-**路径**：`sitemap.xml`
+### Task 3.6：更新 sitemap
+- 新增 `/about`、`/methodology`、`/references`
 
-添加新路由：
-- `/privacy`
-- `/terms`
-- `/disclaimer`
-- `/contact`
+## 6. Phase 4 展望：SEO 规模化
 
-#### Task 9：创建 Phase 1 汇总检查页（可选）
-**路径**：`app/legal/page.tsx` 或合并到 footer 中
+> 可在 Phase 3 完成后执行。
 
----
+- [ ] 多计算器：退休计算器、贷款计算器、通胀计算器
+- [ ] 内部链接优化：在相关文章之间交叉引用
+- [ ] 外部链接建设：提交至金融工具目录站
+- [ ] 结构化数据增强：FAQ Schema、Article Schema、BreadcrumbList
+- [ ] 性能优化：Lighthouse 90+、Core Web Vitals 全绿
+- [ ] `typescript.ignoreBuildErrors: false` — 彻底修复类型错误
 
-## 6. 文章内容策略（Phase 2 预备）
+## 7. 已知问题与改进点
 
-### 选题方向（中英双语，每篇 1000+ 词）
-1. Compound Interest vs Simple Interest: A 10-Year Comparison
-2. The Rule of 72: How Fast Does Your Money Double?
-3. How Much Will $500/Month Grow in 30 Years?
-4. Inflation's Hidden Tax on Your Investment Returns
-5. Monthly vs Annual Compounding: What's the Difference?
-6. A Beginner's Guide to Retirement Planning with Compound Interest
-7. Understanding Capital Gains Tax for Long-Term Investors
-8. CAGR vs Average Return: Key Differences Explained
+| # | 问题 | 严重度 | 备注 |
+|---|------|--------|------|
+| 1 | `typescript.ignoreBuildErrors: true` | 中 | 跳过类型检查，长期应修复 |
+| 2 | 知识段落为纯 AI 风格文本 | 高 | 2026.7 AI 透明度更新后属高风险，Phase 3 应处理 |
+| 3 | sitemap 无 Blog 文章 | 已修复 | Phase 2 已更新 |
+| 4 | 无反 AI 内容声明 | 中 | About/Methodology 页面可解决 |
+| 5 | `out/privacy/` 目录缺 `index.html` | 低 | 根目录 `privacy.html` 可正常访问；GitHub Pages 自动路由 |
 
-### AI 内容规避策略
-- 每篇文章必须包含至少一个"原创数据"：
-  - 自己用本计算器跑出来的数值表
-  - 不同情景对比（利率 6% vs 8% vs 10%）
-  - 引用外部权威来源（Investopedia, SEC, Federal Reserve）
-- 人工调整段落结构，避免 AI 默认格式
-- 添加具体数字和场景，而非泛泛而谈
-
----
-
-## 7. 验证方式
+## 8. 常用命令
 
 ```bash
-# 构建验证
-npm run build
+# 开发
+npm run dev          # 启动开发服务器（localhost:3000）
 
-# 检查输出的 static 文件
-ls out/privacy/index.html
-ls out/terms/index.html
-ls out/disclaimer/index.html
-ls out/contact/index.html
+# 构建
+npm run build        # 静态导出到 out/
+
+# 预览构建产物
+npx serve out        # 本地预览静态文件
+
+# 部署
+git push origin master   # 推送即触发 GitHub Actions 自动部署
+
+# 验证
+ls out/*.html              # 检查所有生成页面
+grep -r "index" out/       # 验证所有路由
 ```
+
+## 9. 交接清单
+
+> 下一位 agent 接手时，按此清单逐项确认。
+
+- [ ] 阅读本文档 §1-4（项目概况 + 技术栈 + 约定）
+- [ ] 运行 `npm run build` 确认可构建
+- [ ] 确认 Git 状态干净（`git status`）
+- [ ] 确认当前 Phase（§5 或 §6）
+- [ ] 开始执行当前 Phase 的第一个 Task
+- [ ] 完成后更新本文档的「最后更新」日期和「当前状态」

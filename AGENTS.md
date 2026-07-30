@@ -1,43 +1,60 @@
 # Compound Interest Calculator
 
-> Next.js 16 静态复利计算器站，部署于 `top.net.im`。
-> 目标：通过 Google AdSense 盈利，面向全球中英双语用户。
+> Next.js 16 静态复利计算器站点，部署于 `https://top.net.im`。
+> 目标：Google AdSense 盈利，面向全球中英双语用户（YMYL 类）。
 
-## 目录结构
+## 快速链接
 
-| 路径 | 说明 |
+- **交接文档（SSOT）**：[spec/handoff.md](spec/handoff.md) — 下次任务的唯一入口
+- 仓库：`github.com/WW0099/compound-interest-calculator`
+- 站点：`https://top.net.im`
+
+## 技术栈
+
+| 技术 | 版本 |
 |------|------|
-| `app/page.tsx` | 主计算器页面（入口） |
-| `app/layout.tsx` | 根布局（SEO meta、JSON-LD） |
-| `components/compound-calculator.tsx` | 计算器主组件（状态管理） |
-| `components/calculator-group.tsx` | 输入/结果表单组 |
-| `components/growth-chart.tsx` | Chart.js 增长图表 |
-| `components/history-panel.tsx` | 历史记录面板 |
-| `components/knowledge-section.tsx` | 复利知识段落 |
-| `components/ui/` | shadcn UI 组件 |
-| `lib/finance.ts` | 复利计算引擎（FV/PV/R/N/PMT） |
-| `lib/i18n.ts` | 中英双语字典 |
-| `lib/types.ts` | 类型定义 |
-| `spec/handoff.md` | **会话交接文档（下一 agent 起点）** |
-
-## 关键约定
-
-- **语言**：TypeScript、React 19、Next.js 16 App Router
-- **样式**：Tailwind CSS 4 + shadcn/ui（BaseUI React）
-- **构建**：`output: 'export'` 静态导出
-- **部署**：GitHub Actions → GitHub Pages → Cloudflare CDN
-- **分支**：`master` → 推送即自动构建部署
+| Next.js | 16.2.6（App Router） |
+| React | 19 |
+| TypeScript | 5.7.3 |
+| Tailwind CSS | 4.2.0 |
+| shadcn/ui | BaseUI React |
+| Chart.js | 4.5.1 |
+| 构建 | `output: 'export'`（纯静态） |
+| 部署 | GitHub Actions → GitHub Pages → Cloudflare CDN |
 
 ## 当前进度
 
-- [x] 核心计算器功能完成
-- [x] SEO 结构化数据（JSON-LD / OG / Twitter）
-- [x] Cloudflare + GitHub Pages 部署流水线
-- [ ] **Phase 1：法律合规页**（Privacy / Terms / Disclaimer / Contact）
-- [ ] **Phase 2：内容建设**（20+ 篇金融文章）
-- [ ] **Phase 3：E-E-A-T 强化**（About / 方法透明 / 外部引用）
-- [ ] **Phase 4：SEO 规模化**（多计算器 / 内链 / 外链）
+- [x] 核心计算器（5 种求解模式 + 图表 + 对比 + 历史）
+- [x] Phase 1：法律合规页（Privacy / Terms / Disclaimer / Contact）
+- [x] Phase 2：内容建设（8 篇中英双语金融文章 + 博客首页）
+- [x] SEO 基础（JSON-LD / OG / Twitter / sitemap / robots.txt）
+- [x] Cookie 同意横幅 + SiteFooter
+- [ ] **Phase 3：E-E-A-T 强化**（About / Methodology / References / 信任标识）
+- [ ] Phase 4：SEO 规模化（多计算器 / 内链外链 / 性能优化）
 
-## 入口文档
+## 页面路由（16 条）
 
-详见 [spec/handoff.md](spec/handoff.md) — 当前任务、背景分析、执行计划。
+| 路由 | 说明 |
+|------|------|
+| `/` | 主页（计算器） |
+| `/privacy` | 隐私政策 |
+| `/terms` | 服务条款 |
+| `/disclaimer` | 金融免责声明 |
+| `/contact` | 联系我们 |
+| `/blog` | 博客首页（8 篇文章列表） |
+| `/blog/compound-vs-simple-interest` | 复利 vs 单利 |
+| `/blog/rule-of-72` | 72 法则 |
+| `/blog/500-per-month-30-years` | 每月 $500 × 30 年 |
+| `/blog/inflation-hidden-tax` | 通胀隐形税收 |
+| `/blog/monthly-vs-annual-compounding` | 复利频率对比 |
+| `/blog/beginner-guide-retirement` | 退休规划入门 |
+| `/blog/capital-gains-tax` | 资本利得税 |
+| `/blog/cagr-vs-average-return` | CAGR vs 平均回报 |
+
+## 核心约定
+
+- **语言**：中英双语（页面各自定义 `en/zh` 内容字典，通过 `useState<Lang>` 切换）
+- **样式**：仅 light mode，`primary: #1a365d`，组件用 shadcn Card 包裹
+- **中文引号**：JS 字符串内使用 `「」`，**禁止** ASCII `"`
+- **构建验证**：提交前必须 `npm run build`（`git push` 触发 CI 自动部署）
+- **分支**：`master` → 推送即部署
