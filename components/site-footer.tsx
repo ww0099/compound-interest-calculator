@@ -31,6 +31,12 @@ export function SiteFooter() {
             Disclaimer
           </Link>
           <Link
+            href="/blog"
+            className="transition-colors hover:text-foreground"
+          >
+            Blog
+          </Link>
+          <Link
             href="/contact"
             className="transition-colors hover:text-foreground"
           >
