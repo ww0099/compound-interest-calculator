@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
+import { SiteFooter } from '@/components/site-footer'
+import { CookieConsent } from '@/components/cookie-consent'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://top.net.im'),
@@ -142,6 +144,8 @@ export default function RootLayout({
       </head>
       <body className="antialiased font-sans">
         {children}
+        <SiteFooter />
+        <CookieConsent />
       </body>
     </html>
   )
