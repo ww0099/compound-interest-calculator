@@ -48,6 +48,14 @@ jobs:
           # そのため、__next.* ファイル・フォルダをすべて削除し、空ディレクトリを削除する
           find out/ -name '__next.*' -delete
           find out/ -type d -empty -delete
+
+          # blog/ ディレクトリは記事 .html を含むため空にならず残る
+          # blog.html を blog/index.html に移動してクリーンURLを機能させる
+          if [ -f out/blog.html ] && [ -d out/blog ]; then
+            echo "Moving blog.html → blog/index.html"
+            mv out/blog.html out/blog/index.html
+          fi
+
           echo "=== クリーンアップ後のトップレベル ==="
           ls -la out/
           echo "=== 残存ディレクトリ ==="
