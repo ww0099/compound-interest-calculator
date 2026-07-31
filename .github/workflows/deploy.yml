@@ -41,6 +41,18 @@ jobs:
         env:
           NEXT_TELEMETRY_DISABLED: 1
 
+      - name: 🧹 クリーンアップ（__next トレースディレクトリ削除）
+        run: |
+          # Next.js は about.html と about/__next.* の両方を生成するが、
+          # about/ ディレクトリがあると GitHub Pages は about.html にフォールバックしない
+          # そのため、__next.* ファイル・フォルダをすべて削除し、空ディレクトリを削除する
+          find out/ -name '__next.*' -delete
+          find out/ -type d -empty -delete
+          echo "=== クリーンアップ後のトップレベル ==="
+          ls -la out/
+          echo "=== 残存ディレクトリ ==="
+          find out/ -type d | sort
+
       - name: ✅ ビルド成果物確認
         run: |
           echo "=== ビルド成果物 ==="
@@ -49,6 +61,9 @@ jobs:
           cat out/CNAME
           echo "=== インデックス確認 ==="
           test -f out/index.html && echo "✓ index.html 存在" || (echo "✗ index.html 不在" && exit 1)
+          echo "=== クリーンURL確認 ==="
+          test -f out/about.html && echo "✓ about.html 存在" || (echo "✗ about.html 不在" && exit 1)
+          test ! -d out/about && echo "✓ about/ 削除済み" || (echo "⚠ about/ まだ存在" && exit 1)
 
       - name: 🚀 GitHub Pages へデプロイ
         uses: peaceiris/actions-gh-pages@v4
