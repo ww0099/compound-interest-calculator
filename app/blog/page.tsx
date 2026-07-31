@@ -11,6 +11,18 @@ export const metadata: Metadata = {
 
 const articles = [
   {
+    slug: "dollar-cost-averaging",
+    enTitle: "Dollar-Cost Averaging: The Simple Strategy That Beats Market Timing",
+    zhTitle: "定投策略：打败市场择时的简单方法",
+    enDesc:
+      "Learn why consistent, automated investing outperforms trying to time the market — with the math, behavioral psychology, and a real-world crash test.",
+    zhDesc:
+      "了解为什么持续、自动化的投资胜过择时交易——包括数学原理、行为心理学和真实市场崩盘测试。",
+    date: "2026-07-31",
+    readingTimeEn: "8 min read",
+    readingTimeZh: "阅读 8 分钟",
+  },
+  {
     slug: "compound-vs-simple-interest",
     enTitle: "Compound Interest vs Simple Interest: A 10-Year Comparison",
     zhTitle: "复利 vs 单利：10 年对比分析",
