@@ -1,7 +1,7 @@
 # Handoff: Compound Interest Calculator
 
 > **最后更新**：2026-07-31
-> **当前状态**：AdSense 审核准备完成，22 条路由通过构建，TypeScript 零错误
+> **当前状态**：Phase 5 + AdSense 准备已提交推送（commit `128303d`），22 路由构建通过，TypeScript 零错误
 > **下次任务入口**：阅读本文档 → 查看 `spec/adsense-readiness.md` → 执行审核前清单 → 提交 AdSense
 
 ---
