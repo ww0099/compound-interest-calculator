@@ -1,8 +1,8 @@
 # Handoff: Compound Interest Calculator
 
-> **最后更新**：2026-07-30
-> **当前状态**：Phase 4 完成并推送部署（commit `103ed1b`），21 条路由全部通过构建，TypeScript 零错误
-> **下次任务入口**：阅读本文档 → `npm run build` → 确认 21 条路由 → 继续 Phase 5
+> **最后更新**：2026-07-31
+> **当前状态**：AdSense 审核准备完成，22 条路由通过构建，TypeScript 零错误
+> **下次任务入口**：阅读本文档 → 查看 `spec/adsense-readiness.md` → 执行审核前清单 → 提交 AdSense
 
 ---
 
@@ -55,6 +55,9 @@ compound-interest-calculator/
 │   ├── inflation/
 │   │   ├── page.tsx                # 通胀计算器 metadata
 │   │   └── inflation-page.tsx      # 通胀计算器客户端组件（购买力 + 图表）
+│   ├── loan/
+│   │   ├── page.tsx                # 贷款计算器 metadata
+│   │   └── loan-page.tsx           # 贷款计算器客户端组件（4 求解模式 + 摊销表 + 双图表）
 │   ├── blog/
 │   │   ├── page.tsx                # 博客首页（文章列表 + metadata）
 │   │   ├── blog-index.tsx          # 博客首页客户端组件
@@ -76,7 +79,8 @@ compound-interest-calculator/
 │   ├── compound-calculator.tsx     # ★ 复利计算器主组件（含信任标识横幅）
 │   ├── calculator-group.tsx        # 输入/结果表单组
 │   ├── growth-chart.tsx            # Chart.js 增长图表
-│   ├── history-panel.tsx           # 历史记录面板
+│   ├── history-panel.tsx           # 历史记录面板（Legacy + GenericHistoryPanel 泛型版本）
+│   ├── json-ld.tsx                 # ★ JSON-LD 共享组件（BreadcrumbList / HowTo / FAQ / SoftwareApp）
 │   ├── knowledge-section.tsx       # 复利知识段落（含 blog 链接）
 │   ├── about-widget.tsx            # 博客文章底部作者卡片
 │   ├── legal-layout.tsx            # 法律页面共享布局（含 E-E-A-T 导航）
@@ -90,11 +94,14 @@ compound-interest-calculator/
 │   ├── finance.ts                  # ★ 复利计算引擎（5 种求解模式 + 重用 math/format）
 │   ├── retirement.ts               # ★ 退休计算引擎（3 种求解模式 + 两阶段投影）
 │   ├── inflation.ts                # ★ 通胀计算引擎（购买力 + 名义金额 + 序列）
+│   ├── loan.ts                     # ★ 贷款计算引擎（4 求解模式 + 摊销表 + 逐年序列）
 │   ├── i18n.ts                     # 复利计算器中英双语字典
 │   ├── types.ts                    # 类型定义 + 默认值 + 历史记录结构
 │   └── utils.ts                    # cn() 工具（clsx + tailwind-merge）
 ├── spec/
-│   └── handoff.md                  # ★ 本文档（项目交接 SSOT）
+│   ├── handoff.md                  # ★ 项目交接 SSOT
+│   ├── adsense-readiness.md        # AdSense 审核准备报告 + 检查清单
+│   └── link-building.md            # 外链建设跟踪清单
 ├── public/
 │   ├── _headers                    # Cloudflare HTTP 头（含 HSTS/CSP/缓存策略）
 │   ├── ads.txt                     # AdSense 验证 (pub-1920425213895856)
@@ -166,16 +173,23 @@ export default function Page() {
 - [x] **Phase 4 Tier 3 重构**：`lib/math.ts`（bisect）+ `lib/format.ts`（formatCurrency/formatPercent）+ finance.ts 模块化
 - [x] **Phase 4 Tier 3 退休计算器**：`/retirement`（积累期 + 领取期 + 4% 法则 + 3 求解模式）
 - [x] **Phase 4 Tier 3 通胀计算器**：`/inflation`（购买力 + 名义金额 + 趋势图）
+- [x] **Phase 5 贷款计算器**：`/loan`（4 求解模式 + 摊销表 + 余额折线图 + 本金/利息饼图 + 泛型历史面板）
+- [x] **Phase 5 HistoryPanel 泛化**：`GenericHistoryPanel<T>` + `HistoryColumn<T>` + `HistoryRecordBase` → 贷款计算器已集成
+- [x] **Phase 5 结构化数据增强**：BreadcrumbList 覆盖 10 个非博客页面 + HowTo Schema（主页面）+ `components/json-ld.tsx` 共享组件
+- [x] **Phase 5 外部链接建设**：`spec/link-building.md`（10 个目录 + 提交清单 + 内容营销建议）
+- [x] **AdSense 审核准备**：`spec/adsense-readiness.md`（7 维度检查清单 + 风险分析 + 行动清单 + 常见拒绝原因）
+- [x] **Cookie 同意 GDPR 改进**：Accept All / Essential Only 双选项 + 详细用途说明
 
-## 6. Phase 5 展望
+## 6. 后续展望
 
-- [ ] 贷款计算器 `/loan`（月供/期限/利率/本金 + 摊销表 + 饼图）
-- [ ] Core Web Vitals 审计与优化（Lighthouse 90+）
-- [ ] 扩展 `HistoryPanel` 为多计算器通用组件
-- [ ] 外部链接建设：提交至金融工具目录站
-- [ ] 结构化数据增强：HowTo Schema、BreadcrumbList 到所有页面
+- [ ] 按 `spec/adsense-readiness.md` §3 执行审核前行动清单
+- [ ] 提交 Google AdSense 审核（`pub-1920425213895856`）
+- [ ] Core Web Vitals 实测审计（Lighthouse CI / PageSpeed Insights）
+- [ ] 按 `spec/link-building.md` 逐步提交外链
+- [ ] 考虑添加域名邮箱 `contact@top.net.im`
+- [ ] 考虑添加更多计算器（储蓄目标 / 货币时间价值 / 投资回报率）
 
-## 7. JSON-LD Schema 清单（7 个）
+## 7. JSON-LD Schema 清单（11 个 + BreadcrumbList × 10）
 
 | Schema | 位置 | 说明 |
 |--------|------|------|
@@ -183,8 +197,10 @@ export default function Page() {
 | SoftwareApplication | `layout.tsx` | 免费金融工具 |
 | Organization | `layout.tsx` | WW0099 组织信息 |
 | FAQPage | `layout.tsx` | 5 条金融 FAQ |
+| HowTo | `app/page.tsx` | 复利计算器使用步骤 |
 | BlogPosting × 8 | `blog-layout.tsx`（每篇文章） | headline + datePublished + author |
 | BreadcrumbList × 8 | `blog-layout.tsx`（每篇文章） | Home → Blog → Article |
+| BreadcrumbList × 10 | 各 `page.tsx` | 全站非博客页面 |
 | — | — | 退休/通胀计算器可后续加 SoftwareApplication |
 
 ## 8. 已知问题与改进点

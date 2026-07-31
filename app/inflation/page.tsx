@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { InflationPage } from "./inflation-page"
+import { JsonLdBreadcrumb } from "@/components/json-ld"
 
 export const metadata: Metadata = {
   title: "Inflation Calculator - Compound Interest Calculator",
@@ -10,5 +11,13 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  return <InflationPage />
+  return (
+    <>
+      <JsonLdBreadcrumb items={[
+        { name: "Home", url: "https://top.net.im/" },
+        { name: "Inflation Calculator", url: "https://top.net.im/inflation" },
+      ]} />
+      <InflationPage />
+    </>
+  )
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { ReferencesPage } from "./references-page"
+import { JsonLdBreadcrumb } from "@/components/json-ld"
 
 export const metadata: Metadata = {
   title: "References - Compound Interest Calculator",
@@ -10,5 +11,13 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  return <ReferencesPage />
+  return (
+    <>
+      <JsonLdBreadcrumb items={[
+        { name: "Home", url: "https://top.net.im/" },
+        { name: "References", url: "https://top.net.im/references" },
+      ]} />
+      <ReferencesPage />
+    </>
+  )
 }

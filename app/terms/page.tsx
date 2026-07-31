@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { LegalLayout, type LegalContent } from "@/components/legal-layout"
+import { JsonLdBreadcrumb } from "@/components/json-ld"
 
 export const metadata: Metadata = {
   title: "Terms of Service - Compound Interest Calculator",
@@ -128,5 +129,13 @@ const zhContent: LegalContent = {
 }
 
 export default function TermsPage() {
-  return <LegalLayout en={enContent} zh={zhContent} />
+  return (
+    <>
+      <JsonLdBreadcrumb items={[
+        { name: "Home", url: "https://top.net.im/" },
+        { name: "Terms of Service", url: "https://top.net.im/terms" },
+      ]} />
+      <LegalLayout en={enContent} zh={zhContent} />
+    </>
+  )
 }

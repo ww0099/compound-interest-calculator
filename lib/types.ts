@@ -1,5 +1,8 @@
 import type { CurrencyCode, SolveTarget } from "@/lib/finance"
 
+/** 计算器类型标识 */
+export type CalculatorType = "compound" | "retirement" | "inflation" | "loan"
+
 export interface GroupState {
   pv: string
   pmt: string
@@ -48,6 +51,7 @@ export const defaultCurrency: CurrencySettings = {
 export interface HistoryRecord {
   id: string
   timestamp: number
+  calculatorType: CalculatorType
   target: SolveTarget
   base: CurrencyCode
   display: CurrencyCode
@@ -70,4 +74,42 @@ export interface HistoryRecord {
   realInterest: number
   ear: number
   solvedPmt: number | null
+}
+
+// ---------------------------------------------------------------------------
+// Generic history for all calculators
+// ---------------------------------------------------------------------------
+
+/** 泛型历史记录基础字段 */
+export interface HistoryRecordBase {
+  id: string
+  timestamp: number
+  calculatorType: CalculatorType
+}
+
+/** 贷款计算器历史记录 */
+export interface LoanHistoryRecord extends HistoryRecordBase {
+  calculatorType: "loan"
+  /** 求解模式 */
+  mode: string
+  /** 贷款本金 */
+  principal: number
+  /** 年利率 */
+  annualRate: number
+  /** 贷款期限（年） */
+  years: number
+  /** 月供 */
+  monthlyPayment: number
+  /** 总利息 */
+  totalInterest: number
+  /** 总还款额 */
+  totalPayment: number
+}
+
+/** 历史面板列定义 */
+export interface HistoryColumn<T extends HistoryRecordBase> {
+  key: string
+  header: string
+  cell: (record: T, locale: string) => string
+  className?: string
 }

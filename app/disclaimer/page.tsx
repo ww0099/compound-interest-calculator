@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { LegalLayout, type LegalContent } from "@/components/legal-layout"
+import { JsonLdBreadcrumb } from "@/components/json-ld"
 
 export const metadata: Metadata = {
   title: "Disclaimer - Compound Interest Calculator",
@@ -108,5 +109,13 @@ const zhContent: LegalContent = {
 }
 
 export default function DisclaimerPage() {
-  return <LegalLayout en={enContent} zh={zhContent} />
+  return (
+    <>
+      <JsonLdBreadcrumb items={[
+        { name: "Home", url: "https://top.net.im/" },
+        { name: "Disclaimer", url: "https://top.net.im/disclaimer" },
+      ]} />
+      <LegalLayout en={enContent} zh={zhContent} />
+    </>
+  )
 }

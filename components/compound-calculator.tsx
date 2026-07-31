@@ -158,6 +158,7 @@ export function CompoundCalculator() {
       const record: HistoryRecord = {
         id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
         timestamp: Date.now(),
+        calculatorType: "compound",
         target,
         base: currency.base,
         display: currency.display,

@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { LegalLayout, type LegalContent } from "@/components/legal-layout"
+import { JsonLdBreadcrumb } from "@/components/json-ld"
 
 export const metadata: Metadata = {
   title: "Privacy Policy - Compound Interest Calculator",
@@ -178,5 +179,13 @@ const zhContent: LegalContent = {
 }
 
 export default function PrivacyPage() {
-  return <LegalLayout en={enContent} zh={zhContent} />
+  return (
+    <>
+      <JsonLdBreadcrumb items={[
+        { name: "Home", url: "https://top.net.im/" },
+        { name: "Privacy Policy", url: "https://top.net.im/privacy" },
+      ]} />
+      <LegalLayout en={enContent} zh={zhContent} />
+    </>
+  )
 }
