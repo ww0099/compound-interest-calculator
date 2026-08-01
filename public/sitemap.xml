@@ -68,9 +68,15 @@
   </url>
   <url>
     <loc>https://top.net.im/blog</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://top.net.im/blog/time-value-of-money</loc>
+    <lastmod>2026-08-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://top.net.im/blog/dollar-cost-averaging</loc>

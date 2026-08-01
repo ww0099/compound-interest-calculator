@@ -11,6 +11,18 @@ export const metadata: Metadata = {
 
 const articles = [
   {
+    slug: "time-value-of-money",
+    enTitle: "Time Value of Money: Why a Dollar Today Is Worth More Than a Dollar Tomorrow",
+    zhTitle: "货币时间价值：为什么今天的 1 美元比明天的 1 美元更值钱",
+    enDesc:
+      "Understand the single most important concept in finance — why today's dollar is worth more than tomorrow's, and how present value and opportunity cost shape every decision.",
+    zhDesc:
+      "理解金融领域最重要的概念——为什么今天的钱比明天的钱更值钱，以及现值和机会成本如何影响每一个决策。",
+    date: "2026-08-01",
+    readingTimeEn: "8 min read",
+    readingTimeZh: "阅读 8 分钟",
+  },
+  {
     slug: "dollar-cost-averaging",
     enTitle: "Dollar-Cost Averaging: The Simple Strategy That Beats Market Timing",
     zhTitle: "定投策略：打败市场择时的简单方法",

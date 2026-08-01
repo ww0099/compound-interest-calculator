@@ -59,6 +59,7 @@ const enContent: BlogContent = {
     { slug: "beginner-guide-retirement", titleEn: "A Beginner's Guide to Retirement Planning with Compound Interest", titleZh: "复利退休规划入门指南" },
     { slug: "capital-gains-tax", titleEn: "Understanding Capital Gains Tax for Long-Term Investors", titleZh: "长期投资者必懂的资本利得税" },
     { slug: "inflation-hidden-tax", titleEn: "Inflation's Hidden Tax on Your Investment Returns", titleZh: "通胀：你投资回报上的隐形税收" },
+    { slug: "time-value-of-money", titleEn: "Time Value of Money: Why a Dollar Today Is Worth More Than a Dollar Tomorrow", titleZh: "货币时间价值：为什么今天的 1 美元比明天的 1 美元更值钱" },
   ],
 }
 
@@ -112,6 +113,7 @@ const zhContent: BlogContent = {
     { slug: "beginner-guide-retirement", titleEn: "A Beginner's Guide to Retirement Planning with Compound Interest", titleZh: "复利退休规划入门指南" },
     { slug: "capital-gains-tax", titleEn: "Understanding Capital Gains Tax for Long-Term Investors", titleZh: "长期投资者必懂的资本利得税" },
     { slug: "inflation-hidden-tax", titleEn: "Inflation's Hidden Tax on Your Investment Returns", titleZh: "通胀：你投资回报上的隐形税收" },
+    { slug: "time-value-of-money", titleEn: "Time Value of Money: Why a Dollar Today Is Worth More Than a Dollar Tomorrow", titleZh: "货币时间价值：为什么今天的 1 美元比明天的 1 美元更值钱" },
   ],
 }
 

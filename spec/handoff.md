@@ -1,8 +1,8 @@
 # Handoff: Compound Interest Calculator
 
-> **最后更新**：2026-07-31
-> **当前状态**：Phase 5 + AdSense 准备已提交推送（commit `128303d`），22 路由构建通过，TypeScript 零错误
-> **下次任务入口**：阅读本文档 → 查看 `spec/adsense-readiness.md` → 执行审核前清单 → 提交 AdSense
+> **最后更新**：2026-08-01
+> **当前状态**：About 页面 E-E-A-T 增强 + 新增「货币时间价值」文章（第 10 篇），23 内容路由构建通过，TypeScript 零错误，sitemap 部署 bug 已修复
+> **下次任务入口**：阅读本文档 → 查看 `spec/adsense-readiness.md` → 执行剩余清单 → 提交 AdSense 审核
 
 ---
 
@@ -61,6 +61,7 @@ compound-interest-calculator/
 │   ├── blog/
 │   │   ├── page.tsx                # 博客首页（文章列表 + metadata）
 │   │   ├── blog-index.tsx          # 博客首页客户端组件
+│   │   ├── dollar-cost-averaging/page.tsx
 │   │   ├── compound-vs-simple-interest/page.tsx
 │   │   ├── rule-of-72/page.tsx
 │   │   ├── 500-per-month-30-years/page.tsx
@@ -68,7 +69,8 @@ compound-interest-calculator/
 │   │   ├── monthly-vs-annual-compounding/page.tsx
 │   │   ├── beginner-guide-retirement/page.tsx
 │   │   ├── capital-gains-tax/page.tsx
-│   │   └── cagr-vs-average-return/page.tsx
+│   │   ├── cagr-vs-average-return/page.tsx
+│   │   └── time-value-of-money/page.tsx
 │   ├── privacy/page.tsx            # 隐私政策
 │   ├── terms/page.tsx              # 服务条款
 │   ├── disclaimer/page.tsx         # 金融免责声明
@@ -105,9 +107,9 @@ compound-interest-calculator/
 ├── public/
 │   ├── _headers                    # Cloudflare HTTP 头（含 HSTS/CSP/缓存策略）
 │   ├── ads.txt                     # AdSense 验证 (pub-1920425213895856)
+│   ├── robots.txt                  # 允许所有爬虫 + 广告爬虫（含 sitemap 引用）
+│   ├── sitemap.xml                 # ★ 22 条 URL sitemap（位于 public/，随构建部署）
 │   └── *.png/svg/ico               # 图标、OG 图
-├── sitemap.xml                     # 21 条路由
-├── robots.txt                      # 允许所有爬虫 + 广告爬虫
 ├── CNAME                           # top.net.im
 ├── .github/workflows/deploy.yml    # CI/CD：npm ci → build → deploy to gh-pages
 ├── AGENTS.md                       # 项目速览
@@ -179,6 +181,9 @@ export default function Page() {
 - [x] **Phase 5 外部链接建设**：`spec/link-building.md`（10 个目录 + 提交清单 + 内容营销建议）
 - [x] **AdSense 审核准备**：`spec/adsense-readiness.md`（7 维度检查清单 + 风险分析 + 行动清单 + 常见拒绝原因）
 - [x] **Cookie 同意 GDPR 改进**：Accept All / Essential Only 双选项 + 详细用途说明
+- [x] **AdSense 冲刺 · About E-E-A-T 增强**：作者资质结构化（软件工程/自学金融数学/开源贡献/同行评审公式）+ 社会证明数据（By the Numbers）+ About FAQ 区块（4 条信任 FAQ）
+- [x] **第 10 篇博客「货币时间价值」**：`/blog/time-value-of-money`（中英双语 + 双向内链到 rule-of-72/500-per-month + 新文章 relatedArticles + sitemap 更新）
+- [x] **sitemap 部署 bug 修复**：`sitemap.xml` 原在根目录未随构建部署（站点 404），已移入 `public/`
 
 ## 6. 后续展望
 
@@ -198,7 +203,7 @@ export default function Page() {
 | Organization | `layout.tsx` | WW0099 组织信息 |
 | FAQPage | `layout.tsx` | 5 条金融 FAQ |
 | HowTo | `app/page.tsx` | 复利计算器使用步骤 |
-| BlogPosting × 8 | `blog-layout.tsx`（每篇文章） | headline + datePublished + author |
+| BlogPosting × 10 | `blog-layout.tsx`（每篇文章） | headline + datePublished + author |
 | BreadcrumbList × 8 | `blog-layout.tsx`（每篇文章） | Home → Blog → Article |
 | BreadcrumbList × 10 | 各 `page.tsx` | 全站非博客页面 |
 | — | — | 退休/通胀计算器可后续加 SoftwareApplication |
@@ -213,12 +218,13 @@ export default function Page() {
 | 4 | 无反 AI 内容声明 | 中 | ✅ 已处理（Phase 3 About + Methodology） |
 | 5 | `out/privacy/` 目录缺 `index.html` | 低 | GitHub Pages 自动路由 |
 | 6 | 退休计算器 Chart.js 需确认无 react-chartjs-2 | 低 | ✅ 已确认用 canvas API |
+| 7 | `sitemap.xml` 在根目录未随构建部署（站点 404） | 高 | ✅ 已修复（移入 `public/`，随部署发布） |
 
 ## 9. 常用命令
 
 ```bash
 npm run dev          # 开发服务器（localhost:3000）
-npm run build        # 静态导出到 out/（21 条路由）
+npm run build        # 静态导出到 out/（23 内容路由 / 24 静态页面）
 npx serve out        # 本地预览
 git push origin master   # 推送即部署
 ```
@@ -226,7 +232,7 @@ git push origin master   # 推送即部署
 ## 10. 交接清单
 
 - [ ] 阅读本文档 §1-4
-- [ ] `npm run build` 确认 21 条路由构建通过
+- [ ] `npm run build` 确认 23 内容路由构建通过
 - [ ] `git status` 确认干净
 - [ ] 确认当前 Phase（§5 或 §6）
 - [ ] 完成后更新本文档

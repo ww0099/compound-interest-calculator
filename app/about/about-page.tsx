@@ -2,7 +2,21 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { ArrowLeft, User, Target, Shield, Lock, Globe, Code, BookOpen } from "lucide-react"
+import {
+  ArrowLeft,
+  User,
+  Target,
+  Shield,
+  Lock,
+  Globe,
+  Code,
+  BookOpen,
+  BadgeCheck,
+  GraduationCap,
+  GitBranch,
+  FileText,
+  HelpCircle,
+} from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import type { Lang } from "@/lib/i18n"
@@ -69,6 +83,15 @@ export function AboutPage() {
         ? "Our users range from high school students discovering the power of compound interest for the first time, to experienced investors stress-testing retirement scenarios. Financial educators use it as a classroom demonstration. Freelancers use it to plan irregular income savings. Immigrants use it to compare investment returns across currencies. If you have money and a future, this calculator is for you."
         : "我们的用户涵盖从第一次发现复利力量的高中生，到对退休情景进行压力测试的经验丰富的投资者。金融教育者将其用作课堂演示工具。自由职业者用它来规划不规律收入的储蓄。跨国人士用它来比较不同货币的投资回报。只要您有钱和未来，这个计算器就是为您准备的。",
 
+    // Stats — 社会证明
+    statsHeading: lang === "en" ? "By the Numbers" : "用数字说话",
+    stats: [
+      { value: "4", label: lang === "en" ? "Free Calculators" : "免费计算器" },
+      { value: "10", label: lang === "en" ? "Bilingual Articles" : "中英双语文章" },
+      { value: "0", label: lang === "en" ? "Data Collected" : "数据收集" },
+      { value: "100%", label: lang === "en" ? "Open Source" : "开源代码" },
+    ],
+
     // Author
     authorHeading: lang === "en" ? "The Author" : "作者",
     authorName: "WW0099",
@@ -76,10 +99,40 @@ export function AboutPage() {
       lang === "en"
         ? "WW0099 is a software engineer and self-taught personal finance enthusiast. With years of experience building production systems and a passion for financial literacy, they created this calculator to make the mathematics of wealth-building accessible to everyone — not just Wall Street professionals."
         : "WW0099 是一名软件工程师和自学成才的个人理财爱好者。凭借多年构建生产系统的经验和对金融素养的热情，ta 创建了这个计算器，让财富积累的数学对每个人都触手可及——而不仅仅是华尔街的专业人士。",
-    authorNote:
-      lang === "en"
-        ? "The author has independently studied financial mathematics through resources from Investopedia, the SEC, the Federal Reserve, and standard textbooks. The calculation engine is built on peer-reviewed formulas, not AI-generated heuristics."
-        : "作者通过 Investopedia、SEC、美联储和标准教材独立学习了金融数学。计算引擎基于同行评审的公式构建，而非 AI 生成的启发式算法。",
+    authorCredentials: [
+      {
+        icon: "BadgeCheck",
+        title: lang === "en" ? "Software Engineer" : "软件工程师",
+        body:
+          lang === "en"
+            ? "Years of experience building production-grade systems across multiple industries."
+            : "多年跨行业构建生产级系统的经验。",
+      },
+      {
+        icon: "GraduationCap",
+        title: lang === "en" ? "Self-Taught Financial Mathematics" : "自学金融数学",
+        body:
+          lang === "en"
+            ? "Independently studied through Investopedia, the SEC, the Federal Reserve, and standard financial textbooks."
+            : "通过 Investopedia、SEC、美联储和标准金融教材独立学习。",
+      },
+      {
+        icon: "GitBranch",
+        title: lang === "en" ? "Open-Source Contributor" : "开源贡献者",
+        body:
+          lang === "en"
+            ? "Every line of this calculator's code is publicly auditable on GitHub."
+            : "这个计算器的每一行代码都在 GitHub 上公开可审计。",
+      },
+      {
+        icon: "BookOpen",
+        title: lang === "en" ? "Peer-Reviewed Formulas" : "同行评审公式",
+        body:
+          lang === "en"
+            ? "The calculation engine relies on established financial equations — not AI-generated heuristics."
+            : "计算引擎依赖既有的金融方程——而非 AI 生成的启发式算法。",
+      },
+    ],
 
     // Mission
     missionHeading: lang === "en" ? "Our Mission" : "我们的使命",
@@ -95,6 +148,39 @@ export function AboutPage() {
       lang === "en"
         ? "All calculations on this site use standard financial mathematics formulas. We do not use proprietary algorithms, black-box models, or AI-generated financial predictions. Every formula we use is publicly documented on our Methodology page, with references to the original textbooks and institutions that established them."
         : "本网站的所有计算均使用标准金融数学公式。我们不使用专有算法、黑箱模型或 AI 生成的财务预测。我们使用的每个公式都在方法论页面公开记录，并附有确立这些公式的原始教材和机构的参考文献。",
+
+    // FAQ — 信任相关常见问题
+    faqHeading: lang === "en" ? "Frequently Asked Questions" : "常见问题",
+    faqs: [
+      {
+        q: lang === "en" ? "Is this calculator really free?" : "这个计算器真的免费吗？",
+        a:
+          lang === "en"
+            ? "Yes — completely free, forever. It is open source under an MIT license, so you can even download and run it yourself. There are no subscriptions, paywalls, or hidden fees."
+            : "是的——完全免费，永远免费。它采用 MIT 开源许可，你甚至可以自己下载运行。没有订阅、没有付费墙、没有隐藏费用。",
+      },
+      {
+        q: lang === "en" ? "Do you collect my financial data?" : "你们会收集我的财务数据吗？",
+        a:
+          lang === "en"
+            ? "No. We operate a zero-data model: no accounts, no analytics trackers, no server-side storage. Every calculation runs locally in your browser. Nothing is transmitted over the network."
+            : "不会。我们采用零数据模式：无账户、无分析追踪器、无服务器端存储。所有计算都在你的浏览器本地完成，没有任何数据通过网络传输。",
+      },
+      {
+        q: lang === "en" ? "How do I know the formulas are accurate?" : "我如何确认公式是准确的？",
+        a:
+          lang === "en"
+            ? "All formulas come from standard financial mathematics, publicly documented with their derivations on our Methodology page and cross-referenced on our References page. The source code is open on GitHub, so the calculations are fully auditable."
+            : "所有公式都来自标准金融数学，在我们的方法论页面公开记录了推导过程，并在参考文献页面交叉引用。源代码在 GitHub 上开源，因此计算完全可以审计。",
+      },
+      {
+        q: lang === "en" ? "Is this tool a financial advisor?" : "这个工具是财务顾问吗？",
+        a:
+          lang === "en"
+            ? "No. This is an educational calculator. It does not provide personalized investment recommendations, tax advice, or retirement guidance. Please consult a qualified professional before making financial decisions."
+            : "不是。这是一个教育计算器。它不提供个性化的投资建议、税务建议或退休指导。在做财务决策前请咨询合格的专业人士。",
+      },
+    ],
 
     // Disclaimer — 移到最末尾
     disclaimerHeading:
@@ -226,6 +312,25 @@ export function AboutPage() {
                 </p>
               </section>
 
+              {/* Stats — 社会证明 */}
+              <section>
+                <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-primary">
+                  <FileText className="h-5 w-5" />
+                  {t.statsHeading}
+                </h2>
+                <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+                  {t.stats.map((s, i) => (
+                    <div
+                      key={i}
+                      className="rounded-lg border border-border bg-secondary/20 p-4 text-center"
+                    >
+                      <div className="text-2xl font-bold text-primary">{s.value}</div>
+                      <div className="mt-1 text-xs text-muted-foreground">{s.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
               {/* Author */}
               <section>
                 <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-primary">
@@ -244,9 +349,29 @@ export function AboutPage() {
                     <p className="mt-2 leading-relaxed text-muted-foreground">
                       {t.authorBio}
                     </p>
-                    <p className="mt-2 leading-relaxed text-muted-foreground">
-                      {t.authorNote}
-                    </p>
+                    <ul className="mt-4 space-y-3">
+                      {t.authorCredentials.map((c, i) => {
+                        const CredIcon =
+                          c.icon === "BadgeCheck"
+                            ? BadgeCheck
+                            : c.icon === "GraduationCap"
+                              ? GraduationCap
+                              : c.icon === "GitBranch"
+                                ? GitBranch
+                                : BookOpen
+                        return (
+                          <li key={i} className="flex items-start gap-3">
+                            <CredIcon className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                            <div>
+                              <div className="text-sm font-semibold text-foreground">{c.title}</div>
+                              <div className="text-sm leading-relaxed text-muted-foreground">
+                                {c.body}
+                              </div>
+                            </div>
+                          </li>
+                        )
+                      })}
+                    </ul>
                   </div>
                 </div>
               </section>
@@ -271,6 +396,22 @@ export function AboutPage() {
                 <p className="leading-relaxed text-muted-foreground">
                   {t.transparencyBody}
                 </p>
+              </section>
+
+              {/* FAQ */}
+              <section>
+                <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-primary">
+                  <HelpCircle className="h-5 w-5" />
+                  {t.faqHeading}
+                </h2>
+                <div className="space-y-3">
+                  {t.faqs.map((f, i) => (
+                    <div key={i} className="rounded-lg border border-border bg-secondary/20 p-4">
+                      <h3 className="text-sm font-semibold text-foreground">{f.q}</h3>
+                      <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
+                    </div>
+                  ))}
+                </div>
               </section>
 
               {/* Disclaimer — 最末尾 */}

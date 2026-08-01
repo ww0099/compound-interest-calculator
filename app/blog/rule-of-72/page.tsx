@@ -54,6 +54,7 @@ const enContent: BlogContent = {
     { slug: "compound-vs-simple-interest", titleEn: "Compound Interest vs Simple Interest: A 10-Year Comparison", titleZh: "复利 vs 单利：十年大对比" },
     { slug: "cagr-vs-average-return", titleEn: "CAGR vs Average Return: Why the Difference Can Mislead You", titleZh: "CAGR vs 平均回报：为什么差异会误导你" },
     { slug: "inflation-hidden-tax", titleEn: "Inflation's Hidden Tax on Your Investment Returns", titleZh: "通胀：你投资回报上的隐形税收" },
+    { slug: "time-value-of-money", titleEn: "Time Value of Money: Why a Dollar Today Is Worth More Than a Dollar Tomorrow", titleZh: "货币时间价值：为什么今天的 1 美元比明天的 1 美元更值钱" },
   ],
 }
 
@@ -102,6 +103,7 @@ const zhContent: BlogContent = {
     { slug: "compound-vs-simple-interest", titleEn: "Compound Interest vs Simple Interest: A 10-Year Comparison", titleZh: "复利 vs 单利：十年大对比" },
     { slug: "cagr-vs-average-return", titleEn: "CAGR vs Average Return: Why the Difference Can Mislead You", titleZh: "CAGR vs 平均回报：为什么差异会误导你" },
     { slug: "inflation-hidden-tax", titleEn: "Inflation's Hidden Tax on Your Investment Returns", titleZh: "通胀：你投资回报上的隐形税收" },
+    { slug: "time-value-of-money", titleEn: "Time Value of Money: Why a Dollar Today Is Worth More Than a Dollar Tomorrow", titleZh: "货币时间价值：为什么今天的 1 美元比明天的 1 美元更值钱" },
   ],
 }
 

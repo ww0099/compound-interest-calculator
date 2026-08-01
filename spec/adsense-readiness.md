@@ -91,8 +91,8 @@
 AdSense 偏好活跃更新的站点。当前站点有 GitHub 提交记录，sitemap 有 lastmod。
 
 **应对策略**：
-- 审核前至少添加一篇新博客文章
-- 确保 sitemap lastmod 日期在审核前一周内
+- [x] 审核前至少添加一篇新博客文章 → 已完成（第 10 篇「货币时间价值」，2026-08-01）
+- [x] 确保 sitemap lastmod 日期在审核前一周内 → 已完成（2026-08-01）+ 修复 sitemap 未部署 bug
 
 ---
 
@@ -103,12 +103,12 @@ AdSense 偏好活跃更新的站点。当前站点有 GitHub 提交记录，site
 - [x] Cookie 同意横幅 → 已改进（Accept All / Essential Only）
 - [x] BreadcrumbList 全站覆盖 → 已完成（10 个非博客页面）
 - [x] HowTo Schema → 已添加（主页面 5 步骤）
-- [ ] 验证 `npm run build` 零错误
+- [x] 验证 `npm run build` 零错误 → 2026-08-01 验证 24/24 页面（23 内容路由），TypeScript 零错误
 
 ### 审核提交前（1-3 天）
 
-- [ ] About 页面增强（见 §4 具体内容）
-- [ ] 发布一篇新博客文章（展示站点活跃度）
+- [x] About 页面增强（见 §4 具体内容）→ 已完成（作者资质结构化 + 社会证明 + About FAQ）
+- [x] 发布一篇新博客文章（展示站点活跃度）→ 已完成（第 10 篇「货币时间价值」）
 - [ ] 确认所有页面 `<title>` 和 `<meta description>` 唯一且准确
 - [ ] 确认主页有明显的内容区域（不是空白或仅输入框）
 - [ ] 用 [Google Rich Results Test](https://search.google.com/test/rich-results) 验证结构化数据
@@ -203,12 +203,12 @@ AdSense 偏好活跃更新的站点。当前站点有 GitHub 提交记录，site
 
 | 指标 | 数值 |
 |------|------|
-| 总路由数 | 22 |
-| Twitter/Blog 文章 | 8 篇（中英双语） |
+| 总路由数 | 23（内容路由） |
+| Twitter/Blog 文章 | 10 篇（中英双语） |
 | 计算器工具 | 4 个（复利 / 退休 / 通胀 / 贷款） |
 | 法律合规页 | 3 个（Privacy / Terms / Disclaimer） |
 | E-E-A-T 信任页 | 3 个（About / Methodology / References） |
-| JSON-LD Schema | 11 类型 + 18 BreadcrumbList |
-| sitemap.xml | 22 URL，含 priority 和 changefreq |
+| JSON-LD Schema | 11 类型 + 20 BreadcrumbList |
+| sitemap.xml | 22 URL，含 priority 和 changefreq（已移入 public/ 随部署发布） |
 | TypeScript 构建 | 零错误 |
 | 部署方式 | GitHub Actions → GitHub Pages → Cloudflare CDN |
