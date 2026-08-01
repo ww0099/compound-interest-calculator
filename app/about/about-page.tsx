@@ -1,6 +1,5 @@
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
 import {
   ArrowLeft,
@@ -18,181 +17,140 @@ import {
   HelpCircle,
 } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
-import { cn } from "@/lib/utils"
-import type { Lang } from "@/lib/i18n"
 
 export function AboutPage() {
-  const [lang, setLang] = useState<Lang>("en")
 
   const t = {
-    title: lang === "en" ? "About Us" : "关于我们",
-    back: lang === "en" ? "Back to Calculator" : "返回计算器",
+    title: "About Us",
+    back: "Back to Calculator",
 
     // Why Trust — 信任锚点（放最前面，YMYL 关键）
-    trustHeading: lang === "en" ? "Why Trust This Calculator?" : "为什么可以信任这个计算器？",
+    trustHeading: "Why Trust This Calculator?",
     trustIntro:
-      lang === "en"
-        ? "In a world of black-box algorithms and AI-generated financial advice, transparency matters. Here is exactly how our tool earns your trust:"
-        : "在黑箱算法和 AI 生成财务建议泛滥的时代，透明度至关重要。以下是我们的工具赢得您信任的具体方式：",
+      "In a world of black-box algorithms and AI-generated financial advice, transparency matters. Here is exactly how our tool earns your trust:",
     trustItems: [
       {
         icon: "Code",
-        title: lang === "en" ? "100% Open Source" : "100% 开源",
+        title: "100% Open Source",
         body:
-          lang === "en"
-            ? "Every line of code is publicly auditable on GitHub. You can inspect, verify, and even run the calculations yourself. No hidden logic, no proprietary algorithms."
-            : "每一行代码都在 GitHub 上公开可审计。您可以检查、验证，甚至自己运行计算。没有隐藏逻辑，没有专有算法。",
+          "Every line of code is publicly auditable on GitHub. You can inspect, verify, and even run the calculations yourself. No hidden logic, no proprietary algorithms.",
       },
       {
         icon: "BookOpen",
-        title: lang === "en" ? "Formulas You Can Verify" : "可验证的公式",
+        title: "Formulas You Can Verify",
         body:
-          lang === "en"
-            ? "All calculations use standard financial mathematics from authoritative textbooks and institutions. Every formula is documented with its derivation on our Methodology page."
-            : "所有计算均使用来自权威教材和机构的标准金融数学。每个公式及其推导都在方法论页面有详细记录。",
+          "All calculations use standard financial mathematics from authoritative textbooks and institutions. Every formula is documented with its derivation on our Methodology page.",
       },
       {
         icon: "Lock",
-        title: lang === "en" ? "Complete Data Privacy" : "完全数据隐私",
+        title: "Complete Data Privacy",
         body:
-          lang === "en"
-            ? "All calculations run locally in your browser. Nothing is uploaded to a server. We do not collect, store, or share any of your financial data. Ever."
-            : "所有计算都在您的浏览器本地运行。没有任何数据上传到服务器。我们不收集、不存储、不分享您的任何财务数据。永不。",
+          "All calculations run locally in your browser. Nothing is uploaded to a server. We do not collect, store, or share any of your financial data. Ever.",
       },
       {
         icon: "Globe",
-        title: lang === "en" ? "Used Worldwide" : "全球用户使用",
+        title: "Used Worldwide",
         body:
-          lang === "en"
-            ? "This tool serves thousands of users worldwide in English and Chinese — from students learning math to investors planning retirement. Built for accessibility, not profit."
-            : "本工具为全球数千名中英双语用户服务——从学习数学的学生到规划退休的投资者。为可访问性而生，不为盈利。",
+          "This tool serves thousands of users worldwide in English and Chinese — from students learning math to investors planning retirement. Built for accessibility, not profit.",
       },
     ],
 
     // Data Privacy
-    privacyHeading: lang === "en" ? "Your Data Stays Yours" : "您的数据始终属于您",
+    privacyHeading: "Your Data Stays Yours",
     privacyBody:
-      lang === "en"
-        ? "Unlike many financial websites, we operate on a zero-data model: no user accounts, no cookies beyond essential functionality, no analytics trackers, no server-side storage. When you enter numbers into our calculators, the computation happens entirely in your browser using JavaScript. Nothing is transmitted over the network. Close the tab, and your data is gone — because it was never ours to keep."
-        : "与许多金融网站不同，我们采用零数据模式：无用户账户、无非必要的 Cookie、无分析追踪器、无服务器端存储。当您在计算器中输入数字时，计算完全在浏览器中使用 JavaScript 完成，没有任何数据通过网络传输。关闭标签页，您的数据就消失了——因为它从来不是我们的。",
+      "Unlike many financial websites, we operate on a zero-data model: no user accounts, no cookies beyond essential functionality, no analytics trackers, no server-side storage. When you enter numbers into our calculators, the computation happens entirely in your browser using JavaScript. Nothing is transmitted over the network. Close the tab, and your data is gone — because it was never ours to keep.",
 
     // Who Uses
-    whoHeading: lang === "en" ? "Who Uses This Tool?" : "谁在使用这个工具？",
+    whoHeading: "Who Uses This Tool?",
     whoBody:
-      lang === "en"
-        ? "Our users range from high school students discovering the power of compound interest for the first time, to experienced investors stress-testing retirement scenarios. Financial educators use it as a classroom demonstration. Freelancers use it to plan irregular income savings. Immigrants use it to compare investment returns across currencies. If you have money and a future, this calculator is for you."
-        : "我们的用户涵盖从第一次发现复利力量的高中生，到对退休情景进行压力测试的经验丰富的投资者。金融教育者将其用作课堂演示工具。自由职业者用它来规划不规律收入的储蓄。跨国人士用它来比较不同货币的投资回报。只要您有钱和未来，这个计算器就是为您准备的。",
+      "Our users range from high school students discovering the power of compound interest for the first time, to experienced investors stress-testing retirement scenarios. Financial educators use it as a classroom demonstration. Freelancers use it to plan irregular income savings. Immigrants use it to compare investment returns across currencies. If you have money and a future, this calculator is for you.",
 
     // Stats — 社会证明
-    statsHeading: lang === "en" ? "By the Numbers" : "用数字说话",
+    statsHeading: "By the Numbers",
     stats: [
-      { value: "4", label: lang === "en" ? "Free Calculators" : "免费计算器" },
-      { value: "10", label: lang === "en" ? "Bilingual Articles" : "中英双语文章" },
-      { value: "0", label: lang === "en" ? "Data Collected" : "数据收集" },
-      { value: "100%", label: lang === "en" ? "Open Source" : "开源代码" },
+      { value: "4", label: "Free Calculators" },
+      { value: "10", label: "Articles" },
+      { value: "0", label: "Data Collected" },
+      { value: "100%", label: "Open Source" },
     ],
 
     // Author
-    authorHeading: lang === "en" ? "The Author" : "作者",
+    authorHeading: "The Author",
     authorName: "WW0099",
     authorBio:
-      lang === "en"
-        ? "WW0099 is a software engineer and self-taught personal finance enthusiast. With years of experience building production systems and a passion for financial literacy, they created this calculator to make the mathematics of wealth-building accessible to everyone — not just Wall Street professionals."
-        : "WW0099 是一名软件工程师和自学成才的个人理财爱好者。凭借多年构建生产系统的经验和对金融素养的热情，ta 创建了这个计算器，让财富积累的数学对每个人都触手可及——而不仅仅是华尔街的专业人士。",
+      "WW0099 is a software engineer and self-taught personal finance enthusiast. With years of experience building production systems and a passion for financial literacy, they created this calculator to make the mathematics of wealth-building accessible to everyone — not just Wall Street professionals.",
     authorCredentials: [
       {
         icon: "BadgeCheck",
-        title: lang === "en" ? "Software Engineer" : "软件工程师",
+        title: "Software Engineer",
         body:
-          lang === "en"
-            ? "Years of experience building production-grade systems across multiple industries."
-            : "多年跨行业构建生产级系统的经验。",
+          "Years of experience building production-grade systems across multiple industries.",
       },
       {
         icon: "GraduationCap",
-        title: lang === "en" ? "Self-Taught Financial Mathematics" : "自学金融数学",
+        title: "Self-Taught Financial Mathematics",
         body:
-          lang === "en"
-            ? "Independently studied through Investopedia, the SEC, the Federal Reserve, and standard financial textbooks."
-            : "通过 Investopedia、SEC、美联储和标准金融教材独立学习。",
+          "Independently studied through Investopedia, the SEC, the Federal Reserve, and standard financial textbooks.",
       },
       {
         icon: "GitBranch",
-        title: lang === "en" ? "Open-Source Contributor" : "开源贡献者",
+        title: "Open-Source Contributor",
         body:
-          lang === "en"
-            ? "Every line of this calculator's code is publicly auditable on GitHub."
-            : "这个计算器的每一行代码都在 GitHub 上公开可审计。",
+          "Every line of this calculator's code is publicly auditable on GitHub.",
       },
       {
         icon: "BookOpen",
-        title: lang === "en" ? "Peer-Reviewed Formulas" : "同行评审公式",
+        title: "Peer-Reviewed Formulas",
         body:
-          lang === "en"
-            ? "The calculation engine relies on established financial equations — not AI-generated heuristics."
-            : "计算引擎依赖既有的金融方程——而非 AI 生成的启发式算法。",
+          "The calculation engine relies on established financial equations — not AI-generated heuristics.",
       },
     ],
 
     // Mission
-    missionHeading: lang === "en" ? "Our Mission" : "我们的使命",
+    missionHeading: "Our Mission",
     missionBody:
-      lang === "en"
-        ? "Financial literacy is a superpower. We believe everyone — regardless of income, education, or nationality — deserves free access to accurate financial tools. Our mission is to demystify compound interest and empower people to make informed decisions about their financial future."
-        : "金融素养是一种超能力。我们相信，每个人——无论收入、教育程度或国籍——都应当免费获得准确的金融工具。我们的使命是揭开复利的神秘面纱，赋予人们为自己的财务未来做出明智决策的能力。",
+      "Financial literacy is a superpower. We believe everyone — regardless of income, education, or nationality — deserves free access to accurate financial tools. Our mission is to demystify compound interest and empower people to make informed decisions about their financial future.",
 
     // Transparency
     transparencyHeading:
-      lang === "en" ? "Open Methodology" : "开放方法论",
+      "Open Methodology",
     transparencyBody:
-      lang === "en"
-        ? "All calculations on this site use standard financial mathematics formulas. We do not use proprietary algorithms, black-box models, or AI-generated financial predictions. Every formula we use is publicly documented on our Methodology page, with references to the original textbooks and institutions that established them."
-        : "本网站的所有计算均使用标准金融数学公式。我们不使用专有算法、黑箱模型或 AI 生成的财务预测。我们使用的每个公式都在方法论页面公开记录，并附有确立这些公式的原始教材和机构的参考文献。",
+      "All calculations on this site use standard financial mathematics formulas. We do not use proprietary algorithms, black-box models, or AI-generated financial predictions. Every formula we use is publicly documented on our Methodology page, with references to the original textbooks and institutions that established them.",
 
     // FAQ — 信任相关常见问题
-    faqHeading: lang === "en" ? "Frequently Asked Questions" : "常见问题",
+    faqHeading: "Frequently Asked Questions",
     faqs: [
       {
-        q: lang === "en" ? "Is this calculator really free?" : "这个计算器真的免费吗？",
+        q: "Is this calculator really free?",
         a:
-          lang === "en"
-            ? "Yes — completely free, forever. It is open source under an MIT license, so you can even download and run it yourself. There are no subscriptions, paywalls, or hidden fees."
-            : "是的——完全免费，永远免费。它采用 MIT 开源许可，你甚至可以自己下载运行。没有订阅、没有付费墙、没有隐藏费用。",
+          "Yes — completely free, forever. It is open source under an MIT license, so you can even download and run it yourself. There are no subscriptions, paywalls, or hidden fees.",
       },
       {
-        q: lang === "en" ? "Do you collect my financial data?" : "你们会收集我的财务数据吗？",
+        q: "Do you collect my financial data?",
         a:
-          lang === "en"
-            ? "No. We operate a zero-data model: no accounts, no analytics trackers, no server-side storage. Every calculation runs locally in your browser. Nothing is transmitted over the network."
-            : "不会。我们采用零数据模式：无账户、无分析追踪器、无服务器端存储。所有计算都在你的浏览器本地完成，没有任何数据通过网络传输。",
+          "No. We operate a zero-data model: no accounts, no analytics trackers, no server-side storage. Every calculation runs locally in your browser. Nothing is transmitted over the network.",
       },
       {
-        q: lang === "en" ? "How do I know the formulas are accurate?" : "我如何确认公式是准确的？",
+        q: "How do I know the formulas are accurate?",
         a:
-          lang === "en"
-            ? "All formulas come from standard financial mathematics, publicly documented with their derivations on our Methodology page and cross-referenced on our References page. The source code is open on GitHub, so the calculations are fully auditable."
-            : "所有公式都来自标准金融数学，在我们的方法论页面公开记录了推导过程，并在参考文献页面交叉引用。源代码在 GitHub 上开源，因此计算完全可以审计。",
+          "All formulas come from standard financial mathematics, publicly documented with their derivations on our Methodology page and cross-referenced on our References page. The source code is open on GitHub, so the calculations are fully auditable.",
       },
       {
-        q: lang === "en" ? "Is this tool a financial advisor?" : "这个工具是财务顾问吗？",
+        q: "Is this tool a financial advisor?",
         a:
-          lang === "en"
-            ? "No. This is an educational calculator. It does not provide personalized investment recommendations, tax advice, or retirement guidance. Please consult a qualified professional before making financial decisions."
-            : "不是。这是一个教育计算器。它不提供个性化的投资建议、税务建议或退休指导。在做财务决策前请咨询合格的专业人士。",
+          "No. This is an educational calculator. It does not provide personalized investment recommendations, tax advice, or retirement guidance. Please consult a qualified professional before making financial decisions.",
       },
     ],
 
     // Disclaimer — 移到最末尾
     disclaimerHeading:
-      lang === "en" ? "Important Note" : "重要提示",
+      "Important Note",
     disclaimerBody:
-      lang === "en"
-        ? "This calculator is an educational tool, not a financial advisor. While the mathematics is accurate, individual financial situations vary widely. It does not provide personalized investment recommendations, tax advice, or retirement planning guidance. Please consult a qualified professional before making financial decisions. See our full Disclaimer for details."
-        : "本计算器是一个教育工具，而非财务顾问。虽然数学计算是准确的，但个人财务状况千差万别。它不提供个性化的投资建议、税务建议或退休规划指导。在做出财务决策之前，请咨询合格的专业人士。详情请参阅我们的完整免责声明。",
+      "This calculator is an educational tool, not a financial advisor. While the mathematics is accurate, individual financial situations vary widely. It does not provide personalized investment recommendations, tax advice, or retirement planning guidance. Please consult a qualified professional before making financial decisions. See our full Disclaimer for details.",
 
-    learnMore: lang === "en" ? "Learn more about our methods" : "了解更多关于我们的方法",
-    viewSource: lang === "en" ? "View source code on GitHub" : "在 GitHub 上查看源代码",
-    methodologyRef: lang === "en" ? "View references" : "查看参考文献",
+    learnMore: "Learn more about our methods",
+    viewSource: "View source code on GitHub",
+    methodologyRef: "View references",
   }
 
   return (
@@ -208,25 +166,6 @@ export function AboutPage() {
               <ArrowLeft className="h-4 w-4" />
               {t.back}
             </Link>
-          </div>
-
-          {/* Language toggle */}
-          <div className="flex items-center gap-1 self-start rounded-lg border border-border bg-secondary/60 p-1 sm:self-auto">
-            {(["en", "zh"] as Lang[]).map((l) => (
-              <button
-                key={l}
-                type="button"
-                onClick={() => setLang(l)}
-                className={cn(
-                  "rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
-                  lang === l
-                    ? "bg-card text-primary shadow-sm"
-                    : "text-muted-foreground hover:text-foreground",
-                )}
-              >
-                {l === "en" ? "English" : "中文"}
-              </button>
-            ))}
           </div>
         </div>
       </header>
@@ -427,19 +366,19 @@ export function AboutPage() {
         {/* Navigation footer */}
         <nav className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
           <Link href="/methodology" className="transition-colors hover:text-foreground">
-            {lang === "en" ? "Methodology" : "方法论"}
+            {"Methodology"}
           </Link>
           <Link href="/references" className="transition-colors hover:text-foreground">
-            {lang === "en" ? "References" : "参考文献"}
+            {"References"}
           </Link>
           <Link href="/blog" className="transition-colors hover:text-foreground">
             Blog
           </Link>
           <Link href="/privacy" className="transition-colors hover:text-foreground">
-            {lang === "en" ? "Privacy Policy" : "隐私政策"}
+            {"Privacy Policy"}
           </Link>
           <Link href="/disclaimer" className="transition-colors hover:text-foreground">
-            {lang === "en" ? "Disclaimer" : "免责声明"}
+            {"Disclaimer"}
           </Link>
         </nav>
       </main>

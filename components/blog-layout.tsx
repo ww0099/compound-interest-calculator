@@ -1,11 +1,9 @@
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
 import { ArrowLeft, Calendar, Clock, User, BookOpen } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
-import type { Lang } from "@/lib/i18n"
 import { AboutWidget } from "@/components/about-widget"
 
 export interface BlogSection {
@@ -15,8 +13,7 @@ export interface BlogSection {
 
 export interface RelatedArticle {
   slug: string
-  titleEn: string
-  titleZh: string
+  title: string
 }
 
 export interface BlogContent {
@@ -32,8 +29,7 @@ export interface BlogContent {
 
 interface BlogLayoutProps {
   slug: string
-  en: BlogContent
-  zh: BlogContent
+  content: BlogContent
 }
 
 function buildArticleJsonLd(
@@ -42,7 +38,6 @@ function buildArticleJsonLd(
   description: string,
   date: string,
   author: string,
-  lang: Lang,
 ) {
   return JSON.stringify({
     "@context": "https://schema.org",
@@ -67,7 +62,7 @@ function buildArticleJsonLd(
     image: "https://top.net.im/og-image.png",
     url: `https://top.net.im/blog/${slug}`,
     isAccessibleForFree: true,
-    inLanguage: lang === "en" ? "en-US" : "zh-CN",
+    inLanguage: "en-US",
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `https://top.net.im/blog/${slug}`,
@@ -78,7 +73,6 @@ function buildArticleJsonLd(
 function buildBreadcrumbJsonLd(
   slug: string,
   title: string,
-  lang: Lang,
 ) {
   return JSON.stringify({
     "@context": "https://schema.org",
@@ -93,7 +87,7 @@ function buildBreadcrumbJsonLd(
       {
         "@type": "ListItem",
         position: 2,
-        name: lang === "en" ? "Blog" : "博客",
+        name: "Blog",
         item: "https://top.net.im/blog",
       },
       {
@@ -106,19 +100,15 @@ function buildBreadcrumbJsonLd(
   })
 }
 
-export function BlogLayout({ slug, en, zh }: BlogLayoutProps) {
-  const [lang, setLang] = useState<Lang>("en")
-  const content = lang === "en" ? en : zh
-
+export function BlogLayout({ slug, content }: BlogLayoutProps) {
   const articleJsonLd = buildArticleJsonLd(
     slug,
     content.title,
     content.description,
     content.date,
     content.author,
-    lang,
   )
-  const breadcrumbJsonLd = buildBreadcrumbJsonLd(slug, content.title, lang)
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd(slug, content.title)
 
   return (
     <div className="min-h-screen bg-background">
@@ -141,26 +131,8 @@ export function BlogLayout({ slug, en, zh }: BlogLayoutProps) {
               className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               <ArrowLeft className="h-4 w-4" />
-              {lang === "en" ? "All Articles" : "所有文章"}
+              All Articles
             </Link>
-          </div>
-
-          <div className="flex items-center gap-1 self-start rounded-lg border border-border bg-secondary/60 p-1 sm:self-auto">
-            {(["en", "zh"] as Lang[]).map((l) => (
-              <button
-                key={l}
-                type="button"
-                onClick={() => setLang(l)}
-                className={cn(
-                  "rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
-                  lang === l
-                    ? "bg-card text-primary shadow-sm"
-                    : "text-muted-foreground hover:text-foreground",
-                )}
-              >
-                {l === "en" ? "English" : "中文"}
-              </button>
-            ))}
           </div>
         </div>
       </header>
@@ -225,7 +197,7 @@ export function BlogLayout({ slug, en, zh }: BlogLayoutProps) {
             <CardContent className="p-5 sm:p-6">
               <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-primary">
                 <BookOpen className="h-5 w-5" />
-                {lang === "en" ? "Related Articles" : "相关文章"}
+                Related Articles
               </h2>
               <div className="grid gap-3 sm:grid-cols-2">
                 {content.relatedArticles.map((ra) => (
@@ -234,7 +206,7 @@ export function BlogLayout({ slug, en, zh }: BlogLayoutProps) {
                     href={`/blog/${ra.slug}`}
                     className="rounded-lg border border-border p-3 text-sm font-medium text-foreground transition-colors hover:border-primary/40 hover:bg-secondary/40"
                   >
-                    {lang === "en" ? ra.titleEn : ra.titleZh}
+                    {ra.title}
                   </Link>
                 ))}
               </div>
@@ -248,13 +220,13 @@ export function BlogLayout({ slug, en, zh }: BlogLayoutProps) {
             href="/blog"
             className="text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
-            ← {lang === "en" ? "Back to all articles" : "返回所有文章"}
+            ← Back to all articles
           </Link>
         </div>
 
         {/* About widget */}
         <div className="mt-8">
-          <AboutWidget lang={lang} />
+          <AboutWidget />
         </div>
       </main>
     </div>

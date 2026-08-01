@@ -2,12 +2,11 @@
 
 import { useState, useRef, useEffect, useMemo } from "react"
 import Link from "next/link"
-import { ArrowLeft, Calculator, PiggyBank, Percent, Clock } from "lucide-react"
+import { ArrowLeft } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { cn } from "@/lib/utils"
-import type { Lang } from "@/lib/i18n"
 import {
   Chart,
   LineController,
@@ -40,87 +39,36 @@ Chart.register(
 // i18n
 // ---------------------------------------------------------------------------
 
-interface T {
-  title: string; subtitle: string; back: string
-  modeLabel: string
-  modeProject: string; modeSolvePrincipal: string; modeSolveRate: string; modeSolveTerm: string
-  modeProjectDesc: string; modeSolvePrincipalDesc: string; modeSolveRateDesc: string; modeSolveTermDesc: string
-  loanAmount: string; annualRate: string; loanTerm: string
-  monthlyPayment: string; extraPayment: string; targetPayment: string
-  inputsTitle: string; resultsTitle: string
-  monthlyPaymentLabel: string; totalPaymentLabel: string; totalInterestLabel: string
-  payoffDate: string; payoffYears: string
-  solvedPrincipalLabel: string; solvedRateLabel: string; solvedTermLabel: string
-  noSolution: string
-  scheduleTitle: string; schedulePeriod: string; schedulePayment: string
-  schedulePrincipal: string; scheduleInterest: string; scheduleBalance: string
-  chartBalanceTitle: string; chartPieTitle: string
-  balanceLabel: string; principalLabel: string; interestLabel: string
-  yearLabel: string; amountLabel: string
-  showAll: string
-}
-
-function getT(lang: Lang): T {
-  if (lang === "en") return {
-    title: "Loan Calculator",
-    subtitle: "Calculate your monthly payments, total interest, and view a complete amortization schedule.",
-    back: "Back to Calculator",
-    modeLabel: "Calculation Mode",
-    modeProject: "Monthly Payment", modeSolvePrincipal: "Max Loan Amount",
-    modeSolveRate: "Interest Rate", modeSolveTerm: "Payoff Time",
-    modeProjectDesc: "Enter loan amount, rate, and term to see your monthly payment.",
-    modeSolvePrincipalDesc: "Enter your monthly budget to find out how much you can borrow.",
-    modeSolveRateDesc: "Enter loan amount and monthly payment to calculate the effective interest rate.",
-    modeSolveTermDesc: "Enter loan amount and monthly payment to see how long it will take to pay off.",
-    loanAmount: "Loan Amount ($)", annualRate: "Annual Interest Rate (%)",
-    loanTerm: "Loan Term (years)", monthlyPayment: "Monthly Payment ($)",
-    extraPayment: "Extra Monthly Payment ($)", targetPayment: "Target Monthly Payment ($)",
-    inputsTitle: "Loan Details", resultsTitle: "Results",
-    monthlyPaymentLabel: "Monthly Payment", totalPaymentLabel: "Total Payment",
-    totalInterestLabel: "Total Interest", payoffDate: "Payoff Time",
-    payoffYears: "years",
-    solvedPrincipalLabel: "Maximum Loan Amount", solvedRateLabel: "Effective Interest Rate",
-    solvedTermLabel: "Payoff Time",
-    noSolution: "No solution found. Check your inputs and try again.",
-    scheduleTitle: "Amortization Schedule",
-    schedulePeriod: "Period", schedulePayment: "Payment",
-    schedulePrincipal: "Principal", scheduleInterest: "Interest", scheduleBalance: "Balance",
-    chartBalanceTitle: "Loan Balance Over Time",
-    chartPieTitle: "Principal vs Interest",
-    balanceLabel: "Remaining Balance", principalLabel: "Principal", interestLabel: "Interest",
-    yearLabel: "Year", amountLabel: "Amount (USD)",
-    showAll: "Show Full Schedule",
-  }
-  return {
-    title: "贷款计算器",
-    subtitle: "计算每月还款额、总利息，并查看完整的还款明细表。",
-    back: "返回计算器",
-    modeLabel: "计算模式",
-    modeProject: "计算月供", modeSolvePrincipal: "可贷额度",
-    modeSolveRate: "计算利率", modeSolveTerm: "还款期限",
-    modeProjectDesc: "输入贷款金额、利率和期限，计算每月还款额。",
-    modeSolvePrincipalDesc: "输入每月预算，计算最高可贷金额。",
-    modeSolveRateDesc: "输入贷款金额和月供，反算实际利率。",
-    modeSolveTermDesc: "输入贷款金额和月供，计算需要多久还清。",
-    loanAmount: "贷款金额（$）", annualRate: "年利率（%）",
-    loanTerm: "贷款期限（年）", monthlyPayment: "月供（$）",
-    extraPayment: "额外月还款（$）", targetPayment: "目标月供（$）",
-    inputsTitle: "贷款参数", resultsTitle: "计算结果",
-    monthlyPaymentLabel: "每月还款", totalPaymentLabel: "还款总额",
-    totalInterestLabel: "利息总额", payoffDate: "还清时间",
-    payoffYears: "年",
-    solvedPrincipalLabel: "最高可贷金额", solvedRateLabel: "实际年利率",
-    solvedTermLabel: "预计还清时间",
-    noSolution: "无解。请检查输入参数后重试。",
-    scheduleTitle: "还款明细表",
-    schedulePeriod: "期数", schedulePayment: "还款额",
-    schedulePrincipal: "本金", scheduleInterest: "利息", scheduleBalance: "余额",
-    chartBalanceTitle: "贷款余额变化",
-    chartPieTitle: "本金 vs 利息",
-    balanceLabel: "剩余本金", principalLabel: "本金", interestLabel: "利息",
-    yearLabel: "年", amountLabel: "金额（美元）",
-    showAll: "显示完整明细表",
-  }
+const T = {
+  title: "Loan Calculator",
+  subtitle: "Calculate your monthly payments, total interest, and view a complete amortization schedule.",
+  back: "Back to Calculator",
+  modeLabel: "Calculation Mode",
+  modeProject: "Monthly Payment", modeSolvePrincipal: "Max Loan Amount",
+  modeSolveRate: "Interest Rate", modeSolveTerm: "Payoff Time",
+  modeProjectDesc: "Enter loan amount, rate, and term to see your monthly payment.",
+  modeSolvePrincipalDesc: "Enter your monthly budget to find out how much you can borrow.",
+  modeSolveRateDesc: "Enter loan amount and monthly payment to calculate the effective interest rate.",
+  modeSolveTermDesc: "Enter loan amount and monthly payment to see how long it will take to pay off.",
+  loanAmount: "Loan Amount ($)", annualRate: "Annual Interest Rate (%)",
+  loanTerm: "Loan Term (years)", monthlyPayment: "Monthly Payment ($)",
+  extraPayment: "Extra Monthly Payment ($)", targetPayment: "Target Monthly Payment ($)",
+  inputsTitle: "Loan Details", resultsTitle: "Results",
+  monthlyPaymentLabel: "Monthly Payment", totalPaymentLabel: "Total Payment",
+  totalInterestLabel: "Total Interest", payoffDate: "Payoff Time",
+  payoffYears: "years",
+  solvedPrincipalLabel: "Maximum Loan Amount", solvedRateLabel: "Effective Interest Rate",
+  solvedTermLabel: "Payoff Time",
+  noSolution: "No solution found. Check your inputs and try again.",
+  scheduleTitle: "Amortization Schedule",
+  schedulePeriod: "Period", schedulePayment: "Payment",
+  schedulePrincipal: "Principal", scheduleInterest: "Interest", scheduleBalance: "Balance",
+  chartBalanceTitle: "Loan Balance Over Time",
+  chartPieTitle: "Principal vs Interest",
+  balanceLabel: "Remaining Balance", principalLabel: "Principal", interestLabel: "Interest",
+  yearLabel: "Year", amountLabel: "Amount (USD)",
+  showAll: "Show Full Schedule",
+  remainingBalance: "Remaining Balance",
 }
 
 // ---------------------------------------------------------------------------
@@ -138,16 +86,16 @@ const DEFAULT_INPUTS: LoanInputs = {
 
 const MODES: LoanSolveMode[] = ["project", "solvePrincipal", "solveRate", "solveTerm"]
 
-function fmtMoney(value: number, lang: Lang): string {
+function fmtMoney(value: number): string {
   if (!isFinite(value)) return "—"
-  return new Intl.NumberFormat(lang === "zh" ? "zh-CN" : "en-US", {
+  return new Intl.NumberFormat("en-US", {
     style: "currency", currency: "USD", maximumFractionDigits: 2,
   }).format(value)
 }
 
-function fmtPercent(value: number, lang: Lang): string {
+function fmtPercent(value: number): string {
   if (!isFinite(value)) return "—"
-  return new Intl.NumberFormat(lang === "zh" ? "zh-CN" : "en-US", {
+  return new Intl.NumberFormat("en-US", {
     style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2,
   }).format(value)
 }
@@ -157,12 +105,11 @@ function fmtPercent(value: number, lang: Lang): string {
 // ---------------------------------------------------------------------------
 
 export function LoanPage() {
-  const [lang, setLang] = useState<Lang>("en")
   const [mode, setMode] = useState<LoanSolveMode>("project")
   const [inputs, setInputs] = useState<LoanInputs>(DEFAULT_INPUTS)
   const [showFullSchedule, setShowFullSchedule] = useState(false)
   const [history, setHistory] = useState<LoanHistoryRecord[]>([])
-  const t = useMemo(() => getT(lang), [lang])
+  const t = T
 
   const LOAN_HISTORY_KEY = "loan-calc-history"
   const MAX_LOAN_HISTORY = 50
@@ -176,27 +123,20 @@ export function LoanPage() {
   }, [])
 
   // 泛型列定义
-  const loanColumns = useMemo((): HistoryColumn<LoanHistoryRecord>[] => {
-    const loc = lang === "zh" ? "zh-CN" : "en-US"
-    const fmt = (v: number) => new Intl.NumberFormat(loc, { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(v)
-    const pct = (v: number) => new Intl.NumberFormat(loc, { style: "percent", minimumFractionDigits: 2 }).format(v)
-    const modeLabel = (m: string) => {
-      if (lang === "en") {
+  const loanColumns: HistoryColumn<LoanHistoryRecord>[] = [
+    {
+      key: "mode", header: "Mode",
+      cell: (r) => {
         const map: Record<string, string> = { project: "Payment", solvePrincipal: "Max Loan", solveRate: "Rate", solveTerm: "Term" }
-        return map[m] ?? m
-      }
-      const map: Record<string, string> = { project: "月供", solvePrincipal: "可贷额度", solveRate: "利率", solveTerm: "期限" }
-      return map[m] ?? m
-    }
-    return [
-      { key: "mode", header: lang === "en" ? "Mode" : "模式", cell: (r) => modeLabel(r.mode) },
-      { key: "principal", header: lang === "en" ? "Loan Amount" : "贷款金额", cell: (r) => fmt(r.principal) },
-      { key: "payment", header: lang === "en" ? "Monthly Payment" : "月供", cell: (r) => fmt(r.monthlyPayment) },
-      { key: "rate", header: lang === "en" ? "Rate" : "利率", cell: (r) => pct(r.annualRate) },
-      { key: "term", header: lang === "en" ? "Term" : "期限", cell: (r) => `${parseFloat(r.years.toFixed(1))}${lang === "en" ? "y" : "年"}` },
-      { key: "interest", header: lang === "en" ? "Total Interest" : "总利息", cell: (r) => fmt(r.totalInterest) },
-    ]
-  }, [lang])
+        return map[r.mode] ?? r.mode
+      },
+    },
+    { key: "principal", header: "Loan Amount", cell: (r) => fmtMoney(r.principal) },
+    { key: "payment", header: "Monthly Payment", cell: (r) => fmtMoney(r.monthlyPayment) },
+    { key: "rate", header: "Rate", cell: (r) => fmtPercent(r.annualRate) },
+    { key: "term", header: "Term", cell: (r) => `${parseFloat(r.years.toFixed(1))}y` },
+    { key: "interest", header: "Total Interest", cell: (r) => fmtMoney(r.totalInterest) },
+  ]
 
   // 处理函数
   const handleLoanLoad = (rec: LoanHistoryRecord) => {
@@ -302,7 +242,7 @@ export function LoanPage() {
   const pieCanvasRef = useRef<HTMLCanvasElement>(null)
   const pieChartRef = useRef<Chart | null>(null)
 
-  const fmtLocale = lang === "zh" ? "zh-CN" : "en-US"
+  const fmtLocale = "en-US"
 
   // balance line chart
   useEffect(() => {
@@ -326,7 +266,7 @@ export function LoanPage() {
             fill: true, tension: 0.25, pointRadius: 0, pointHoverRadius: 4, borderWidth: 2,
           },
           {
-            label: t.interestLabel + " (" + (lang === "en" ? "cumulative" : "累计") + ")",
+            label: t.interestLabel + " (cumulative)",
             data: balanceSeries.totalInterest,
             borderColor: "#e53e3e",
             backgroundColor: "transparent",
@@ -357,7 +297,7 @@ export function LoanPage() {
     })
     return () => { balanceChartRef.current?.destroy(); balanceChartRef.current = null }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [balanceSeries, lang])
+  }, [balanceSeries])
 
   // pie chart
   useEffect(() => {
@@ -389,7 +329,7 @@ export function LoanPage() {
               label: (item) => {
                 const val = item.parsed ?? 0
                 const pct = results.totalPayment > 0 ? ((val / results.totalPayment) * 100).toFixed(1) : "0"
-                return `${item.label}: ${fmtMoney(val, lang)} (${pct}%)`
+                return `${item.label}: ${fmtMoney(val)} (${pct}%)`
               },
             },
           },
@@ -398,7 +338,7 @@ export function LoanPage() {
     })
     return () => { pieChartRef.current?.destroy(); pieChartRef.current = null }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [results.pieData, results.totalPayment, lang])
+  }, [results.pieData, results.totalPayment])
 
   // ---- input handlers ----
   function update(field: keyof LoanInputs, raw: string) {
@@ -440,15 +380,6 @@ export function LoanPage() {
             <Link href="/" className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
               <ArrowLeft className="h-4 w-4" />{t.back}
             </Link>
-          </div>
-          <div className="flex items-center gap-1 self-start rounded-lg border border-border bg-secondary/60 p-1 sm:self-auto">
-            {(["en", "zh"] as Lang[]).map((l) => (
-              <button key={l} type="button" onClick={() => setLang(l)}
-                className={cn("rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
-                  lang === l ? "bg-card text-primary shadow-sm" : "text-muted-foreground hover:text-foreground")}>
-                {l === "en" ? "English" : "中文"}
-              </button>
-            ))}
           </div>
         </div>
       </header>
@@ -539,7 +470,7 @@ export function LoanPage() {
                   <p className="text-xs font-medium text-muted-foreground">{t.solvedPrincipalLabel}</p>
                   <p className="mt-0.5 text-lg font-bold text-primary">
                     {solvedPrincipal !== null && solvedPrincipal > 0
-                      ? fmtMoney(solvedPrincipal, lang)
+                      ? fmtMoney(solvedPrincipal)
                       : t.noSolution}
                   </p>
                 </div>
@@ -548,7 +479,7 @@ export function LoanPage() {
                 <div className="mt-4 rounded-lg border border-primary/30 bg-primary/5 p-3">
                   <p className="text-xs font-medium text-muted-foreground">{t.solvedRateLabel}</p>
                   <p className="mt-0.5 text-lg font-bold text-primary">
-                    {solvedRate !== null ? fmtPercent(solvedRate, lang) : t.noSolution}
+                    {solvedRate !== null ? fmtPercent(solvedRate) : t.noSolution}
                   </p>
                 </div>
               )}
@@ -570,15 +501,15 @@ export function LoanPage() {
             <CardContent className="p-5 sm:p-6">
               <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">{t.resultsTitle}</h2>
               <div className="space-y-3">
-                <ResultRow label={t.monthlyPaymentLabel} value={fmtMoney(results.monthlyPayment, lang)} accent />
-                <ResultRow label={t.totalPaymentLabel} value={fmtMoney(results.totalPayment, lang)} />
-                <ResultRow label={t.totalInterestLabel} value={fmtMoney(results.totalInterest, lang)} muted />
+                <ResultRow label={t.monthlyPaymentLabel} value={fmtMoney(results.monthlyPayment)} accent />
+                <ResultRow label={t.totalPaymentLabel} value={fmtMoney(results.totalPayment)} />
+                <ResultRow label={t.totalInterestLabel} value={fmtMoney(results.totalInterest)} muted />
                 <hr className="border-border" />
                 <ResultRow label={t.payoffDate}
                   value={`${results.totalPeriods > 0 ? parseFloat((results.totalPeriods / 12).toFixed(1)) : 0} ${t.payoffYears}`} />
                 {results.finalBalance > 0.01 && (
-                  <ResultRow label={lang === "en" ? "Remaining Balance" : "剩余本金"}
-                    value={fmtMoney(results.finalBalance, lang)} muted />
+                  <ResultRow label={t.remainingBalance}
+                    value={fmtMoney(results.finalBalance)} muted />
                 )}
               </div>
             </CardContent>
@@ -630,7 +561,7 @@ export function LoanPage() {
                     {scheduleTruncated && (
                       <tr>
                         <td colSpan={5} className="py-2 text-center text-xs text-muted-foreground">
-                          {lang === "en" ? `Showing first 12 and last 12 of ${results.schedule.length} periods.` : `显示 ${results.schedule.length} 期的前 12 期和后 12 期。`}
+                          {`Showing first 12 and last 12 of ${results.schedule.length} periods.`}
                           {" "}
                           <button type="button" onClick={() => setShowFullSchedule(true)}
                             className="text-accent underline hover:no-underline">
@@ -646,10 +577,10 @@ export function LoanPage() {
                           <td className="py-1.5 pr-4 tabular-nums">
                             {isGap ? "..." : row.period}
                           </td>
-                          <td className="py-1.5 pr-4 text-right tabular-nums">{fmtMoney(row.payment, lang)}</td>
-                          <td className="py-1.5 pr-4 text-right tabular-nums">{fmtMoney(row.principal, lang)}</td>
-                          <td className="py-1.5 pr-4 text-right tabular-nums">{fmtMoney(row.interest, lang)}</td>
-                          <td className="py-1.5 text-right tabular-nums">{fmtMoney(row.balance, lang)}</td>
+                          <td className="py-1.5 pr-4 text-right tabular-nums">{fmtMoney(row.payment)}</td>
+                          <td className="py-1.5 pr-4 text-right tabular-nums">{fmtMoney(row.principal)}</td>
+                          <td className="py-1.5 pr-4 text-right tabular-nums">{fmtMoney(row.interest)}</td>
+                          <td className="py-1.5 text-right tabular-nums">{fmtMoney(row.balance)}</td>
                         </tr>
                       )
                     })}
@@ -663,13 +594,13 @@ export function LoanPage() {
         {/* history */}
         <div className="mt-6">
           <GenericHistoryPanel
-            title={lang === "en" ? "Calculation History" : "计算历史"}
-            emptyText={lang === "en" ? "No calculations yet. Adjust the inputs to get started." : "暂无计算记录，调整输入即可开始。"}
-            clearConfirm={lang === "en" ? "Delete all loan calculation history?" : "确定要删除所有贷款计算历史吗？"}
-            clearAllLabel={lang === "en" ? "Clear All" : "清空全部"}
-            loadLabel={lang === "en" ? "Load" : "载入"}
-            deleteLabel={lang === "en" ? "Delete" : "删除"}
-            locale={lang === "zh" ? "zh-CN" : "en-US"}
+            title="Calculation History"
+            emptyText="No calculations yet. Adjust the inputs to get started."
+            clearConfirm="Delete all loan calculation history?"
+            clearAllLabel="Clear All"
+            loadLabel="Load"
+            deleteLabel="Delete"
+            locale="en-US"
             records={history}
             columns={loanColumns}
             onLoad={handleLoanLoad}
@@ -681,16 +612,16 @@ export function LoanPage() {
         {/* footer nav */}
         <nav className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground pb-6">
           <Link href="/privacy" className="transition-colors hover:text-foreground">
-            {lang === "en" ? "Privacy Policy" : "隐私政策"}
+            Privacy Policy
           </Link>
           <Link href="/terms" className="transition-colors hover:text-foreground">
-            {lang === "en" ? "Terms of Service" : "服务条款"}
+            Terms of Service
           </Link>
           <Link href="/disclaimer" className="transition-colors hover:text-foreground">
-            {lang === "en" ? "Disclaimer" : "免责声明"}
+            Disclaimer
           </Link>
           <Link href="/contact" className="transition-colors hover:text-foreground">
-            {lang === "en" ? "Contact" : "联系我们"}
+            Contact
           </Link>
         </nav>
       </main>

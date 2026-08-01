@@ -4,8 +4,6 @@ import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { ArrowLeft, DollarSign, TrendingDown, TrendingUp } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { cn } from "@/lib/utils"
-import type { Lang } from "@/lib/i18n"
 import {
   futurePurchasingPower,
   requiredNominalAmount,
@@ -20,13 +18,38 @@ const PRIMARY = "#1a365d"
 const ACCENT = "#3182ce"
 const DANGER = "#e53e3e"
 
+const T = {
+  title: "Inflation Calculator",
+  subtitle: "See how inflation erodes your purchasing power over time.",
+  backToCalc: "Back to Calculator",
+  amountLabel: "Amount Today",
+  amountHint: "How much money you have today.",
+  inflationLabel: "Annual Inflation Rate (%)",
+  inflationHint: "Historical average is 2–3% in most developed economies.",
+  yearsLabel: "Time Horizon (years)",
+  yearsHint: "How far into the future to project.",
+  resultsTitle: "Results",
+  futurePP: "Future Purchasing Power",
+  futurePPDesc: "What your money will actually be worth in today's terms.",
+  purchasingPowerLost: "Purchasing Power Lost",
+  lostDesc: "The amount of value inflation will erase over this period.",
+  requiredNominal: "Required Nominal Amount",
+  requiredDesc: "How much you would need in the future to maintain today's purchasing power.",
+  chartTitle: "Purchasing Power Over Time",
+  nominalLabel: "Nominal Value",
+  realLabel: "Real Purchasing Power",
+  chartDesc: "The gap between the two lines represents the cumulative effect of inflation.",
+  infoTitle: "How to Use This Calculator",
+  infoBody:
+    "Enter the amount you have today, your expected annual inflation rate, and the number of years to project. The calculator will show you what your money will be worth in the future in today's terms, and how much you would need to save to maintain your current purchasing power. The chart visualizes how inflation compounds over time — what looks like a small annual rate becomes a dramatic gap over decades.",
+}
+
 export function InflationPage() {
-  const [lang, setLang] = useState<Lang>("en")
   const [amount, setAmount] = useState("10000")
   const [inflationRate, setInflationRate] = useState("3")
   const [years, setYears] = useState("20")
 
-  const locale = lang === "en" ? "en-US" : "zh-CN"
+  const locale = "en-US"
   const currency = "USD" as const
 
   // --- Calculations ---
@@ -39,52 +62,7 @@ export function InflationPage() {
   const required = requiredNominalAmount(amt, rate, yrs)
   const series = purchasingPowerSeries(amt, rate, yrs)
 
-  // --- Translations ---
-  const t = {
-    title: lang === "en" ? "Inflation Calculator" : "通货膨胀计算器",
-    subtitle:
-      lang === "en"
-        ? "See how inflation erodes your purchasing power over time."
-        : "了解通货膨胀如何随时间侵蚀你的购买力。",
-    backToCalc: lang === "en" ? "Back to Calculator" : "返回计算器",
-    amountLabel: lang === "en" ? "Amount Today" : "当前金额",
-    amountHint: lang === "en" ? "How much money you have today." : "你现在持有的金额。",
-    inflationLabel: lang === "en" ? "Annual Inflation Rate (%)" : "年通货膨胀率 (%)",
-    inflationHint:
-      lang === "en"
-        ? "Historical average is 2–3% in most developed economies."
-        : "大多数发达经济体的历史平均值为 2–3%。",
-    yearsLabel: lang === "en" ? "Time Horizon (years)" : "时间跨度（年）",
-    yearsHint: lang === "en" ? "How far into the future to project." : "预测到未来多远。",
-    resultsTitle: lang === "en" ? "Results" : "计算结果",
-    futurePP: lang === "en" ? "Future Purchasing Power" : "未来购买力",
-    futurePPDesc:
-      lang === "en"
-        ? "What your money will actually be worth in today's terms."
-        : "你的钱在未来相当于今天的实际价值。",
-    purchasingPowerLost: lang === "en" ? "Purchasing Power Lost" : "购买力损失",
-    lostDesc:
-      lang === "en"
-        ? "The amount of value inflation will erase over this period."
-        : "通货膨胀在此期间将侵蚀的价值。",
-    requiredNominal: lang === "en" ? "Required Nominal Amount" : "所需名义金额",
-    requiredDesc:
-      lang === "en"
-        ? "How much you would need in the future to maintain today's purchasing power."
-        : "要在未来保持同等购买力所需的金额。",
-    chartTitle: lang === "en" ? "Purchasing Power Over Time" : "购买力变化趋势",
-    nominalLabel: lang === "en" ? "Nominal Value" : "名义价值",
-    realLabel: lang === "en" ? "Real Purchasing Power" : "实际购买力",
-    chartDesc:
-      lang === "en"
-        ? "The gap between the two lines represents the cumulative effect of inflation."
-        : "两条线之间的差距代表通货膨胀的累积效应。",
-    infoTitle: lang === "en" ? "How to Use This Calculator" : "使用说明",
-    infoBody:
-      lang === "en"
-        ? "Enter the amount you have today, your expected annual inflation rate, and the number of years to project. The calculator will show you what your money will be worth in the future in today's terms, and how much you would need to save to maintain your current purchasing power. The chart visualizes how inflation compounds over time — what looks like a small annual rate becomes a dramatic gap over decades."
-        : "输入你当前持有的金额、预期年通货膨胀率和预测年数。计算器将显示你的钱在未来相当于今天的实际价值，以及你需要多少钱才能维持目前的购买力。图表展示了通货膨胀如何随时间复利增长——看似不大的年通胀率在几十年后会形成惊人的差距。",
-  }
+  const t = T
 
   // Chart refs
   const chartCanvasRef = useRef<HTMLCanvasElement>(null)
@@ -137,11 +115,11 @@ export function InflationPage() {
           },
         },
         scales: {
-          x: { title: { display: true, text: lang === "en" ? "Year" : "年份" } },
+          x: { title: { display: true, text: "Year" } },
           y: {
             title: {
               display: true,
-              text: lang === "en" ? `Amount (${currency})` : `金额（${currency}）`,
+              text: `Amount (${currency})`,
             },
             ticks: {
               callback: (v: any) => formatInflationResult(v as number, currency, locale),
@@ -157,7 +135,7 @@ export function InflationPage() {
         chartInstanceRef.current = null
       }
     }
-  }, [series, lang, t.nominalLabel, t.realLabel, currency, locale, yrs])
+  }, [series, t.nominalLabel, t.realLabel, currency, locale, yrs])
 
   // --- Shared input style ---
   const inputCls =
@@ -176,25 +154,6 @@ export function InflationPage() {
               <ArrowLeft className="h-4 w-4" />
               {t.backToCalc}
             </Link>
-          </div>
-
-          {/* Language toggle */}
-          <div className="flex items-center gap-1 self-start rounded-lg border border-border bg-secondary/60 p-1 sm:self-auto">
-            {(["en", "zh"] as Lang[]).map((l) => (
-              <button
-                key={l}
-                type="button"
-                onClick={() => setLang(l)}
-                className={cn(
-                  "rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
-                  lang === l
-                    ? "bg-card text-primary shadow-sm"
-                    : "text-muted-foreground hover:text-foreground",
-                )}
-              >
-                {l === "en" ? "English" : "中文"}
-              </button>
-            ))}
           </div>
         </div>
       </header>
@@ -215,7 +174,7 @@ export function InflationPage() {
             <CardTitle>
               <div className="flex items-center gap-2">
                 <DollarSign className="h-5 w-5 text-accent" />
-                <span>{lang === "en" ? "Inputs" : "输入参数"}</span>
+                <span>Inputs</span>
               </div>
             </CardTitle>
           </CardHeader>
@@ -342,16 +301,16 @@ export function InflationPage() {
         {/* Footer nav */}
         <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground pb-6">
           <Link href="/privacy" className="transition-colors hover:text-foreground">
-            {lang === "en" ? "Privacy Policy" : "隐私政策"}
+            Privacy Policy
           </Link>
           <Link href="/terms" className="transition-colors hover:text-foreground">
-            {lang === "en" ? "Terms of Service" : "服务条款"}
+            Terms of Service
           </Link>
           <Link href="/disclaimer" className="transition-colors hover:text-foreground">
-            {lang === "en" ? "Disclaimer" : "免责声明"}
+            Disclaimer
           </Link>
           <Link href="/contact" className="transition-colors hover:text-foreground">
-            {lang === "en" ? "Contact" : "联系我们"}
+            Contact
           </Link>
         </nav>
       </main>

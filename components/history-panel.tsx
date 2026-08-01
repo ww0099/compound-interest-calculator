@@ -103,8 +103,7 @@ export function HistoryPanel({ dict, records, onLoad, onDelete, onClearAll }: Le
                         <td className="py-3 pr-3 text-muted-foreground whitespace-nowrap">
                           {formatCurrency(rec.pv, rec.base, dict.locale)} ·{" "}
                           {formatCurrency(rec.pmt, rec.base, dict.locale)}
-                          {dict.perMonth} · {formatPercent(rec.r, dict.locale)} · {rec.t.toFixed(1)}
-                          {dict.years === "年" ? "年" : "y"}
+                          {dict.perMonth} · {formatPercent(rec.r, dict.locale)} · {rec.t.toFixed(1)}y
                         </td>
                         <td className="py-3 pr-3 font-semibold text-foreground whitespace-nowrap">
                           {formatCurrency(rec.fv, rec.base, dict.locale)}
@@ -213,7 +212,7 @@ export function GenericHistoryPanel<T extends HistoryRecordBase>({
                   <thead>
                     <tr className="border-b border-border text-left text-xs uppercase tracking-wide text-muted-foreground">
                       <th className="py-2 pr-3 font-medium">
-                        {locale === "zh-CN" ? "时间" : "Time"}
+                        Time
                       </th>
                       {columns.map((col) => (
                         <th key={col.key} className={cn("py-2 pr-3 font-medium", col.className)}>

@@ -1,38 +1,26 @@
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
 import { ArrowLeft, Mail, ExternalLink, Clock } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
-import { cn } from "@/lib/utils"
-import type { Lang } from "@/lib/i18n"
 
 export function ContactPage() {
-  const [lang, setLang] = useState<Lang>("en")
 
   const t = {
-    title: lang === "en" ? "Contact Us" : "联系我们",
+    title: "Contact Us",
     subtitle:
-      lang === "en"
-        ? "We'd love to hear from you. Reach out with questions, feedback, or privacy requests."
-        : "我们期待听到你的声音。如有疑问、反馈或隐私请求，请随时联系我们。",
-    email: lang === "en" ? "Email" : "电子邮件",
+      "We'd love to hear from you. Reach out with questions, feedback, or privacy requests.",
+    email: "Email",
     emailDesc:
-      lang === "en"
-        ? "Send us an email and we'll get back to you within 48 hours."
-        : "给我们发送电子邮件，我们将在 48 小时内回复。",
-    github: lang === "en" ? "GitHub" : "GitHub",
+      "Send us an email and we'll get back to you within 48 hours.",
+    github: "GitHub",
     githubDesc:
-      lang === "en"
-        ? "View the source code, report issues, or contribute to the project."
-        : "查看源代码、报告问题或为项目做贡献。",
-    response: lang === "en" ? "Response Time" : "响应时间",
+      "View the source code, report issues, or contribute to the project.",
+    response: "Response Time",
     responseDesc:
-      lang === "en"
-        ? "We typically respond within 48 hours on business days."
-        : "我们通常在工作日 48 小时内回复。",
-    backToCalc: lang === "en" ? "Back to Calculator" : "返回计算器",
-    legalNav: lang === "en" ? "Legal" : "法律页面",
+      "We typically respond within 48 hours on business days.",
+    backToCalc: "Back to Calculator",
+    legalNav: "Legal",
   }
 
   return (
@@ -48,25 +36,6 @@ export function ContactPage() {
               <ArrowLeft className="h-4 w-4" />
               {t.backToCalc}
             </Link>
-          </div>
-
-          {/* Language toggle */}
-          <div className="flex items-center gap-1 self-start rounded-lg border border-border bg-secondary/60 p-1 sm:self-auto">
-            {(["en", "zh"] as Lang[]).map((l) => (
-              <button
-                key={l}
-                type="button"
-                onClick={() => setLang(l)}
-                className={cn(
-                  "rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
-                  lang === l
-                    ? "bg-card text-primary shadow-sm"
-                    : "text-muted-foreground hover:text-foreground",
-                )}
-              >
-                {l === "en" ? "English" : "中文"}
-              </button>
-            ))}
           </div>
         </div>
       </header>
@@ -138,16 +107,16 @@ export function ContactPage() {
         {/* Legal nav footer */}
         <nav className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
           <Link href="/privacy" className="transition-colors hover:text-foreground">
-            {lang === "en" ? "Privacy Policy" : "隐私政策"}
+            {"Privacy Policy"}
           </Link>
           <Link href="/terms" className="transition-colors hover:text-foreground">
-            {lang === "en" ? "Terms of Service" : "服务条款"}
+            {"Terms of Service"}
           </Link>
           <Link href="/disclaimer" className="transition-colors hover:text-foreground">
-            {lang === "en" ? "Disclaimer" : "免责声明"}
+            {"Disclaimer"}
           </Link>
           <Link href="/contact" className="transition-colors hover:text-foreground">
-            {lang === "en" ? "Contact" : "联系我们"}
+            {"Contact"}
           </Link>
         </nav>
       </main>

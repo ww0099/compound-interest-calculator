@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
-const enContent: BlogContent = {
+const content: BlogContent = {
   title: "Inflation's Hidden Tax on Your Investment Returns",
   date: "2026-07-30",
   author: "WW0099",
@@ -52,61 +52,12 @@ const enContent: BlogContent = {
     },
   ],
   relatedArticles: [
-    { slug: "beginner-guide-retirement", titleEn: "A Beginner's Guide to Retirement Planning with Compound Interest", titleZh: "复利退休规划入门指南" },
-    { slug: "cagr-vs-average-return", titleEn: "CAGR vs Average Return: Why the Difference Can Mislead You", titleZh: "CAGR vs 平均回报：为什么差异会误导你" },
-    { slug: "500-per-month-30-years", titleEn: "How Much Will $500/Month Grow in 30 Years?", titleZh: "每月 $500 × 30 年能涨到多少？" },
-  ],
-}
-
-const zhContent: BlogContent = {
-  title: "通胀——投资收益的隐形税收",
-  date: "2026-07-30",
-  author: "WW0099",
-  readingTime: "阅读 8 分钟",
-  intro:
-    "你查看券商账户，发现你的投资组合创了新高。感觉不错——直到你意识到一加仑牛奶现在比十年前贵了 40%。这就是通胀的隐形税收：你的名义回报看起来很亮眼，但真正重要的是你的钱实际能买到什么。我们计算了一个 30 年期投资的数据，精确展示通胀偷走了多少购买力。",
-  description:
-    "了解通胀如何随时间悄然侵蚀你的投资回报——这种隐形税收即使你的投资组合在增长，也能摧毁你的购买力。",
-  sections: [
-    {
-      heading: "名义 vs 实际：关键区别",
-      body: "名义回报是投资增长的原始百分比。实际回报是名义回报减去通胀。如果你的投资组合一年涨了 8% 但通胀是 3%，你的实际回报大约只有 5%。短期内差距看起来很小。30 年后，差距触目惊心。$100,000 的投资按 8% 名义增长到 $1,006,266。但扣除 3% 的年通胀，实际购买力只有 $411,960——不到名义数字的一半。通胀实际上从你的财富中「征走」了 $594,306。",
-    },
-    {
-      heading: "30 年模拟：$100,000 按 8% 计算",
-      body: "使用我们的复利计算器，我们模拟了一笔 $100,000 一次性投资，年回报 8%，通胀率 3%，期限 30 年。名义余额：$1,006,266。实际余额（通胀调整后）：$411,960。名义总利息：$906,266。实际利息（真正的购买力增长）：$311,960。这意味着你 65.6% 的名义收益被通胀吞噬了。你不会在任何账单上看到这笔「税」——但它非常真实。",
-    },
-    {
-      heading: "为什么 2% 和 3% 的通胀差异如此巨大",
-      body: "30 年间平均通胀 2% 和 3% 的差异远超大多数人的想象。在 2% 通胀下，同样的 $100,000 按 8% 计算的实际余额为 $558,173。在 3% 通胀下，降至 $411,960——差距 $146,213。各国央行为百分之零点几的通胀目标争论不休，正是因为这些小数在长期复利后会变成巨大的购买力差异。",
-    },
-    {
-      heading: "通胀的不均衡影响",
-      body: "通胀并不平等地影响所有支出。在过去 30 年，美国医疗费用年均上涨约 5-6%，大学学费约 5-7%，住房约 3-4%，而消费电子产品实际在降价。如果你的个人通胀率高于 CPI 平均值——因为你在医疗、教育和住房上支出更多——你的实际回报比标准计算显示的还要低。这就是为什么退休规划应使用个人通胀估算，而不仅仅是公布的 CPI 数据。",
-    },
-    {
-      heading: "如何抵御通胀",
-      body: "历史上最好的长期通胀对冲工具是股票。企业可以通过提价将通胀成本转嫁给消费者，这意味着它们的盈利——最终是股价——长期来看会随通胀上涨。房地产和通胀保护国债（TIPS）也能提供部分保护。现金和长期名义债券是最脆弱的。这就是为什么一个「安全」的全现金投资组合在实际意义上反而是有风险的——你每年都注定要损失购买力。",
-    },
-    {
-      heading: "关键数据一览",
-      body: [
-        "投资：$100,000 一次性投入，年回报 8%，30 年",
-        "0% 通胀（名义值）：$1,006,266",
-        "2% 通胀：实际价值 = $558,173 | 通胀吞噬 = $448,093（44.5%）",
-        "3% 通胀：实际价值 = $411,960 | 通胀吞噬 = $594,306（59.0%）",
-        "5% 通胀：实际价值 = $224,208 | 通胀吞噬 = $782,058（77.7%）",
-        "使用 top.net.im 的「通货膨胀率」字段查看你自己的情景。",
-      ],
-    },
-  ],
-  relatedArticles: [
-    { slug: "beginner-guide-retirement", titleEn: "A Beginner's Guide to Retirement Planning with Compound Interest", titleZh: "复利退休规划入门指南" },
-    { slug: "cagr-vs-average-return", titleEn: "CAGR vs Average Return: Why the Difference Can Mislead You", titleZh: "CAGR vs 平均回报：为什么差异会误导你" },
-    { slug: "500-per-month-30-years", titleEn: "How Much Will $500/Month Grow in 30 Years?", titleZh: "每月 $500 × 30 年能涨到多少？" },
+    { slug: "beginner-guide-retirement", title: "A Beginner's Guide to Retirement Planning with Compound Interest" },
+    { slug: "cagr-vs-average-return", title: "CAGR vs Average Return: Why the Difference Can Mislead You" },
+    { slug: "500-per-month-30-years", title: "How Much Will $500/Month Grow in 30 Years?" },
   ],
 }
 
 export default function Page() {
-  return <BlogLayout slug="inflation-hidden-tax" en={enContent} zh={zhContent} />
+  return <BlogLayout slug="inflation-hidden-tax" content={content} />
 }

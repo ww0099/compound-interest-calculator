@@ -13,7 +13,7 @@ import { CalculatorGroup, type GroupError } from "@/components/calculator-group"
 import { GrowthChart, type Series } from "@/components/growth-chart"
 import { HistoryPanel } from "@/components/history-panel"
 import { KnowledgeSection } from "@/components/knowledge-section"
-import { getDict, type Lang } from "@/lib/i18n"
+import { dict } from "@/lib/i18n"
 import {
   calculate,
   growthSeries,
@@ -101,7 +101,6 @@ function computeGroup(target: SolveTarget, state: GroupState): GroupComputation 
 }
 
 export function CompoundCalculator() {
-  const [lang, setLang] = useState<Lang>("en")
   const [target, setTarget] = useState<SolveTarget>("fv")
   const [compare, setCompare] = useState(false)
   const [currency, setCurrency] = useState<CurrencySettings>(defaultCurrency)
@@ -110,7 +109,6 @@ export function CompoundCalculator() {
   const [history, setHistory] = useState<HistoryRecord[]>([])
   const [toast, setToast] = useState<string | null>(null)
 
-  const dict = getDict(lang)
   const rate = Number.parseFloat(currency.rate) || 0
 
   const compA = useMemo(() => computeGroup(target, groupA), [target, groupA])
@@ -296,29 +294,10 @@ export function CompoundCalculator() {
             </div>
             <div>
               <h1 className="text-lg font-bold tracking-tight text-primary sm:text-xl">
-                Compound Interest Calculator <span className="text-muted-foreground">|</span> 复利计算器
+                Compound Interest Calculator
               </h1>
               <p className="text-xs text-muted-foreground sm:text-sm">{dict.subtitle}</p>
             </div>
-          </div>
-
-          {/* Language toggle */}
-          <div className="flex items-center gap-1 self-start rounded-lg border border-border bg-secondary/60 p-1 sm:self-auto">
-            {(["en", "zh"] as Lang[]).map((l) => (
-              <button
-                key={l}
-                type="button"
-                onClick={() => setLang(l)}
-                className={cn(
-                  "rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
-                  lang === l
-                    ? "bg-card text-primary shadow-sm"
-                    : "text-muted-foreground hover:text-foreground",
-                )}
-              >
-                {l === "en" ? "English" : "中文"}
-              </button>
-            ))}
           </div>
         </div>
       </header>
@@ -499,16 +478,14 @@ export function CompoundCalculator() {
         <Card className="border-primary/20 bg-primary/5">
           <CardContent className="flex flex-col gap-2 p-4 text-center sm:flex-row sm:items-center sm:justify-center sm:gap-4 sm:p-5">
             <span className="text-sm font-medium text-primary">
-              {lang === "en"
-                ? "✓ Calculations based on standard financial mathematics formulas"
-                : "✓ 基于标准金融数学公式的计算"}
+              ✓ Calculations based on standard financial mathematics formulas
             </span>
             <span className="hidden text-muted-foreground sm:inline">|</span>
             <Link
               href="/methodology"
               className="text-sm font-medium text-accent transition-colors hover:text-accent/80"
             >
-              {lang === "en" ? "View Methodology" : "查看方法论"} →
+              View Methodology →
             </Link>
           </CardContent>
         </Card>
@@ -525,7 +502,7 @@ export function CompoundCalculator() {
         {/* Knowledge */}
         <KnowledgeSection
           dict={dict}
-          blogLabel={lang === "en" ? "Read more in our Blog" : "在博客中了解更多"}
+          blogLabel="Read more in our Blog"
         />
       </main>
 

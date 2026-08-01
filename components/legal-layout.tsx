@@ -1,11 +1,8 @@
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
 import { ArrowLeft, Scale } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
-import { cn } from "@/lib/utils"
-import type { Lang } from "@/lib/i18n"
 
 export interface LegalSection {
   heading: string
@@ -20,14 +17,10 @@ export interface LegalContent {
 }
 
 interface LegalLayoutProps {
-  en: LegalContent
-  zh: LegalContent
+  content: LegalContent
 }
 
-export function LegalLayout({ en, zh }: LegalLayoutProps) {
-  const [lang, setLang] = useState<Lang>("en")
-  const content = lang === "en" ? en : zh
-
+export function LegalLayout({ content }: LegalLayoutProps) {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -39,27 +32,8 @@ export function LegalLayout({ en, zh }: LegalLayoutProps) {
               className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               <ArrowLeft className="h-4 w-4" />
-              {lang === "en" ? "Back to Calculator" : "返回计算器"}
+              Back to Calculator
             </Link>
-          </div>
-
-          {/* Language toggle */}
-          <div className="flex items-center gap-1 self-start rounded-lg border border-border bg-secondary/60 p-1 sm:self-auto">
-            {(["en", "zh"] as Lang[]).map((l) => (
-              <button
-                key={l}
-                type="button"
-                onClick={() => setLang(l)}
-                className={cn(
-                  "rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
-                  lang === l
-                    ? "bg-card text-primary shadow-sm"
-                    : "text-muted-foreground hover:text-foreground",
-                )}
-              >
-                {l === "en" ? "English" : "中文"}
-              </button>
-            ))}
           </div>
         </div>
       </header>
@@ -78,8 +52,7 @@ export function LegalLayout({ en, zh }: LegalLayoutProps) {
                   {content.title}
                 </h1>
                 <p className="mt-1 text-xs text-muted-foreground">
-                  {lang === "en" ? "Last updated: " : "最后更新："}
-                  {content.lastUpdated}
+                  Last updated: {content.lastUpdated}
                 </p>
               </div>
             </div>
@@ -116,25 +89,25 @@ export function LegalLayout({ en, zh }: LegalLayoutProps) {
         {/* Legal nav footer */}
         <nav className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
           <Link href="/about" className="transition-colors hover:text-foreground">
-            {lang === "en" ? "About" : "关于我们"}
+            About
           </Link>
           <Link href="/methodology" className="transition-colors hover:text-foreground">
-            {lang === "en" ? "Methodology" : "方法论"}
+            Methodology
           </Link>
           <Link href="/references" className="transition-colors hover:text-foreground">
-            {lang === "en" ? "References" : "参考文献"}
+            References
           </Link>
           <Link href="/privacy" className="transition-colors hover:text-foreground">
-            {lang === "en" ? "Privacy Policy" : "隐私政策"}
+            Privacy Policy
           </Link>
           <Link href="/terms" className="transition-colors hover:text-foreground">
-            {lang === "en" ? "Terms of Service" : "服务条款"}
+            Terms of Service
           </Link>
           <Link href="/disclaimer" className="transition-colors hover:text-foreground">
-            {lang === "en" ? "Disclaimer" : "免责声明"}
+            Disclaimer
           </Link>
           <Link href="/contact" className="transition-colors hover:text-foreground">
-            {lang === "en" ? "Contact" : "联系我们"}
+            Contact
           </Link>
         </nav>
       </main>
