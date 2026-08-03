@@ -1,0 +1,39 @@
+# Cloudflare 缓存策略 — GitHub Pages 静态资源
+# GitHub Pages 原生支持 _headers 文件
+
+# HTML 页面 — 短期缓存（内容经常更新）
+/index.html
+  Cache-Control: public, max-age=3600, s-maxage=3600
+  CDN-Cache-Control: public, max-age=3600
+  Cloudflare-CDN-Cache-Control: public, max-age=3600
+
+/404.html
+  Cache-Control: public, max-age=3600, s-maxage=3600
+
+# JavaScript / CSS (带有哈希的静态资源) — 长期缓存
+/_next/static/*.js
+  Cache-Control: public, max-age=31536000, immutable
+  CDN-Cache-Control: public, max-age=31536000
+  Cloudflare-CDN-Cache-Control: public, max-age=31536000
+
+/_next/static/*.css
+  Cache-Control: public, max-age=31536000, immutable
+  CDN-Cache-Control: public, max-age=31536000
+  Cloudflare-CDN-Cache-Control: public, max-age=31536000
+
+# 图片 — 中期缓存
+/*.png
+  Cache-Control: public, max-age=86400
+
+/*.svg
+  Cache-Control: public, max-age=86400
+
+/*.ico
+  Cache-Control: public, max-age=86400
+
+# 安全策略
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block

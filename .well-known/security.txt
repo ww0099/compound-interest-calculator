@@ -1,0 +1,4 @@
+Contact: mailto:pw3436858@gmail.com
+Expires: 2026-12-31T23:59:59.000Z
+Preferred-Languages: zh, en
+Canonical: https://top.net.im/.well-known/security.txt
