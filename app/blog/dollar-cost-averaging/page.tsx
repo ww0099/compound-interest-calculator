@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 const content: BlogContent = {
   title: "Dollar-Cost Averaging: The Simple Strategy That Beats Market Timing",
-  date: "2026-07-31",
+  date: "2026-08-03",
   author: "WW0099",
   readingTime: "8 min read",
   intro:
@@ -26,6 +26,16 @@ const content: BlogContent = {
     {
       heading: "The Math: Why DCA Lowers Your Average Cost",
       body: "Imagine a volatile stock: Month 1 price = $100 (you buy 5 shares with $500), Month 2 price = $80 (you buy 6.25 shares), Month 3 price = $120 (you buy 4.17 shares). Total invested: $1,500. Total shares: 15.42. Average price per share: $97.30. But the simple average price was ($100 + $80 + $120) ÷ 3 = $100. Your actual average is lower — $97.30 — because you automatically bought more shares at $80 than at $120. This discount, properly called the harmonic mean effect, is the mathematical edge of DCA. It's not magic; it's arithmetic working in your favor when prices fluctuate.",
+      table: {
+        caption: "DCA in action — $500/month into a volatile stock",
+        headers: ["Month", "Price", "Shares Bought"],
+        rows: [
+          ["1", "$100", "5.00"],
+          ["2", "$80", "6.25"],
+          ["3", "$120", "4.17"],
+          ["Total", "—", "15.42"],
+        ],
+      },
     },
     {
       heading: "Lump Sum vs DCA: What the Research Says",
@@ -52,6 +62,7 @@ const content: BlogContent = {
     { slug: "500-per-month-30-years", title: "Investing $500/Month for 30 Years: The Full Picture" },
     { slug: "compound-vs-simple-interest", title: "Compound Interest vs Simple Interest: A 10-Year Comparison" },
     { slug: "beginner-guide-retirement", title: "A Beginner's Guide to Retirement Planning" },
+    { slug: "investing-vs-paying-off-debt", title: "Investing vs Paying Off Debt: How to Decide with Math" },
   ],
 }
 

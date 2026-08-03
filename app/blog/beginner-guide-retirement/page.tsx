@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 const content: BlogContent = {
   title: "A Beginner's Guide to Retirement Planning with Compound Interest",
-  date: "2026-07-30",
+  date: "2026-08-03",
   author: "WW0099",
   readingTime: "10 min read",
   intro:
@@ -45,20 +45,23 @@ const content: BlogContent = {
     },
     {
       heading: "Data at a Glance",
-      body: [
-        "Target: $1,000,000 at age 65, 7% annual return, monthly compounding",
-        "Start at 25 (40 years): $392/month | Your money: $188,160 | Interest: $811,840",
-        "Start at 35 (30 years): $820/month | Your money: $295,200 | Interest: $704,800",
-        "Start at 45 (20 years): $1,920/month | Your money: $460,800 | Interest: $539,200",
-        "Cost of waiting 10 years (25→35): +$428/month for life, +$107,040 total",
-        "All figures verified using the PMT solver at top.net.im",
-      ],
+      body: "The table below shows how much you need to save each month to reach $1,000,000 by 65, depending on when you start — assuming a 7% return and monthly compounding. The cost of waiting 10 years is brutally visible.",
+      table: {
+        caption: "$1,000,000 retirement goal at 7% — required monthly contribution",
+        headers: ["Start Age", "Horizon", "Monthly", "Your Money", "Interest"],
+        rows: [
+          ["25", "40 yrs", "$392", "$188,160", "$811,840"],
+          ["35", "30 yrs", "$820", "$295,200", "$704,800"],
+          ["45", "20 yrs", "$1,920", "$460,800", "$539,200"],
+        ],
+      },
     },
   ],
   relatedArticles: [
     { slug: "500-per-month-30-years", title: "How Much Will $500/Month Grow in 30 Years?" },
     { slug: "capital-gains-tax", title: "Understanding Capital Gains Tax for Long-Term Investors" },
     { slug: "inflation-hidden-tax", title: "Inflation's Hidden Tax on Your Investment Returns" },
+    { slug: "investing-vs-paying-off-debt", title: "Investing vs Paying Off Debt: How to Decide with Math" },
   ],
 }
 

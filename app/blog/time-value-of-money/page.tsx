@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 const content: BlogContent = {
   title: "Time Value of Money: Why a Dollar Today Is Worth More Than a Dollar Tomorrow",
-  date: "2026-08-01",
+  date: "2026-08-03",
   author: "WW0099",
   readingTime: "8 min read",
   intro:
@@ -30,6 +30,16 @@ const content: BlogContent = {
         "The rate r is the discount rate — the return you could earn elsewhere. A higher rate makes future money worth less today. At 10%, that same $10,000 in 20 years is worth just $1,486. The math is not a guess; it is arithmetic that anyone can verify with our compound interest calculator.",
         "This is why every calculation on this site — retirement projections, inflation adjustments, loan schedules — is built on the same exponential formulas documented in our Methodology.",
       ],
+      table: {
+        caption: "Future value of $100 at 7% annual compounding",
+        headers: ["Horizon", "Future Value"],
+        rows: [
+          ["1 year", "$107.00"],
+          ["10 years", "$196.72"],
+          ["20 years", "$386.97"],
+          ["30 years", "$761.23"],
+        ],
+      },
     },
     {
       heading: "Inflation: The Silent Eroder",
@@ -60,6 +70,7 @@ const content: BlogContent = {
     { slug: "rule-of-72", title: "The Rule of 72: How Fast Does Your Money Double?" },
     { slug: "inflation-hidden-tax", title: "Inflation's Hidden Tax on Your Investment Returns" },
     { slug: "500-per-month-30-years", title: "How Much Will $500/Month Grow in 30 Years?" },
+    { slug: "investing-vs-paying-off-debt", title: "Investing vs Paying Off Debt: How to Decide with Math" },
   ],
 }
 

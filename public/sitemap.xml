@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://top.net.im/</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -68,67 +68,79 @@
   </url>
   <url>
     <loc>https://top.net.im/blog</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://top.net.im/blog/loan-amortization-explained</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://top.net.im/blog/investing-vs-paying-off-debt</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://top.net.im/blog/time-value-of-money</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://top.net.im/blog/dollar-cost-averaging</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://top.net.im/blog/compound-vs-simple-interest</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://top.net.im/blog/rule-of-72</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://top.net.im/blog/500-per-month-30-years</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://top.net.im/blog/inflation-hidden-tax</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://top.net.im/blog/monthly-vs-annual-compounding</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://top.net.im/blog/beginner-guide-retirement</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://top.net.im/blog/capital-gains-tax</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://top.net.im/blog/cagr-vs-average-return</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

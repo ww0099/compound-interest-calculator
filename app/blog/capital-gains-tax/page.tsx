@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 const content: BlogContent = {
   title: "Understanding Capital Gains Tax for Long-Term Investors",
-  date: "2026-07-30",
+  date: "2026-08-03",
   author: "WW0099",
   readingTime: "8 min read",
   intro:
@@ -26,6 +26,15 @@ const content: BlogContent = {
     {
       heading: "The 20-Year After-Tax Comparison",
       body: "Using the after-tax calculation feature of our compound interest calculator, we modeled a $100,000 investment at 8% annual return over 20 years at three tax rates. At 0% tax: Final balance = $466,096. Total interest = $366,096. At 15% tax: After-tax balance = $411,181. Tax paid = $54,914. At 30% tax: After-tax balance = $356,267. Tax paid = $109,829. The jump from 15% to 30% tax costs an additional $54,915 — money that goes to the government instead of your retirement.",
+      table: {
+        caption: "$100,000 at 8% over 20 years — after-tax outcomes",
+        headers: ["Tax Rate", "After-tax Balance", "Tax Paid"],
+        rows: [
+          ["0%", "$466,096", "$0"],
+          ["15%", "$411,181", "$54,914"],
+          ["30%", "$356,267", "$109,829"],
+        ],
+      },
     },
     {
       heading: "Tax-Efficient Investing Strategies",
@@ -60,6 +69,7 @@ const content: BlogContent = {
     { slug: "500-per-month-30-years", title: "How Much Will $500/Month Grow in 30 Years?" },
     { slug: "beginner-guide-retirement", title: "A Beginner's Guide to Retirement Planning with Compound Interest" },
     { slug: "compound-vs-simple-interest", title: "Compound Interest vs Simple Interest: A 10-Year Comparison" },
+    { slug: "investing-vs-paying-off-debt", title: "Investing vs Paying Off Debt: How to Decide with Math" },
   ],
 }
 

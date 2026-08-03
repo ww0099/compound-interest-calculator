@@ -11,6 +11,24 @@ export const metadata: Metadata = {
 
 const articles = [
   {
+    slug: "loan-amortization-explained",
+    title: "Loan Amortization Explained: How Your Monthly Payment Really Works",
+    desc:
+      "Most of your early mortgage payments go to interest, not principal. We break down the amortization table with real numbers from a 30-year mortgage.",
+
+    date: "2026-08-03",
+    readingTime: "9 min read",
+  },
+  {
+    slug: "investing-vs-paying-off-debt",
+    title: "Investing vs Paying Off Debt: How to Decide with Math",
+    desc:
+      "The answer comes down to one number — your interest rate. Here's the math, with a real $50,000 case study.",
+
+    date: "2026-08-03",
+    readingTime: "8 min read",
+  },
+  {
     slug: "time-value-of-money",
     title: "Time Value of Money: Why a Dollar Today Is Worth More Than a Dollar Tomorrow",
     desc:

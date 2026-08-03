@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 const content: BlogContent = {
   title: "Compound Interest vs Simple Interest: A 10-Year Comparison",
-  date: "2026-07-30",
+  date: "2026-08-03",
   author: "WW0099",
   readingTime: "8 min read",
   intro:
@@ -41,19 +41,23 @@ const content: BlogContent = {
     },
     {
       heading: "Key Data Summary",
-      body: [
-        "Principal: $10,000, Rate: 8% annually, Compounding: Annual",
-        "After 10 years — Compound: $21,589 | Simple: $18,000 | Difference: $3,589 (+19.9%)",
-        "After 20 years — Compound: $46,610 | Simple: $26,000 | Difference: $20,610 (+79.3%)",
-        "After 30 years — Compound: $100,627 | Simple: $34,000 | Difference: $66,627 (+196%)",
-        "All calculations verified using the Compound Interest Calculator at top.net.im",
-      ],
+      body: "The table below summarizes the full comparison. Every figure was generated with the Compound Interest Calculator at top.net.im using a $10,000 principal at 8% annual interest, compounded annually.",
+      table: {
+        caption: "$10,000 at 8% — compound vs simple interest",
+        headers: ["Horizon", "Compound", "Simple", "Difference"],
+        rows: [
+          ["10 years", "$21,589", "$18,000", "$3,589"],
+          ["20 years", "$46,610", "$26,000", "$20,610"],
+          ["30 years", "$100,627", "$34,000", "$66,627"],
+        ],
+      },
     },
   ],
   relatedArticles: [
     { slug: "rule-of-72", title: "The Rule of 72: How Fast Does Your Money Double?" },
     { slug: "cagr-vs-average-return", title: "CAGR vs Average Return: Why the Difference Can Mislead You" },
     { slug: "monthly-vs-annual-compounding", title: "Monthly vs Annual Compounding: How Much Difference Does Frequency Make?" },
+    { slug: "investing-vs-paying-off-debt", title: "Investing vs Paying Off Debt: How to Decide with Math" },
   ],
 }
 

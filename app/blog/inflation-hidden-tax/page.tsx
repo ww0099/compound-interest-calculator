@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 const content: BlogContent = {
   title: "Inflation's Hidden Tax on Your Investment Returns",
-  date: "2026-07-30",
+  date: "2026-08-03",
   author: "WW0099",
   readingTime: "8 min read",
   intro:
@@ -41,20 +41,24 @@ const content: BlogContent = {
     },
     {
       heading: "Key Numbers at a Glance",
-      body: [
-        "Investment: $100,000 lump sum, 8% annual return, 30 years",
-        "0% inflation (nominal): $1,006,266",
-        "2% inflation: Real value = $558,173 | Lost to inflation = $448,093 (44.5%)",
-        "3% inflation: Real value = $411,960 | Lost to inflation = $594,306 (59.0%)",
-        "5% inflation: Real value = $224,208 | Lost to inflation = $782,058 (77.7%)",
-        "Use the 'Inflation Rate' field on top.net.im to see your own scenario.",
-      ],
+      body: "The table below shows what $100,000 invested at 8% for 30 years is actually worth after different inflation rates. The 'lost' column is the purchasing power inflation consumed without you seeing a single bill.",
+      table: {
+        caption: "Real value of $100,000 at 8% over 30 years",
+        headers: ["Inflation", "Real Value", "Lost to Inflation"],
+        rows: [
+          ["0%", "$1,006,266", "$0"],
+          ["2%", "$558,173", "$448,093"],
+          ["3%", "$411,960", "$594,306"],
+          ["5%", "$224,208", "$782,058"],
+        ],
+      },
     },
   ],
   relatedArticles: [
     { slug: "beginner-guide-retirement", title: "A Beginner's Guide to Retirement Planning with Compound Interest" },
     { slug: "cagr-vs-average-return", title: "CAGR vs Average Return: Why the Difference Can Mislead You" },
     { slug: "500-per-month-30-years", title: "How Much Will $500/Month Grow in 30 Years?" },
+    { slug: "investing-vs-paying-off-debt", title: "Investing vs Paying Off Debt: How to Decide with Math" },
   ],
 }
 

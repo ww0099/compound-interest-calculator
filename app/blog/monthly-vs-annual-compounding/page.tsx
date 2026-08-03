@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 const content: BlogContent = {
   title: "Monthly vs Annual Compounding: How Much Difference Does Frequency Make?",
-  date: "2026-07-30",
+  date: "2026-08-03",
   author: "WW0099",
   readingTime: "7 min read",
   intro:
@@ -41,19 +41,23 @@ const content: BlogContent = {
     },
     {
       heading: "Data Summary",
-      body: [
-        "Investment: $50,000, Rate: 6%, Duration: 20 years, No additional contributions",
-        "Annual compounding: $160,357 (EAR: 6.000%)",
-        "Monthly compounding: $165,510 (EAR: 6.168%) — +$5,153 vs annual",
-        "Daily compounding: $165,990 (EAR: 6.183%) — +$480 vs monthly",
-        "Annual → Monthly: +3.2% in final balance | Monthly → Daily: +0.3%",
-        "Bottom line: Focus on the rate and your contributions, not the frequency.",
-      ],
+      body: "The table below compares annual, monthly, and daily compounding on the same $50,000 at 6% over 20 years. The pattern is clear: the biggest jump is from annual to monthly, and daily adds almost nothing.",
+      table: {
+        caption: "$50,000 at 6% over 20 years — compounding frequency comparison",
+        headers: ["Frequency", "EAR", "Final Balance"],
+        rows: [
+          ["Annual", "6.000%", "$160,357"],
+          ["Monthly", "6.168%", "$165,510"],
+          ["Daily", "6.183%", "$165,990"],
+        ],
+      },
     },
   ],
   relatedArticles: [
     { slug: "compound-vs-simple-interest", title: "Compound Interest vs Simple Interest: A 10-Year Comparison" },
     { slug: "rule-of-72", title: "The Rule of 72: How Fast Does Your Money Double?" },
+    { slug: "inflation-hidden-tax", title: "Inflation's Hidden Tax on Your Investment Returns" },
+    { slug: "investing-vs-paying-off-debt", title: "Investing vs Paying Off Debt: How to Decide with Math" },
   ],
 }
 

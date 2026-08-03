@@ -1,7 +1,7 @@
 # Handoff: Compound Interest Calculator
 
 > **最后更新**：2026-08-01
-> **当前状态**：About 页面 E-E-A-T 增强 + 新增「货币时间价值」文章（第 10 篇），23 内容路由构建通过，TypeScript 零错误，sitemap 部署 bug 已修复
+> **当前状态**：全站已移除中英互译、重构为**纯英文网站**（commit 878c996），24 静态页构建通过、TypeScript 零错误；此前已含 About E-E-A-T 增强 + 第 10 篇「货币时间价值」+ sitemap 部署修复
 > **下次任务入口**：阅读本文档 → 查看 `spec/adsense-readiness.md` → 执行剩余清单 → 提交 AdSense 审核
 
 ---
@@ -14,7 +14,7 @@
 | 仓库 | `github.com/WW0099/compound-interest-calculator` |
 | 作者 | WW0099（对外统一笔名） |
 | 目标 | Google AdSense 审核通过 + 长期 SEO 流量变现 |
-| 受众 | 全球中英双语用户（英语为主，中文辅助） |
+| 受众 | 全球英文用户（英语为主，单一语言） |
 | 性质 | **YMYL**（金融计算器）— AdSense 审核标准极严 |
 | 部署 | GitHub Actions → GitHub Pages → Cloudflare CDN |
 
@@ -97,7 +97,7 @@ compound-interest-calculator/
 │   ├── retirement.ts               # ★ 退休计算引擎（3 种求解模式 + 两阶段投影）
 │   ├── inflation.ts                # ★ 通胀计算引擎（购买力 + 名义金额 + 序列）
 │   ├── loan.ts                     # ★ 贷款计算引擎（4 求解模式 + 摊销表 + 逐年序列）
-│   ├── i18n.ts                     # 复利计算器中英双语字典
+│   ├── i18n.ts                     # 复利计算器英文字典（纯英文，无 zh）
 │   ├── types.ts                    # 类型定义 + 默认值 + 历史记录结构
 │   └── utils.ts                    # cn() 工具（clsx + tailwind-merge）
 ├── spec/
@@ -140,11 +140,11 @@ export default function Page() {
 }
 ```
 
-### 4.2 国际化
+### 4.2 国际化（纯英文，单语言）
 
-- `lib/i18n.ts`：复利计算器 UI 文案
-- 法律页/博客/新计算器：各自定义双语内容，通过 `useState<Lang>` 切换
-- **禁止**在 JS 字符串内使用 ASCII `"` 作为中文引号 → 改用 `「」`
+- 全站**纯英文**，无语言切换（commit 878c996 移除中英互译）
+- `lib/i18n.ts`：复利计算器 UI 文案，只导出英文 dict（`export const dict: Dict = en`）
+- 法律页/博客/新计算器：文案直接硬编码英文；所有 locale 统一 `en-US` / `en_US`
 
 ### 4.3 样式
 
@@ -168,7 +168,7 @@ export default function Page() {
 
 - [x] 核心计算器（5 种求解模式 + 图表 + 对比 + 历史）
 - [x] Phase 1：法律合规页（Privacy / Terms / Disclaimer / Contact）
-- [x] Phase 2：内容建设（8 篇中英双语金融文章 + 博客首页）
+- [x] Phase 2：内容建设（8 篇英文金融文章 + 博客首页）
 - [x] Phase 3：E-E-A-T 强化（About / Methodology / References / 信任标识 / About Widget）
 - [x] **Phase 4 Tier 1**：TypeScript 修复（2 错 → 0）+ `ignoreBuildErrors: false` + preconnect + `poweredByHeader: false`
 - [x] **Phase 4 Tier 2**：JSON-LD 结构化数据（Article×8 + BreadcrumbList + FAQPage）+ 博客内链（relatedArticles × 16 组）
@@ -182,8 +182,9 @@ export default function Page() {
 - [x] **AdSense 审核准备**：`spec/adsense-readiness.md`（7 维度检查清单 + 风险分析 + 行动清单 + 常见拒绝原因）
 - [x] **Cookie 同意 GDPR 改进**：Accept All / Essential Only 双选项 + 详细用途说明
 - [x] **AdSense 冲刺 · About E-E-A-T 增强**：作者资质结构化（软件工程/自学金融数学/开源贡献/同行评审公式）+ 社会证明数据（By the Numbers）+ About FAQ 区块（4 条信任 FAQ）
-- [x] **第 10 篇博客「货币时间价值」**：`/blog/time-value-of-money`（中英双语 + 双向内链到 rule-of-72/500-per-month + 新文章 relatedArticles + sitemap 更新）
+- [x] **第 10 篇博客「货币时间价值」**：`/blog/time-value-of-money`（英文 + 双向内链到 rule-of-72/500-per-month + 新文章 relatedArticles + sitemap 更新）
 - [x] **sitemap 部署 bug 修复**：`sitemap.xml` 原在根目录未随构建部署（站点 404），已移入 `public/`
+- [x] **全站英文化重构**：移除中英互译（commit 878c996）— 删除 `Lang` 类型 / `zh` 字典 / `getDict`，4 个计算器移除语言切换，10 篇博客删除 `zhContent`，about/contact/methodology/references 等 5 页 + privacy/terms/disclaimer 3 个 legal 页改纯英文，history-panel 清理中文判断；构建验证 24 静态页、TypeScript 零错误
 
 ## 6. 后续展望
 
@@ -219,12 +220,13 @@ export default function Page() {
 | 5 | `out/privacy/` 目录缺 `index.html` | 低 | GitHub Pages 自动路由 |
 | 6 | 退休计算器 Chart.js 需确认无 react-chartjs-2 | 低 | ✅ 已确认用 canvas API |
 | 7 | `sitemap.xml` 在根目录未随构建部署（站点 404） | 高 | ✅ 已修复（移入 `public/`，随部署发布） |
+| 8 | 根目录 `index.html` 为旧版（Vercel 时代）残留，含「中文」按钮 | 低 | 未部署（CI 仅发布 `out/`），建议删除 |
 
 ## 9. 常用命令
 
 ```bash
 npm run dev          # 开发服务器（localhost:3000）
-npm run build        # 静态导出到 out/（23 内容路由 / 24 静态页面）
+npm run build        # 静态导出到 out/（24 静态页面 / TypeScript 零错误）
 npx serve out        # 本地预览
 git push origin master   # 推送即部署
 ```
@@ -232,7 +234,7 @@ git push origin master   # 推送即部署
 ## 10. 交接清单
 
 - [ ] 阅读本文档 §1-4
-- [ ] `npm run build` 确认 23 内容路由构建通过
+- [ ] `npm run build` 确认 24 静态页面构建通过
 - [ ] `git status` 确认干净
 - [ ] 确认当前 Phase（§5 或 §6）
 - [ ] 完成后更新本文档

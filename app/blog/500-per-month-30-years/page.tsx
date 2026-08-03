@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 const content: BlogContent = {
   title: "How Much Will $500/Month Grow in 30 Years?",
-  date: "2026-07-30",
+  date: "2026-08-03",
   author: "WW0099",
   readingTime: "9 min read",
   intro:
@@ -45,14 +45,16 @@ const content: BlogContent = {
     },
     {
       heading: "Data Summary",
-      body: [
-        "Monthly contribution: $500 (beginning of month), Duration: 30 years",
-        "At 4%: Final = $347,024 | Interest = $167,024 | Interest per $1 invested = $0.93",
-        "At 7%: Final = $609,986 | Interest = $429,986 | Interest per $1 invested = $2.39",
-        "At 10%: Final = $1,130,244 | Interest = $950,244 | Interest per $1 invested = $5.28",
-        "Difference between 4% and 10%: $783,220 — nearly 4× the total contributions",
-        "Verified using the Compound Interest Calculator at top.net.im (Solve: FV, PMT mode)",
-      ],
+      body: "The table below shows the three scenarios side by side. All figures use monthly compounding with $500 contributed at the start of each month.",
+      table: {
+        caption: "$500/month for 30 years — three return scenarios",
+        headers: ["Return", "Final Balance", "Total Interest", "Interest per $1"],
+        rows: [
+          ["4%", "$347,024", "$167,024", "$0.93"],
+          ["7%", "$609,986", "$429,986", "$2.39"],
+          ["10%", "$1,130,244", "$950,244", "$5.28"],
+        ],
+      },
     },
   ],
   relatedArticles: [
@@ -60,6 +62,7 @@ const content: BlogContent = {
     { slug: "capital-gains-tax", title: "Understanding Capital Gains Tax for Long-Term Investors" },
     { slug: "inflation-hidden-tax", title: "Inflation's Hidden Tax on Your Investment Returns" },
     { slug: "time-value-of-money", title: "Time Value of Money: Why a Dollar Today Is Worth More Than a Dollar Tomorrow" },
+    { slug: "investing-vs-paying-off-debt", title: "Investing vs Paying Off Debt: How to Decide with Math" },
   ],
 }
 

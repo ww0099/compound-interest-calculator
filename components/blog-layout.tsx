@@ -9,6 +9,11 @@ import { AboutWidget } from "@/components/about-widget"
 export interface BlogSection {
   heading: string
   body: string | string[]
+  table?: {
+    caption?: string
+    headers: string[]
+    rows: string[][]
+  }
 }
 
 export interface RelatedArticle {
@@ -184,6 +189,47 @@ export function BlogLayout({ slug, content }: BlogLayoutProps) {
                         </li>
                       ))}
                     </ul>
+                  )}
+                  {section.table && (
+                    <div className="mt-4 overflow-x-auto">
+                      <table className="w-full min-w-[420px] text-left text-sm">
+                        {section.table.caption && (
+                          <caption className="mb-2 text-left text-xs text-muted-foreground">
+                            {section.table.caption}
+                          </caption>
+                        )}
+                        <thead>
+                          <tr className="border-b-2 border-border">
+                            {section.table.headers.map((h, hi) => (
+                              <th
+                                key={hi}
+                                scope="col"
+                                className="px-3 py-2 font-semibold text-primary"
+                              >
+                                {h}
+                              </th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {section.table.rows.map((row, ri) => (
+                            <tr key={ri} className="border-b border-border/50 last:border-0">
+                              {row.map((cell, ci) => (
+                                <td
+                                  key={ci}
+                                  className={cn(
+                                    "px-3 py-2 text-foreground/85",
+                                    ci === 0 && "font-medium",
+                                  )}
+                                >
+                                  {cell}
+                                </td>
+                              ))}
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
                   )}
                 </section>
               ))}

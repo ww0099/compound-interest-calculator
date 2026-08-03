@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 const content: BlogContent = {
   title: "The Rule of 72: How Fast Does Your Money Double?",
-  date: "2026-07-30",
+  date: "2026-08-03",
   author: "WW0099",
   readingTime: "7 min read",
   intro:
@@ -26,6 +26,16 @@ const content: BlogContent = {
     {
       heading: "How Accurate Is It Really?",
       body: "Let's verify the Rule of 72 against exact compound interest calculations. At 6%: Rule says 12.0 years. Exact calculation (ln(2) / ln(1.06)) = 11.90 years. Error: 0.10 years. At 8%: Rule says 9.0 years. Exact: 9.01 years. Error: 0.01 years. At 10%: Rule says 7.2 years. Exact: 7.27 years. Error: 0.07 years. At 4%: Rule says 18.0 years. Exact: 17.67 years. Error: 0.33 years. The Rule of 72 is most accurate in the 6-10% range, which happens to be where most long-term investment return expectations sit. Below 4% it slightly overestimates; above 12% it slightly underestimates.",
+      table: {
+        caption: "Rule of 72 vs exact doubling time",
+        headers: ["Rate", "Rule of 72", "Exact", "Error"],
+        rows: [
+          ["4%", "18.0 yrs", "17.67 yrs", "+0.33"],
+          ["6%", "12.0 yrs", "11.90 yrs", "+0.10"],
+          ["8%", "9.0 yrs", "9.01 yrs", "-0.01"],
+          ["10%", "7.2 yrs", "7.27 yrs", "-0.07"],
+        ],
+      },
     },
     {
       heading: "The Math Behind the Magic",
@@ -55,6 +65,7 @@ const content: BlogContent = {
     { slug: "cagr-vs-average-return", title: "CAGR vs Average Return: Why the Difference Can Mislead You" },
     { slug: "inflation-hidden-tax", title: "Inflation's Hidden Tax on Your Investment Returns" },
     { slug: "time-value-of-money", title: "Time Value of Money: Why a Dollar Today Is Worth More Than a Dollar Tomorrow" },
+    { slug: "investing-vs-paying-off-debt", title: "Investing vs Paying Off Debt: How to Decide with Math" },
   ],
 }
 
